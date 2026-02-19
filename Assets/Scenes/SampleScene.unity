@@ -588,6 +588,9 @@ GameObject:
   - component: {fileID: 1821679378}
   - component: {fileID: 1821679377}
   - component: {fileID: 1821679381}
+  - component: {fileID: 1821679382}
+  - component: {fileID: 1821679384}
+  - component: {fileID: 1821679383}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -701,17 +704,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26aecdfda8d2efd48a57872d8cf253a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Movement.PlayerMovement
-  _jumpForce: 23.5
-  _jumpCutoffMultiplier: 0.4
-  _gravity: 70
-  _maxFallSpeed: -20
-  _brakeThreshold: 5
-  _brakeGravityMultiplier: 0.5
+  _canSmallJump: 1
+  _canFunwari: 1
+  _canMaxFallSpeed: 1
+  _groundChecker: {fileID: 1821679382}
+  _jumpAction: {fileID: 1821679384}
+  _gravityController: {fileID: 1821679383}
+--- !u!114 &1821679382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821679376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c44e7cc7f72e364a851aca9c3e63132, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Collision.GroundChecker
   _feetPos: {fileID: 1782754646}
   _rayLength: 2
   _groundLayer:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!114 &1821679383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821679376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c99dfa0b9b601049816fd6669fd502e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GravityController
+  _gravity: 70
+  _maxFallSpeed: -20
+  _brakeThreshold: 5
+  _brakeGravityMultiplier: 0.5
+--- !u!114 &1821679384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821679376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c410d3a860e011458a69d14c507f0ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JumpAction
+  _jumpForce: 23.5
+  _jumpCutoffMultiplier: 0.4
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
