@@ -21,7 +21,7 @@ namespace Manmaru.Player
         private void Update()
         {
             // 着地判定
-            _isGrounded = _groundChecker.CheckGrounded();
+            _isGrounded = _groundChecker.CheckGrounded(_currentVelocity.y, out float groundY);
 
             // 落下処理
             _currentVelocity.y = _gravityController.CalculateGravity(_currentVelocity.y, _isGrounded);
@@ -40,6 +40,12 @@ namespace Manmaru.Player
 
             // 座標移動
             MoveToFinalPos();
+
+            // 着地めり込み補正
+            if (_isGrounded && _currentVelocity.y <= 0f)
+            {
+                CorrectGroundPos(groundY);
+            }
         }
 
         /// <summary>
@@ -48,6 +54,23 @@ namespace Manmaru.Player
         private void MoveToFinalPos()
         {
             transform.position += _currentVelocity * Time.deltaTime;
+        }
+
+        /// <summary>
+        /// 着地位置を補正してめり込みを防ぐメソッド
+        /// </summary>
+        private void CorrectGroundPos(float groundY)
+        {
+            // 地面の表面 + Rayの長さ + (プレイヤーの原点 - プレイヤーの足元)
+            float heightOffset = transform.position.y - _groundChecker.FeetPosY;
+            float correctY = groundY + heightOffset;
+
+            // 正しい位置でなければ、補正
+            if (Mathf.Abs(transform.position.y - correctY) > 0.001f)
+            {
+                Debug.Log($"めり込み補正！y={correctY}");
+                transform.position = new Vector3(transform.position.x, correctY, transform.position.z);
+            }
         }
     }
 }

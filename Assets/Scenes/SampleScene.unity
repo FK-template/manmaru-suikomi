@@ -538,8 +538,8 @@ Transform:
   m_GameObject: {fileID: 1327665750}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 20}
-  m_LocalScale: {x: 20, y: 1, z: 50}
+  m_LocalPosition: {x: 0, y: -2.5, z: 20}
+  m_LocalScale: {x: 20, y: 5, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -569,7 +569,7 @@ Transform:
   m_GameObject: {fileID: 1782754645}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.4, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -705,8 +705,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Movement.PlayerMovement
   _canSmallJump: 1
-  _canFunwari: 1
-  _canMaxFallSpeed: 1
   _groundChecker: {fileID: 1821679382}
   _jumpAction: {fileID: 1821679384}
   _gravityController: {fileID: 1821679383}
@@ -723,7 +721,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Collision.GroundChecker
   _feetPos: {fileID: 1782754646}
-  _rayLength: 2
+  _offsetY: 0.1
+  _rayLength: 0.2
   _groundLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -739,6 +738,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c99dfa0b9b601049816fd6669fd502e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GravityController
+  _canFunwari: 1
+  _canMaxFallSpeed: 1
   _gravity: 70
   _maxFallSpeed: -20
   _brakeThreshold: 5
