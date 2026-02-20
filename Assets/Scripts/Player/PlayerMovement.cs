@@ -8,8 +8,6 @@ namespace Manmaru.Player
     {
         [Header("デバッグ用 - 機能オンオフ")]
         [SerializeField] private bool _canSmallJump = true;
-        [SerializeField] private bool _canFunwari = true;
-        [SerializeField] private bool _canMaxFallSpeed = true;
 
         [Header("依存クラス設定")]
         [SerializeField] private GroundChecker _groundChecker;
@@ -25,6 +23,9 @@ namespace Manmaru.Player
             // 着地判定
             _isGrounded = _groundChecker.CheckGrounded();
 
+            // 落下処理
+            _currentVelocity.y = _gravityController.CalculateGravity(_currentVelocity.y, _isGrounded);
+
             // ジャンプ入力判定
             if (Input.GetButtonDown("Jump") && _isGrounded)
             {
@@ -33,13 +34,9 @@ namespace Manmaru.Player
             }
             else if (Input.GetButtonUp("Jump") && _currentVelocity.y > 0f && _canSmallJump)
             {
-                // 上昇中に離したらギュッと減速（小ジャンプ）
+                // 上昇中に離したらキュッと減速（小ジャンプ）
                 _currentVelocity.y = _jumpAction.ApplyJumpCutoff(_currentVelocity.y);
             }
-
-            // 落下処理
-            else
-                _currentVelocity.y = _gravityController.CalculateGravity(_currentVelocity.y, _isGrounded, _canFunwari, _canMaxFallSpeed);
 
             // 座標移動
             MoveToFinalPos();
