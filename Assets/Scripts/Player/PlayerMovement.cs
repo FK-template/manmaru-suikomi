@@ -1,6 +1,8 @@
 using Manmaru.Collision;
 using Manmaru.Movement;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Manmaru.Player
 {
@@ -9,25 +11,61 @@ namespace Manmaru.Player
         [Header("デバッグ用 - 機能オンオフ")]
         [SerializeField] private bool _canSmallJump = true;
 
+        [Header("入力設定")]
+        [SerializeField] private InputActionReference _moveAction;
+
         [Header("依存クラス設定")]
         [SerializeField] private GroundChecker _groundChecker;
-        [SerializeField] private JumpAction _jumpAction;
+        [SerializeField] private GroundFitter _groundFitter;
         [SerializeField] private GravityController _gravityController;
+        [SerializeField] private JumpAction _jumpAction;
+        [SerializeField] private HorizontalMovement _horizontalMovement;
+        [SerializeField] private PlayerRotation _playerRotation;
 
         // 内部変数
         private Vector3 _currentVelocity;
-        private bool _isGrounded;
 
         private void Update()
         {
-            // 着地判定
-            _isGrounded = _groundChecker.CheckGrounded(_currentVelocity.y, out float groundY);
+            // 着地判定の保存
+            bool isGrounded = _groundChecker.CheckGrounded(_currentVelocity.y, out float groundY);
 
-            // 落下処理
-            _currentVelocity.y = _gravityController.CalculateGravity(_currentVelocity.y, _isGrounded);
+            // 入力状況の保存
+            Vector3 inputDirection = GetInputDirection(_moveAction);
+
+            // 速度・回転計算
+            UpdateVerticalVelocity(isGrounded);
+            UpdateHorizontalVelocity(inputDirection, isGrounded);
+            UpdateRotation(inputDirection);
+
+            // 移動・補正処理
+            MoveToFinalPos();
+            ApplyGroundFitting(groundY, isGrounded);
+        }
+
+        // ---------------------------------------------------------------------------
+        // 以下、Update処理の分割メソッド群 
+        // ---------------------------------------------------------------------------
+
+        /// <summary>
+        /// 入力に応じて方向ベクトルをVector3で返すメソッド
+        /// </summary>
+        private Vector3 GetInputDirection(InputActionReference argInput)
+        {
+            Vector2 inputVec = argInput.action.ReadValue<Vector2>();
+            return new Vector3(inputVec.x, 0f, inputVec.y).normalized;
+        }
+
+        /// <summary>
+        /// 垂直方向の速度に関する処理をまとめたメソッド
+        /// </summary>
+        private void UpdateVerticalVelocity(bool isGrounded)
+        {
+            // 重力処理
+            _currentVelocity.y = _gravityController.CalculateGravity(_currentVelocity.y, isGrounded);
 
             // ジャンプ入力判定
-            if (Input.GetButtonDown("Jump") && _isGrounded)
+            if (Input.GetButtonDown("Jump") && isGrounded)
             {
                 // 押したらグンと加速
                 _currentVelocity.y = _jumpAction.GetJumpVelocity();
@@ -37,15 +75,24 @@ namespace Manmaru.Player
                 // 上昇中に離したらキュッと減速（小ジャンプ）
                 _currentVelocity.y = _jumpAction.ApplyJumpCutoff(_currentVelocity.y);
             }
+        }
 
-            // 座標移動
-            MoveToFinalPos();
+        /// <summary>
+        /// 水平方向の速度に関する処理をまとめたメソッド
+        /// </summary>
+        private void UpdateHorizontalVelocity(Vector3 inputDir, bool isGrounded)
+        {
+            Vector3 nextHorVel = _horizontalMovement.CalculateVelocity(inputDir, _currentVelocity, isGrounded);
+            _currentVelocity.x = nextHorVel.x;
+            _currentVelocity.z = nextHorVel.z;
+        }
 
-            // 着地めり込み補正
-            if (_isGrounded && _currentVelocity.y <= 0f)
-            {
-                CorrectGroundPos(groundY);
-            }
+        /// <summary>
+        /// 移動に伴う回転処理をまとめたメソッド
+        /// </summary>
+        private void UpdateRotation(Vector3 inputDir)
+        {
+            transform.rotation = _playerRotation.CalculateRotation(inputDir, transform.rotation);
         }
 
         /// <summary>
@@ -57,19 +104,14 @@ namespace Manmaru.Player
         }
 
         /// <summary>
-        /// 着地位置を補正してめり込みを防ぐメソッド
+        /// めり込み補正を適用するメソッド
         /// </summary>
-        private void CorrectGroundPos(float groundY)
+        private void ApplyGroundFitting(float groundY, bool isGrounded)
         {
-            // 地面の表面 + Rayの長さ + (プレイヤーの原点 - プレイヤーの足元)
-            float heightOffset = transform.position.y - _groundChecker.FeetPosY;
-            float correctY = groundY + heightOffset;
-
-            // 正しい位置でなければ、補正
-            if (Mathf.Abs(transform.position.y - correctY) > 0.001f)
+            // 着地時のめり込み補正
+            if (isGrounded && _currentVelocity.y <= 0f)
             {
-                Debug.Log($"めり込み補正！y={correctY}");
-                transform.position = new Vector3(transform.position.x, correctY, transform.position.z);
+                _groundFitter.FitToGround(groundY, _groundChecker.FeetPosY);
             }
         }
     }

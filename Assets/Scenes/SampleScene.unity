@@ -589,8 +589,11 @@ GameObject:
   - component: {fileID: 1821679377}
   - component: {fileID: 1821679381}
   - component: {fileID: 1821679382}
+  - component: {fileID: 1821679387}
   - component: {fileID: 1821679384}
   - component: {fileID: 1821679383}
+  - component: {fileID: 1821679386}
+  - component: {fileID: 1821679385}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -705,9 +708,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Movement.PlayerMovement
   _canSmallJump: 1
+  _moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _groundChecker: {fileID: 1821679382}
-  _jumpAction: {fileID: 1821679384}
+  _groundFitter: {fileID: 1821679387}
   _gravityController: {fileID: 1821679383}
+  _jumpAction: {fileID: 1821679384}
+  _horizontalMovement: {fileID: 1821679386}
+  _playerRotation: {fileID: 1821679385}
 --- !u!114 &1821679382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -758,6 +765,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::JumpAction
   _jumpForce: 23.5
   _jumpCutoffMultiplier: 0.4
+--- !u!114 &1821679385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821679376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 282ea42bec4170741af79d60a7d09700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Movement.PlayerRotation
+  _rotationSpeed: 720
+--- !u!114 &1821679386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821679376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1531f21704e45640ade1f1751f95c8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Movement.HorizontalMovement
+  _maxSpeed: 8
+  _groundAcceleration: 50
+  _groundDeceleration: 60
+  _airAcceleration: 20
+  _airDeceleration: 5
+--- !u!114 &1821679387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821679376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5596a35d9aec11d47837cf87a488419a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Collision.GroundFitter
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
