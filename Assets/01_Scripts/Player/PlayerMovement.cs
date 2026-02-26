@@ -21,6 +21,7 @@ namespace Manmaru.Player
         [SerializeField] private JumpAction _jumpAction;
         [SerializeField] private HorizontalMovement _horizontalMovement;
         [SerializeField] private PlayerRotation _playerRotation;
+        [SerializeField] private WallChecker _wallChecker;
 
         // 内部変数
         private Vector3 _currentVelocity;
@@ -39,6 +40,7 @@ namespace Manmaru.Player
             UpdateRotation(inputDirection);
 
             // 移動・補正処理
+            ApplyWallSliding();
             MoveToFinalPos();
             ApplyGroundFitting(groundY, isGrounded);
         }
@@ -93,6 +95,14 @@ namespace Manmaru.Player
         private void UpdateRotation(Vector3 inputDir)
         {
             transform.rotation = _playerRotation.CalculateRotation(inputDir, transform.rotation);
+        }
+
+        /// <summary>
+        /// 現在の速度に壁滑りを適用するメソッド
+        /// </summary>
+        private void ApplyWallSliding()
+        {
+            _currentVelocity = _wallChecker.CalculateWallSliding(_currentVelocity);
         }
 
         /// <summary>

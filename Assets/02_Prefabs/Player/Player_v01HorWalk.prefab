@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 8544106276632739256}
   - component: {fileID: 3066849035934994921}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player_v01HorWalk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
