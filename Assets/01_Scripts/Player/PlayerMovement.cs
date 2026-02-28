@@ -14,6 +14,9 @@ namespace Manmaru.Player
         [Header("入力設定")]
         [SerializeField] private InputActionReference _moveAction;
 
+        [Tooltip("壁判定を取るレイヤー")]
+        [SerializeField] private LayerMask _wallLayer;
+
         [Header("依存クラス設定")]
         [SerializeField] private GroundChecker _groundChecker;
         [SerializeField] private GroundFitter _groundFitter;
@@ -22,6 +25,7 @@ namespace Manmaru.Player
         [SerializeField] private HorizontalMovement _horizontalMovement;
         [SerializeField] private PlayerRotation _playerRotation;
         [SerializeField] private WallChecker _wallChecker;
+        [SerializeField] private WallFitter _wallFitter;
 
         // 内部変数
         private Vector3 _currentVelocity;
@@ -102,7 +106,10 @@ namespace Manmaru.Player
         /// </summary>
         private void ApplyWallSliding()
         {
-            _currentVelocity = _wallChecker.CalculateWallSliding(_currentVelocity);
+            _currentVelocity = _wallChecker.CalculateWallSliding(_currentVelocity, _wallLayer);
+            transform.position = _wallFitter.FixWallPenetration(transform.position, transform.localScale.x / 2.0f, _wallLayer);
+
+            Debug.Log($"半径：{transform.localScale.x / 2.0f}");
         }
 
         /// <summary>

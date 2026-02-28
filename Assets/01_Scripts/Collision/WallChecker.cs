@@ -10,13 +10,11 @@ namespace Manmaru.Collision
         [SerializeField] private List<Transform> _frontPosList = new List<Transform>();
         [Tooltip("基本のRayの長さ")]
         [SerializeField] private float _rayLength = 0.2f;
-        [Tooltip("壁判定を取るレイヤー")]
-        [SerializeField] private LayerMask _wallLayer;
 
         /// <summary>
         /// 壁判定を取り、壁滑りを考慮した速度を返すメソッド
         /// </summary>
-        public Vector3 CalculateWallSliding(Vector3 curVel)
+        public Vector3 CalculateWallSliding(Vector3 curVel, LayerMask wallLayer)
         {
             // 水平方向の速度ベクトルと移動方向を抽出
             Vector3 horVel = new Vector3(curVel.x, 0f, curVel.z);
@@ -38,7 +36,7 @@ namespace Manmaru.Collision
                 // 移動方向にRayを発射
                 Ray ray = new Ray(t.position, moveDir);
 
-                if (Physics.Raycast(ray, out RaycastHit hit, finalRayLength, _wallLayer))
+                if (Physics.Raycast(ray, out RaycastHit hit, finalRayLength, wallLayer))
                 {
                     // 「最終速度」と「壁の法線」の内積がマイナスなら、壁に向かう速度を除去
                     float hitNormalVel = Vector3.Dot(finalVel, hit.normal);

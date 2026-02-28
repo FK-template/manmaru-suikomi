@@ -1,0 +1,42 @@
+using UnityEngine;
+
+namespace Manmaru.Collision
+{
+    public class WallFitter : MonoBehaviour
+    {
+        /// <summary>
+        /// プレイヤーから水平8方向で位置を補正して、めり込みを防ぐメソッド
+        /// </summary>
+        public Vector3 FixWallPenetration(Vector3 playerPos, float radius, LayerMask wallLayer)
+        {
+            Vector3 finalPos = playerPos;
+
+            // キャラの中心から水平8方向にRayを発射
+            Vector3[] directions =
+            {
+                Vector3.forward, Vector3.back, Vector3.left, Vector3.right,
+                (Vector3.forward + Vector3.right).normalized,
+                (Vector3.forward + Vector3.left).normalized,
+                (Vector3.back + Vector3.right).normalized,
+                (Vector3.back + Vector3.left).normalized
+            };
+
+            foreach (Vector3 dir in directions)
+            {
+                Ray ray = new Ray(playerPos, dir);
+
+                // Rayの長さは「体の半径」
+                if (Physics.Raycast(ray, out RaycastHit hit, radius, wallLayer))
+                {
+                    // めり込み距離ぶんだけ、壁と逆方向に移動
+                    float pushDist = radius - hit.distance;
+                    finalPos += hit.normal * pushDist;
+                }
+
+                Debug.DrawRay(playerPos, dir * radius, Color.yellow);
+            }
+
+            return finalPos;
+        }
+    }
+}
