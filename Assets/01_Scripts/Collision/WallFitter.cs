@@ -5,7 +5,7 @@ namespace Manmaru.Collision
     public class WallFitter : MonoBehaviour
     {
         /// <summary>
-        /// プレイヤーから水平8方向で位置を補正して、めり込みを防ぐメソッド
+        /// 水平8方向に補正をかけた位置を返し、めり込みを防ぐメソッド
         /// </summary>
         public Vector3 FixWallPenetration(Vector3 playerPos, float radius, LayerMask wallLayer)
         {

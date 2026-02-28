@@ -11,14 +11,17 @@ namespace Manmaru.Player
         [Header("デバッグ用 - 機能オンオフ")]
         [SerializeField] private bool _canSmallJump = true;
 
+        [Header("地形判定を取るレイヤー")]
+        [SerializeField] private LayerMask _groundLayer;
+
+        [Header("パラメータ設定")]
+        [SerializeField] private float _bodyRadius = 0.5f;
+
         [Header("入力設定")]
         [SerializeField] private InputActionReference _moveAction;
 
-        [Tooltip("壁判定を取るレイヤー")]
-        [SerializeField] private LayerMask _wallLayer;
-
         [Header("依存クラス設定")]
-        [SerializeField] private GroundChecker _groundChecker;
+        [SerializeField] private MultiRayGroundChecker _groundChecker;
         [SerializeField] private GroundFitter _groundFitter;
         [SerializeField] private GravityController _gravityController;
         [SerializeField] private JumpAction _jumpAction;
@@ -33,7 +36,7 @@ namespace Manmaru.Player
         private void Update()
         {
             // 着地判定の保存
-            bool isGrounded = _groundChecker.CheckGrounded(_currentVelocity.y, out float groundY);
+            bool isGrounded = _groundChecker.MultiRayCheckGrounded(_currentVelocity.y, out float groundY, out Vector3 groundNormal, _bodyRadius, _groundLayer);
 
             // 入力状況の保存
             Vector3 inputDirection = GetInputDirection(_moveAction);
@@ -106,10 +109,8 @@ namespace Manmaru.Player
         /// </summary>
         private void ApplyWallSliding()
         {
-            _currentVelocity = _wallChecker.CalculateWallSliding(_currentVelocity, _wallLayer);
-            transform.position = _wallFitter.FixWallPenetration(transform.position, transform.localScale.x / 2.0f, _wallLayer);
-
-            Debug.Log($"半径：{transform.localScale.x / 2.0f}");
+            _currentVelocity = _wallChecker.CalculateWallSliding(_currentVelocity, _groundLayer);
+            transform.position = _wallFitter.FixWallPenetration(transform.position, _bodyRadius, _groundLayer);
         }
 
         /// <summary>
@@ -128,7 +129,7 @@ namespace Manmaru.Player
             // 着地時のめり込み補正
             if (isGrounded && _currentVelocity.y <= 0f)
             {
-                _groundFitter.FitToGround(groundY, _groundChecker.FeetPosY);
+                transform.position = _groundFitter.FitToGround(transform.position, groundY, _groundChecker.FeetPosY);
             }
         }
     }
