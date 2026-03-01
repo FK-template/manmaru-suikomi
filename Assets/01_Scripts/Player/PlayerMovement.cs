@@ -44,7 +44,7 @@ namespace Manmaru.Player
             // 速度・回転計算
             UpdateVerticalVelocity(isGrounded);
             UpdateHorizontalVelocity(inputDirection, isGrounded);
-            UpdateRotation(inputDirection);
+            UpdateRotation(inputDirection, groundNormal);
 
             // 移動・補正処理
             ApplyWallSliding();
@@ -99,9 +99,9 @@ namespace Manmaru.Player
         /// <summary>
         /// 移動に伴う回転処理をまとめたメソッド
         /// </summary>
-        private void UpdateRotation(Vector3 inputDir)
+        private void UpdateRotation(Vector3 inputDir, Vector3 groundNormal)
         {
-            transform.rotation = _playerRotation.CalculateRotation(inputDir, transform.rotation);
+            transform.rotation = _playerRotation.CalculateRotation(inputDir, transform.rotation, groundNormal);
         }
 
         /// <summary>
