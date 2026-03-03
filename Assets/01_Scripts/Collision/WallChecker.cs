@@ -38,6 +38,10 @@ namespace Manmaru.Collision
 
                 if (Physics.Raycast(ray, out RaycastHit hit, finalRayLength, wallLayer))
                 {
+                    // 壁なのか坂道（勾配が緩やか）なのか判定
+                    float angle = Vector3.Angle(Vector3.up, hit.normal);
+                    if (angle <= 45f) continue;
+
                     // 「最終速度」と「壁の法線」の内積がマイナスなら、壁に向かう速度を除去
                     float hitNormalVel = Vector3.Dot(finalVel, hit.normal);
                     if (hitNormalVel < 0f) finalVel -= hitNormalVel * hit.normal;

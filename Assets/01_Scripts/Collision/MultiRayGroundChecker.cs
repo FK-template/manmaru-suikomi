@@ -58,6 +58,10 @@ namespace Manmaru.Collision
 
                 if (Physics.Raycast(ray, out RaycastHit hit, finalRayLength, groundLayer))
                 {
+                    // 地面なのか壁（勾配が急）なのか判定
+                    float angle = Vector3.Angle(Vector3.up, hit.normal);
+                    if (angle > 45f) continue;
+
                     isGrounded = true;
 
                     // 最も高い地点なら、その地点と法線を更新
