@@ -42,8 +42,8 @@ namespace Manmaru.Player
             Vector3 inputDirection = GetInputDirection(_moveAction);
 
             // 速度・回転計算
+            UpdateHorizontalVelocity(inputDirection, groundNormal, isGrounded);
             UpdateVerticalVelocity(isGrounded);
-            UpdateHorizontalVelocity(inputDirection, isGrounded);
             UpdateRotation(inputDirection, groundNormal);
 
             // 移動・補正処理
@@ -89,9 +89,9 @@ namespace Manmaru.Player
         /// <summary>
         /// 水平方向の速度に関する処理をまとめたメソッド
         /// </summary>
-        private void UpdateHorizontalVelocity(Vector3 inputDir, bool isGrounded)
+        private void UpdateHorizontalVelocity(Vector3 inputDir, Vector3 groundNormal, bool isGrounded)
         {
-            Vector3 nextHorVel = _horizontalMovement.CalculateVelocity(inputDir, _currentVelocity, isGrounded);
+            Vector3 nextHorVel = _horizontalMovement.CalculateHorVelocity(inputDir, groundNormal, _currentVelocity, isGrounded);
             _currentVelocity.x = nextHorVel.x;
             _currentVelocity.z = nextHorVel.z;
         }
