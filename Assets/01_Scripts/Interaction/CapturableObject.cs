@@ -17,11 +17,17 @@ namespace Manmaru.Interaction
 
         }
 
+        /// <summary>
+        /// Transformを取得して返すメソッド
+        /// </summary>
         public Transform GetTransform()
         {
             return transform;
         }
 
+        /// <summary>
+        /// すいこまれたときの位置補正と、すいこめるものリストからの自己削除を行うメソッド
+        /// </summary>
         public void OnCapture(Transform playerTrans)
         {
             transform.position = playerTrans.position + Vector3.up * 1.0f;

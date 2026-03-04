@@ -20,7 +20,7 @@ namespace Manmaru.Collision
         /// </summary>
         public bool MultiRayCheckGrounded(float currentVelocityY, out float groundPosY, out Vector3 groundNormal, float radius, LayerMask groundLayer)
         {
-            groundPosY = Mathf.NegativeInfinity;
+            groundPosY = float.MinValue;
             groundNormal = Vector3.up;
 
             // —‰º‘¬“x‚É‰‚¶‚½Ray‚Ì“®“I’·‚³’²ß
