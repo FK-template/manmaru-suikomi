@@ -5,7 +5,7 @@ namespace Manmaru.Collision
 {
     public class WallChecker : MonoBehaviour
     {
-        [Header("Raycast着地判定の設定")]
+        [Header("Raycast壁判定の設定")]
         [Tooltip("Rayの始点リスト")]
         [SerializeField] private List<Transform> _frontPosList = new List<Transform>();
         [Tooltip("基本のRayの長さ")]
