@@ -49,6 +49,9 @@ namespace Manmaru.Player
             // ˆÚ“®E•â³ˆ—
             ApplyWallSliding();
             MoveToFinalPos();
+
+            // ˆÚ“®Œã‚Ì’n–Êî•ñ‚ğÄæ“¾‚µ‚Ä•â³
+            isGrounded = _groundChecker.MultiRayCheckGrounded(_currentVelocity.y, out  groundY, out groundNormal, _bodyRadius, _groundLayer);
             ApplyGroundFitting(groundY, isGrounded);
         }
 
