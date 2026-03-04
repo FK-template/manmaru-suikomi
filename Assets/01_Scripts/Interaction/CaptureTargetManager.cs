@@ -7,7 +7,7 @@ namespace Manmaru.Interaction
     {
         [Header("デバッグ用：すいこめるものリスト")]
         [SerializeField] private List<GameObject> _targetObjList = new List<GameObject>();
-        
+
         // 内部変数：すいこめるものリスト
         private List<ICapturable> _targetList = new List<ICapturable>();
 
@@ -73,8 +73,6 @@ namespace Manmaru.Interaction
                     minDistSqr = distSqr;
                 }
             }
-
-            Debug.Log($"すいこみ！：{closestTarget.GetTransform().gameObject.name}");
             return closestTarget;
         }
     }

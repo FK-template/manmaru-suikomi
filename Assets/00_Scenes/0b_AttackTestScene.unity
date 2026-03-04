@@ -1066,28 +1066,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1364585685}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1491821662 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6310198609035381964, guid: 300027681b4d18844a7b6f8160e4032c, type: 3}
-  m_PrefabInstance: {fileID: 7636451833743228880}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1491821672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1491821662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 654e91a12299ca74ea56c1dbdbae3d7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Player.PlayerAction
-  _captureMaxRange: 5
-  _captureCloseRange: 1
-  _captureDotRange: 0.7
-  _attackAction: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  _captureTargetManager: {fileID: 1924798259}
 --- !u!1 &1643876691
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,13 +1339,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6462979492486887933, guid: 300027681b4d18844a7b6f8160e4032c, type: 3}
+      propertyPath: _captureTargetManager
+      value: 
+      objectReference: {fileID: 1924798259}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6310198609035381964, guid: 300027681b4d18844a7b6f8160e4032c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1491821672}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 300027681b4d18844a7b6f8160e4032c, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

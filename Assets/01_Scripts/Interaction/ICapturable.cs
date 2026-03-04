@@ -5,7 +5,7 @@ namespace Manmaru.Interaction
     public interface ICapturable
     {
         Transform GetTransform();
-
-        void OnCapture(Transform player);
+        void OnCapture(Transform playerTrans);
+        void OnShoot(Vector3 dir);
     }
 }

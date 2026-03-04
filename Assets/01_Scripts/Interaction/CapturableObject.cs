@@ -7,6 +7,11 @@ namespace Manmaru.Interaction
         [Header("すいこみオブジェクトの管理者")]
         [SerializeField] private CaptureTargetManager _captureTargetManager;
 
+        // 内部変数
+        private bool _isShooting = false;
+        private float _shootSpeed = 0.5f;
+        private Vector3 _shootDir = Vector3.zero;
+
         void Start()
         {
             _captureTargetManager.RegisterTarget(this);
@@ -14,7 +19,10 @@ namespace Manmaru.Interaction
 
         void Update()
         {
-
+            if(_isShooting)
+            {
+                transform.position += _shootDir * _shootSpeed;
+            }
         }
 
         /// <summary>
@@ -34,6 +42,16 @@ namespace Manmaru.Interaction
             transform.SetParent(playerTrans);
 
             _captureTargetManager.UnregisterTarget(this);
+        }
+
+        /// <summary>
+        /// はきだされ処理の開始準備を行うメソッド
+        /// </summary>
+        public void OnShoot(Vector3 dir)
+        {
+            transform.SetParent(null);
+            _isShooting = true;
+            _shootDir = dir;
         }
     }
 }
