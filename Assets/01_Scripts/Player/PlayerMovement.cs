@@ -8,9 +8,6 @@ namespace Manmaru.Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-        [Header("デバッグ用 - 機能オンオフ")]
-        [SerializeField] private bool _canSmallJump = true;
-
         [Header("地形判定を取るレイヤー")]
         [SerializeField] private LayerMask _groundLayer;
 
@@ -51,7 +48,7 @@ namespace Manmaru.Player
             MoveToFinalPos();
 
             // 移動後の地面情報を再取得して補正
-            isGrounded = _groundChecker.MultiRayCheckGrounded(_currentVelocity.y, out  groundY, out groundNormal, _bodyRadius, _groundLayer);
+            isGrounded = _groundChecker.MultiRayCheckGrounded(_currentVelocity.y, out groundY, out groundNormal, _bodyRadius, _groundLayer);
             ApplyGroundFitting(groundY, isGrounded);
         }
 
@@ -60,7 +57,7 @@ namespace Manmaru.Player
         // ---------------------------------------------------------------------------
 
         /// <summary>
-        /// 入力に応じて方向ベクトルをVector3で返すメソッド
+        /// 入力に応じて移動用の方向ベクトルをVector3で返すメソッド
         /// </summary>
         private Vector3 GetInputDirection(InputActionReference argInput)
         {
@@ -76,17 +73,12 @@ namespace Manmaru.Player
             // 重力処理
             _currentVelocity.y = _gravityController.CalculateGravity(_currentVelocity.y, isGrounded);
 
-            // ジャンプ入力判定
-            if (Input.GetButtonDown("Jump") && isGrounded)
-            {
-                // 押したらグンと加速
-                _currentVelocity.y = _jumpAction.GetJumpVelocity();
-            }
-            else if (Input.GetButtonUp("Jump") && _currentVelocity.y > 0f && _canSmallJump)
-            {
-                // 上昇中に離したらキュッと減速（小ジャンプ）
-                _currentVelocity.y = _jumpAction.ApplyJumpCutoff(_currentVelocity.y);
-            }
+            // ジャンプ入力情報
+            bool isJumpPressed = Input.GetButtonDown("Jump");
+            bool isJumpReleased = Input.GetButtonUp("Jump");
+
+            // ジャンプ状態の更新
+            _currentVelocity.y = _jumpAction.UpdateJumpState(_currentVelocity.y, isGrounded, isJumpPressed, isJumpReleased);
         }
 
         /// <summary>
@@ -129,11 +121,11 @@ namespace Manmaru.Player
         /// </summary>
         private void ApplyGroundFitting(float groundY, bool isGrounded)
         {
+            // ジャンプ中 or 空中 なら終了
+            if (_jumpAction.IsJumping || !isGrounded) return;
+
             // 着地時のめり込み補正
-            if (isGrounded && _currentVelocity.y <= 0f)
-            {
-                transform.position = _groundFitter.FitToGround(transform.position, groundY, _groundChecker.FeetPosY);
-            }
+            transform.position = _groundFitter.FitToGround(transform.position, groundY, _groundChecker.FeetPosY);
         }
     }
 }
