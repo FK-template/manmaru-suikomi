@@ -11,20 +11,15 @@ namespace Manmaru.Interaction
         [SerializeField] private float _captureDuration = 0.5f;
         [SerializeField] private AnimationCurve _captureCurve;
 
-        // 内部変数：はきだし用
-        private bool _isShooting = false;
-        private float _shootSpeed = 0.5f;
-        private Vector3 _shootDir = Vector3.zero;
-
         // 内部変数：すいこみ用
         private bool _isCapturing = false;
         private float _captureTimer = 0f;
         private Vector3 _startPos;
-        private Transform _playerTrans;
+        private Vector3 _playerPos;
 
         void Start()
         {
-            _captureTargetManager.RegisterTarget(this);
+            _captureTargetManager.RegisterCapturableTarget(this);
         }
 
         void Update()
@@ -33,35 +28,39 @@ namespace Manmaru.Interaction
             {
                 UpdateCapturingAnimation();
             }
-            else if (_isShooting)
-            {
-                transform.position += _shootDir * _shootSpeed;
-            }
         }
 
         /// <summary>
         /// Transformを取得して返すメソッド
         /// </summary>
+        /// <remarks>外部からインターフェースを用いて検索をかけるため、改めてTransformを返す必要がある</remarks>
         public Transform GetTransform()
         {
             return transform;
         }
 
         /// <summary>
-        /// すいこまれたときの位置補正と、すいこめるものリストからの自己削除を行うメソッド
+        /// すいこまれ始めたときのセットアップを行うメソッド
         /// </summary>
         public void OnCapture(Transform playerTrans)
         {
+            // すいこみ中処理のセットアップ
             _isCapturing = true;
             _captureTimer = 0f;
             _startPos = transform.position;
-            _playerTrans = playerTrans;
+            _playerPos = playerTrans.position;
 
+            // 当たり判定無効
             GetComponent<Collider>().enabled = false;
 
-            _captureTargetManager.UnregisterTarget(this);
+            // すいこみ候補リストから、すいこみ中リストへ移動
+            _captureTargetManager.UnregisterCapturableTarget(this);
+            _captureTargetManager.RegisterCapturingTarget(this);
         }
 
+        /// <summary>
+        /// すいこみ中のアニメーション処理を行うメソッド
+        /// </summary>
         private void UpdateCapturingAnimation()
         {
             // 経過時間に対応したカーブの値を取得
@@ -70,26 +69,15 @@ namespace Manmaru.Interaction
             float curveValue = _captureCurve.Evaluate(clampTime);
 
             // カーブの値に応じた移動
-            transform.position = Vector3.LerpUnclamped(_startPos, _playerTrans.position, curveValue);
+            transform.position = Vector3.LerpUnclamped(_startPos, _playerPos, curveValue);
 
             // すいこみ完了処理
             if (curveValue >= 1.0f)
             {
                 _isCapturing = false;
-
-                transform.position = _playerTrans.position;
-                transform.SetParent(_playerTrans);
+                _captureTargetManager.NotifyCaptureCompleted(this);
+                Destroy(gameObject);
             }
-        }
-
-        /// <summary>
-        /// はきだされ処理の開始準備を行うメソッド
-        /// </summary>
-        public void OnShoot(Vector3 dir)
-        {
-            transform.SetParent(null);
-            _isShooting = true;
-            _shootDir = dir;
         }
     }
 }

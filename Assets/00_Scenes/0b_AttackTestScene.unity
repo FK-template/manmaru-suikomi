@@ -1134,6 +1134,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1364585685}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1491821681 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 105511854627499576, guid: 300027681b4d18844a7b6f8160e4032c, type: 3}
+  m_PrefabInstance: {fileID: 7636451833743228880}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1643876691
 GameObject:
   m_ObjectHideFlags: 0
@@ -1366,7 +1371,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 105511854627499576, guid: 300027681b4d18844a7b6f8160e4032c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 105511854627499576, guid: 300027681b4d18844a7b6f8160e4032c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1404,6 +1409,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6462979492486887933, guid: 300027681b4d18844a7b6f8160e4032c, type: 3}
+      propertyPath: _spawnTrans
+      value: 
+      objectReference: {fileID: 1491821681}
+    - target: {fileID: 6462979492486887933, guid: 300027681b4d18844a7b6f8160e4032c, type: 3}
+      propertyPath: _starBullet
+      value: 
+      objectReference: {fileID: 805668605134999330, guid: 8640630d26f4e7b46a01242772612d08, type: 3}
     - target: {fileID: 6462979492486887933, guid: 300027681b4d18844a7b6f8160e4032c, type: 3}
       propertyPath: _captureTargetManager
       value: 

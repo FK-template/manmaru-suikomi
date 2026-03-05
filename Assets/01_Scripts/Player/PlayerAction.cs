@@ -17,17 +17,34 @@ namespace Manmaru.Player
         [Header("すいこみオブジェクトの管理者")]
         [SerializeField] private CaptureTargetManager _captureTargetManager;
 
+        [Header("はきだし設定")]
+        [SerializeField] private StarBulletController _starBullet;
+        [SerializeField] private Transform _spawnTrans;
+
         // 内部変数
         private ICapturable _currentCapturedTarget = null;
+        private bool _isHobariMode = false;
+        private int _capturedCount = 0;
+
+        void Start()
+        {
+            // イベント設定
+            _captureTargetManager.OnCaptureFinished += AddCapturedCount;
+            _captureTargetManager.OnAllCapturesFinished += ReadyToShoot;
+        }
 
         void Update()
         {
             // すいこみ・はきだし
             // （null判定はメソッド内ですると、同フレームで両方の処理が行われる可能性がある）
-            if (_currentCapturedTarget == null)
+            if (!_isHobariMode)
+            {
                 UpdateCaptureStatus();
+            }
             else
+            {
                 UpdateShootStatus();
+            }
         }
 
         /// <summary>
@@ -45,7 +62,7 @@ namespace Manmaru.Player
                 if (target == null) return;
 
                 target.OnCapture(transform);
-                _currentCapturedTarget = target;
+                //_currentCapturedTarget = target;
 
                 Debug.Log($"すいこみ！：{target.GetTransform().gameObject.name}");
             }
@@ -59,11 +76,35 @@ namespace Manmaru.Player
             // Attackボタンを押した瞬間に、はきだし処理を開始
             if (_attackAction.action.WasPressedThisFrame())
             {
-                Debug.Log($"はきだし！：{_currentCapturedTarget.GetTransform().gameObject.name}");
+                Debug.Log($"はきだし！弾の強さ：Lv.{_capturedCount}");
 
-                _currentCapturedTarget.OnShoot(transform.forward);
-                _currentCapturedTarget = null;
+                // ほおばり状態の初期化
+                _capturedCount = 0;
+                _isHobariMode = false;
+
+                // 弾の生成と初期化
+                StarBulletController bullet = Instantiate(_starBullet, _spawnTrans.position, Quaternion.identity);
+                bullet.Initialize(transform.forward);
+
+                //_currentCapturedTarget.OnShoot(transform.forward);
+                //_currentCapturedTarget = null;
             }
+        }
+
+        /// <summary>
+        /// すいこみ済みカウンターを増やすメソッド
+        /// </summary>
+        private void AddCapturedCount()
+        {
+            _capturedCount++;
+            Debug.Log($"すいこみ完了！現在のストック：{_capturedCount}");
+        }
+
+        // すいこみ準備完了メソッド
+        private void ReadyToShoot()
+        {
+            _isHobariMode = true;
+            Debug.Log($"すいこみ完全完了！ほおばりモードへ");
         }
 
         // ----- 以下、Gemini3 Pro より出力 -----

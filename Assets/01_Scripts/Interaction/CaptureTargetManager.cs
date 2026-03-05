@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 namespace Manmaru.Interaction
 {
@@ -11,10 +12,18 @@ namespace Manmaru.Interaction
         // 内部変数：すいこめるものリスト
         private List<ICapturable> _targetList = new List<ICapturable>();
 
+        // 内部変数：すいこみ中リスト
+        private List<ICapturable> _capturingList = new List<ICapturable>();
+        private int _capturingCount = 0;
+
+        // すいこみ完了イベント
+        public event Action OnCaptureFinished;
+        public event Action OnAllCapturesFinished;
+
         /// <summary>
         /// 任意のすいこめるオブジェクトを、すいこめるものリストに追加するメソッド
         /// </summary>
-        public void RegisterTarget(ICapturable argTarget)
+        public void RegisterCapturableTarget(ICapturable argTarget)
         {
             if (_targetList.Contains(argTarget)) return;
             _targetList.Add(argTarget);
@@ -24,7 +33,7 @@ namespace Manmaru.Interaction
         /// <summary>
         /// 任意のすいこめるオブジェクトを、すいこめるものリストから削除するメソッド
         /// </summary>
-        public void UnregisterTarget(ICapturable argTarget)
+        public void UnregisterCapturableTarget(ICapturable argTarget)
         {
             if (!_targetList.Contains(argTarget)) return;
             _targetList.Remove(argTarget);
@@ -74,6 +83,42 @@ namespace Manmaru.Interaction
                 }
             }
             return closestTarget;
+        }
+
+        /// <summary>
+        /// 任意のオブジェクトを、すいこみ中リストに追加するメソッド
+        /// </summary>
+        public void RegisterCapturingTarget(ICapturable argTarget)
+        {
+            if (_capturingList.Contains(argTarget)) return;
+            _capturingList.Add(argTarget);
+        }
+
+        /// <summary>
+        /// 自身のすいこみの完了を知らせ、リスト削除やイベント発動を行うメソッド
+        /// </summary>
+        public void NotifyCaptureCompleted(ICapturable argTarget)
+        {
+            // すいこみ中リストから自身を削除
+            UnregisterCapturingTarget(argTarget);
+
+            // すいこみ済みカウンターを増やすためのイベント発動
+            OnCaptureFinished.Invoke();
+
+            // すいこみ中リストが空になったら、完了イベント発動
+            if (_capturingList.Count == 0)
+            {
+                OnAllCapturesFinished.Invoke();
+            }
+        }
+
+        /// <summary>
+        /// 任意のオブジェクトを、すいこみ中リストから削除するメソッド
+        /// </summary>
+        private void UnregisterCapturingTarget(ICapturable argTarget)
+        {
+            if (!_capturingList.Contains(argTarget)) return;
+            _capturingList.Remove(argTarget);
         }
     }
 }

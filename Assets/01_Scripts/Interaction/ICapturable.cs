@@ -6,6 +6,5 @@ namespace Manmaru.Interaction
     {
         Transform GetTransform();
         void OnCapture(Transform playerTrans);
-        void OnShoot(Vector3 dir);
     }
 }
