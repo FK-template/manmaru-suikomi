@@ -507,13 +507,77 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 5012533244054832165, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
-      propertyPath: m_Layer
-      value: 10
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureTargetManager
+      value: 
+      objectReference: {fileID: 1924798259}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[1].time
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[2].time
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[3].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[1].value
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[2].value
+      value: -0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[3].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[1].inSlope
+      value: -0.001350287
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[2].inSlope
+      value: 0.23880547
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[3].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[1].inWeight
+      value: 0.425
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[1].outSlope
+      value: -0.001350287
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[2].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[2].outSlope
+      value: 0.23880547
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[3].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[2].outWeight
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 6029965288350038039, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.1
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 6029965288350038039, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
       propertyPath: m_LocalPosition.y
@@ -554,29 +618,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5012533244054832165, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 566825708}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
---- !u!1 &566825707 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5012533244054832165, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
-  m_PrefabInstance: {fileID: 566825706}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &566825708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 566825707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cb031ee36912e741b6c2d98ad397cba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Interaction.CapturableObject
-  _captureTargetManager: {fileID: 1924798259}
 --- !u!1001 &681073665
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -589,9 +632,73 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 5012533244054832165, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
-      propertyPath: m_Layer
-      value: 10
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureTargetManager
+      value: 
+      objectReference: {fileID: 1924798259}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[1].time
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[2].time
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[3].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[1].value
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[2].value
+      value: -0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[3].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[1].inSlope
+      value: -0.001350287
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[2].inSlope
+      value: 0.23880547
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[3].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[1].inWeight
+      value: 0.425
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[1].outSlope
+      value: -0.001350287
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[2].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[2].outSlope
+      value: 0.23880547
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[3].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureCurve.m_Curve.Array.data[2].outWeight
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 6029965288350038039, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
       propertyPath: m_LocalPosition.x
@@ -636,47 +743,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5012533244054832165, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 681073667}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
---- !u!1 &681073666 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5012533244054832165, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
-  m_PrefabInstance: {fileID: 681073665}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &681073667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 681073666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cb031ee36912e741b6c2d98ad397cba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Interaction.CapturableObject
-  _captureTargetManager: {fileID: 1924798259}
---- !u!1 &779508839 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5012533244054832165, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
-  m_PrefabInstance: {fileID: 3894813960894827709}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &779508844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 779508839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cb031ee36912e741b6c2d98ad397cba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Interaction.CapturableObject
-  _captureTargetManager: {fileID: 1924798259}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1235,10 +1303,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box
       objectReference: {fileID: 0}
-    - target: {fileID: 5012533244054832165, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
+    - target: {fileID: 5517230804289335852, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
+      propertyPath: _captureTargetManager
+      value: 
+      objectReference: {fileID: 1924798259}
     - target: {fileID: 6029965288350038039, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1282,10 +1350,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5012533244054832165, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 779508844}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10b751a1d2bbf524eb65f1ba4d7bfb59, type: 3}
 --- !u!1001 &7636451833743228880
 PrefabInstance:
