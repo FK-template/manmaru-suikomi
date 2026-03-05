@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Manmaru.Interaction
 {
+    /// <summary>
+    /// ‚Í‚«‚¾‚µ’e‚ÌÕ“Ë”»’è‚ğs‚¤ƒNƒ‰ƒX
+    /// </summary>
     public class StarBulletCollision : MonoBehaviour
     {
         /// <summary>

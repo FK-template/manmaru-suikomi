@@ -5,7 +5,10 @@ using static UnityEngine.GraphicsBuffer;
 
 namespace Manmaru.Player
 {
-    public class PlayerAction : MonoBehaviour
+    /// <summary>
+    /// プレイヤーのすいこみ・はきだし処理を制御するクラス
+    /// </summary>
+    public class PlayerCaptureController : MonoBehaviour
     {
         [Header("すいこみパラメータ設定")]
         [SerializeField] private float _captureMaxRange = 5.0f;
@@ -20,19 +23,22 @@ namespace Manmaru.Player
         [SerializeField] private Transform _spawnTrans;
 
         [Header("依存クラス設定")]
-        [Tooltip("すいこみオブジェクトの管理者")]
-        [SerializeField] private CaptureTargetManager _captureTargetManager;
         [Tooltip("プレイヤー状態の可視化管理者")]
-        [SerializeField] private PlayerVisualController _playerVisualController;
+        [SerializeField] private PlayerVisualHandler _playerVisualController;
         [Tooltip("すいこみパーティクル管理者")]
-        [SerializeField] private CaptureEffectController _captureEffectController;
+        [SerializeField] private CaptureEffectHandler _captureEffectController;
 
-        // 内部変数
+        // 内部変数：ほおばり・はきだし用
         private bool _isMouthfulMode = false;
         private int _capturedCount = 0;
 
+        // 内部変数：すいこみオブジェクトの管理者（イベント購読用）
+        private CaptureTargetManager _captureTargetManager;
+
         void Start()
         {
+            _captureTargetManager = CaptureTargetManager.Instance;
+
             // イベント設定
             _captureTargetManager.OnCaptureFinished += AddCapturedCount;
             _captureTargetManager.OnAllCapturesFinished += ReadyToShoot;

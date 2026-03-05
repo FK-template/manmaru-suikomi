@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Manmaru.Movement
 {
+    /// <summary>
+    /// ジャンプ処理全体を制御するクラス
+    /// </summary>
     public class JumpAction : MonoBehaviour
     {
         [Header("デバッグ用 - 機能オンオフ")]

@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Manmaru.Collision
 {
+    /// <summary>
+    /// めり込み対策として、地面の高さに位置を補正するクラス
+    /// </summary>
     public class GroundFitter : MonoBehaviour
     {
         /// <summary>

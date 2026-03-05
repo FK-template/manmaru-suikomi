@@ -6,7 +6,10 @@ using UnityEngine.InputSystem;
 
 namespace Manmaru.Player
 {
-    public class PlayerMovement : MonoBehaviour
+    /// <summary>
+    /// プレイヤーの移動処理全般を制御するクラス
+    /// </summary>
+    public class PlayerMoveController : MonoBehaviour
     {
         [Header("地形判定を取るレイヤー")]
         [SerializeField] private LayerMask _groundLayer;
@@ -20,7 +23,7 @@ namespace Manmaru.Player
         [Header("依存クラス設定")]
         [SerializeField] private MultiRayGroundChecker _groundChecker;
         [SerializeField] private GroundFitter _groundFitter;
-        [SerializeField] private GravityController _gravityController;
+        [SerializeField] private GravityCalculator _gravityCalculator;
         [SerializeField] private JumpAction _jumpAction;
         [SerializeField] private HorizontalMovement _horizontalMovement;
         [SerializeField] private PlayerRotation _playerRotation;
@@ -71,7 +74,7 @@ namespace Manmaru.Player
         private void UpdateVerticalVelocity(bool isGrounded)
         {
             // 重力処理
-            _currentVelocity.y = _gravityController.CalculateGravity(_currentVelocity.y, isGrounded);
+            _currentVelocity.y = _gravityCalculator.CalculateGravity(_currentVelocity.y, isGrounded);
 
             // ジャンプ入力情報
             bool isJumpPressed = Input.GetButtonDown("Jump");

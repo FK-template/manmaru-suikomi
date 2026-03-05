@@ -4,6 +4,9 @@ using System;
 
 namespace Manmaru.Interaction
 {
+    /// <summary>
+    /// すいこみ候補オブジェクトの総合管理を行うシングルトンクラス
+    /// </summary>
     public class CaptureTargetManager : MonoBehaviour
     {
         [Header("デバッグ用：すいこめるものリスト")]
@@ -16,9 +19,18 @@ namespace Manmaru.Interaction
         private List<ICapturable> _capturingList = new List<ICapturable>();
         private int _capturingCount = 0;
 
-        // すいこみ完了イベント
+        // 内部変数：すいこみ完了イベント
         public event Action OnCaptureFinished;
         public event Action OnAllCapturesFinished;
+
+        // インスタンス設定
+        public static CaptureTargetManager Instance { get; private set; }
+
+        void Awake()
+        {
+            if (Instance == null) Instance = this;
+            else Destroy(gameObject);
+        }
 
         /// <summary>
         /// 任意のすいこめるオブジェクトを、すいこめるものリストに追加するメソッド

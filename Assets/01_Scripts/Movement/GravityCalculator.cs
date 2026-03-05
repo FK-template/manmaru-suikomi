@@ -2,7 +2,10 @@ using UnityEngine;
 
 namespace Manmaru.Movement
 {
-    public class GravityController : MonoBehaviour
+    /// <summary>
+    /// プレイヤーの重力処理を制御するクラス
+    /// </summary>
+    public class GravityCalculator : MonoBehaviour
     {
         [Header("デバッグ用 - 機能オンオフ")]
         [SerializeField] private bool _canFunwari = true;
@@ -23,29 +26,29 @@ namespace Manmaru.Movement
         /// <summary>
         /// 重力を計算して速度を返すメソッド
         /// </summary>
-        public float CalculateGravity(float curVelocityY, bool isGrounded)
+        public float CalculateGravity(float curVelY, bool isGrounded)
         {
             // 通常減速（落下）処理
             if (!isGrounded)
             {
-                float currentGravity = _gravity;
+                float curGravity = _gravity;
 
                 // ふんわり滞空のために重力減衰
-                if (Mathf.Abs(curVelocityY) < _brakeThreshold && _canFunwari)
+                if (Mathf.Abs(curVelY) < _brakeThreshold && _canFunwari)
                 {
-                    currentGravity *= _brakeGravityMultiplier;
+                    curGravity *= _brakeGravityMultiplier;
                 }
 
                 // 実際の落下処理
-                float nextVelocityY = curVelocityY - currentGravity * Time.deltaTime;
+                float nextVelY = curVelY - curGravity * Time.deltaTime;
 
                 // 落下が速くなり過ぎないように補正
-                if (nextVelocityY < _maxFallSpeed && _canMaxFallSpeed)
+                if (nextVelY < _maxFallSpeed && _canMaxFallSpeed)
                 {
                     return _maxFallSpeed;
                 }
 
-                return nextVelocityY;
+                return nextVelY;
             }
             else
             {

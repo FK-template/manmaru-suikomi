@@ -278,6 +278,7 @@ GameObject:
   - component: {fileID: 8439854719990713469}
   - component: {fileID: 4664071942934630654}
   - component: {fileID: 8337124038672732299}
+  - component: {fileID: 6993392574513460187}
   m_Layer: 0
   m_Name: GroundChecker
   m_TagString: Untagged
@@ -328,6 +329,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5596a35d9aec11d47837cf87a488419a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Collision.GroundFitter
+--- !u!114 &6993392574513460187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541133595659843414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30613f2d6bd250541977d86cb6afbc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Movement.GravityCalculator
+  _canFunwari: 1
+  _canMaxFallSpeed: 1
+  _gravity: 70
+  _maxFallSpeed: -20
+  _brakeThreshold: 5
+  _brakeGravityMultiplier: 0.5
 --- !u!1 &2939895645755829094
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,6 +421,7 @@ GameObject:
   - component: {fileID: 6922397392074425741}
   - component: {fileID: 6154325980690258474}
   - component: {fileID: 4441978879815724501}
+  - component: {fileID: 617377012627427466}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -505,6 +525,28 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &617377012627427466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3964637330487232639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6afa84eaa4ca6ba4484671fc2e0f1cb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Player.PlayerVisualHandler
+  _renderersList:
+  - {fileID: 6154325980690258474}
+  - {fileID: 1892098445493362956}
+  - {fileID: 2107736722592946340}
+  - {fileID: 3002525961038078582}
+  _normalColor: {r: 1, g: 0.5921569, b: 0.8235294, a: 1}
+  _capturingColor: {r: 0.9921569, g: 0.3647059, b: 0.13333334, a: 1}
+  _mouthfulColor: {r: 1, g: 0.9215687, b: 0.015686275, a: 1}
+  _baseScale: {x: 1, y: 1, z: 1}
+  _fatScale: {x: 1.2, y: 1, z: 1}
 --- !u!1 &4668849465375845437
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,12 +667,11 @@ GameObject:
   - component: {fileID: 4890013171798680585}
   - component: {fileID: 8329438173198557254}
   - component: {fileID: 136569890745018190}
-  - component: {fileID: 2534033134093710214}
+  - component: {fileID: 3437031319443208462}
   - component: {fileID: 1042661720142329177}
-  - component: {fileID: 2245755568291849002}
   - component: {fileID: 4101179290862480239}
   - component: {fileID: 4853790172773623360}
-  - component: {fileID: 6462979492486887933}
+  - component: {fileID: 6548288914070982170}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -654,6 +695,7 @@ Transform:
   - {fileID: 6052064390588372140}
   - {fileID: 3753657904654206261}
   - {fileID: 8439854719990713469}
+  - {fileID: 3713198589230170358}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4890013171798680585
@@ -734,7 +776,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2534033134093710214
+--- !u!114 &3437031319443208462
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -743,9 +785,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6310198609035381964}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26aecdfda8d2efd48a57872d8cf253a5, type: 3}
+  m_Script: {fileID: 11500000, guid: c07c5a388f4b2d846a30659ca96a7fb2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Movement.PlayerMovement
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Player.PlayerMoveController
   _groundLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -753,7 +795,7 @@ MonoBehaviour:
   _moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _groundChecker: {fileID: 4664071942934630654}
   _groundFitter: {fileID: 8337124038672732299}
-  _gravityController: {fileID: 2245755568291849002}
+  _gravityCalculator: {fileID: 6993392574513460187}
   _jumpAction: {fileID: 1042661720142329177}
   _horizontalMovement: {fileID: 4101179290862480239}
   _playerRotation: {fileID: 4853790172773623360}
@@ -774,24 +816,6 @@ MonoBehaviour:
   _canSmallJump: 1
   _jumpForce: 23.5
   _jumpCutoffMultiplier: 0.4
---- !u!114 &2245755568291849002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6310198609035381964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c99dfa0b9b601049816fd6669fd502e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GravityController
-  _canFunwari: 1
-  _canMaxFallSpeed: 1
-  _gravity: 70
-  _maxFallSpeed: -20
-  _brakeThreshold: 5
-  _brakeGravityMultiplier: 0.5
 --- !u!114 &4101179290862480239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -822,7 +846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Movement.PlayerRotation
   _rotationSpeed: 720
---- !u!114 &6462979492486887933
+--- !u!114 &6548288914070982170
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -831,16 +855,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 6310198609035381964}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 654e91a12299ca74ea56c1dbdbae3d7e, type: 3}
+  m_Script: {fileID: 11500000, guid: c2b0813f8b16b45499db0fc1caae4853, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Player.PlayerAction
-  _captureMaxRange: 5
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Player.PlayerCaptureController
+  _captureMaxRange: 3
   _captureCloseRange: 1
-  _captureAngleRange: 45
+  _captureAngleRange: 30
   _attackAction: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  _captureTargetManager: {fileID: 0}
   _starBullet: {fileID: 805668605134999330, guid: 8640630d26f4e7b46a01242772612d08, type: 3}
   _spawnTrans: {fileID: 105511854627499576}
+  _playerVisualController: {fileID: 617377012627427466}
+  _captureEffectController: {fileID: 8088853294466457012}
 --- !u!1 &6896859274669033682
 GameObject:
   m_ObjectHideFlags: 0
@@ -1129,3 +1154,92 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &4341330035443047330
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 105511854627499576}
+    m_Modifications:
+    - target: {fileID: 1132777197402774356, guid: 6d3a3bb038228ce4ca8f85f4e76818b1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132777197402774356, guid: 6d3a3bb038228ce4ca8f85f4e76818b1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132777197402774356, guid: 6d3a3bb038228ce4ca8f85f4e76818b1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132777197402774356, guid: 6d3a3bb038228ce4ca8f85f4e76818b1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132777197402774356, guid: 6d3a3bb038228ce4ca8f85f4e76818b1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132777197402774356, guid: 6d3a3bb038228ce4ca8f85f4e76818b1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132777197402774356, guid: 6d3a3bb038228ce4ca8f85f4e76818b1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132777197402774356, guid: 6d3a3bb038228ce4ca8f85f4e76818b1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132777197402774356, guid: 6d3a3bb038228ce4ca8f85f4e76818b1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132777197402774356, guid: 6d3a3bb038228ce4ca8f85f4e76818b1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5616187977658806237, guid: 6d3a3bb038228ce4ca8f85f4e76818b1, type: 3}
+      propertyPath: m_Name
+      value: CaptureParticle
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3804276041703228260, guid: 6d3a3bb038228ce4ca8f85f4e76818b1, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5616187977658806237, guid: 6d3a3bb038228ce4ca8f85f4e76818b1, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 8088853294466457012}
+  m_SourcePrefab: {fileID: 100100000, guid: 6d3a3bb038228ce4ca8f85f4e76818b1, type: 3}
+--- !u!198 &2125125130525409796 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2396608387915192742, guid: 6d3a3bb038228ce4ca8f85f4e76818b1, type: 3}
+  m_PrefabInstance: {fileID: 4341330035443047330}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3713198589230170358 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1132777197402774356, guid: 6d3a3bb038228ce4ca8f85f4e76818b1, type: 3}
+  m_PrefabInstance: {fileID: 4341330035443047330}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8200832406962123903 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5616187977658806237, guid: 6d3a3bb038228ce4ca8f85f4e76818b1, type: 3}
+  m_PrefabInstance: {fileID: 4341330035443047330}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8088853294466457012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8200832406962123903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd22980179008e4e89bb72448a163cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Player.CaptureEffectHandler
+  _windParticle: {fileID: 2125125130525409796}

@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Manmaru.Collision
 {
+    /// <summary>
+    /// 単一Rayによる着地判定を行うクラス
+    /// </summary>
     public class GroundChecker : MonoBehaviour
     {
         [Header("Raycast着地判定の設定")]
@@ -18,7 +21,7 @@ namespace Manmaru.Collision
         /// <summary>
         /// 着地判定の結果をboolで返し、接地している場合は地面のy座標を返すメソッド
         /// </summary>
-        public bool CheckGrounded(float currentVelocityY, out float groundPosY, LayerMask groundLayer)
+        public bool CheckGrounded(float curVelY, out float groundPosY, LayerMask groundLayer)
         {
             // 始点を足元より少し上に（めり込み補正後、地面の内部からRayを発射しないように）
             Vector3 rayStartPos = _feetPos.position + Vector3.up * _offsetY;
@@ -26,9 +29,9 @@ namespace Manmaru.Collision
 
             // 落下速度に応じたRayの動的長さ調節
             float finalRayLength = _rayLength;
-            if (currentVelocityY < 0f)
+            if (curVelY < 0f)
             {
-                float fallDist = Mathf.Abs(currentVelocityY * Time.deltaTime);
+                float fallDist = Mathf.Abs(curVelY * Time.deltaTime);
                 finalRayLength += fallDist;
             }
 

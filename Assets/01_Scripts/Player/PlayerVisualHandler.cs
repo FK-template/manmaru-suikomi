@@ -3,7 +3,10 @@ using System.Collections.Generic;
 
 namespace Manmaru.Player
 {
-    public class PlayerVisualController : MonoBehaviour
+    /// <summary>
+    /// プレイヤーの見た目の変化を制御するクラス
+    /// </summary>
+    public class PlayerVisualHandler : MonoBehaviour
     {
         [Header("対象レンダラー設定")]
         [SerializeField] private List<Renderer> _renderersList = new List<Renderer>();

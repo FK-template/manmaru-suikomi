@@ -3,29 +3,31 @@ using UnityEngine;
 
 namespace Manmaru.Interaction
 {
-    public class EnemyHitPoint : MonoBehaviour, IDamageable
+    /// <summary>
+    /// ダメージを受けうるオブジェクトの体力管理を行うクラス
+    /// </summary>
+    public class DamageableObject : MonoBehaviour, IDamageable
     {
         [Header("体力")]
         [SerializeField] private float _hitPoint = 1.0f;
         [SerializeField] private float _maxHitPoint = 1.0f;
 
-        [Header("やられ処理用設定")]
-        [Tooltip("すいこみ候補リストの管理者")]
-        [SerializeField] private CaptureTargetManager _captureTargetManager;
-
         // 内部変数：すいこみ候補としての自分
         private ICapturable _capturable;
+
+        // 内部変数：すいこみオブジェクトの管理者（リスト除名用）
+        private CaptureTargetManager _captureTargetManager;
 
         void Start()
         {
             _hitPoint = _maxHitPoint;
             _capturable = GetComponent<ICapturable>();
+            _captureTargetManager = CaptureTargetManager.Instance;
         }
 
         /// <summary>
         /// 任意のダメージをくらい、体力がゼロ以下になったら消滅するメソッド
         /// </summary>
-        /// <param name="damageValue"></param>
         public void TakeDamage(float damageValue)
         {
             // 被ダメージ処理

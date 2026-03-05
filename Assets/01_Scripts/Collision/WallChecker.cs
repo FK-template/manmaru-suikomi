@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Manmaru.Collision
 {
+    /// <summary>
+    /// •Ç”»’è‚¨‚æ‚Ñ•ÇŠŠ‚è•â³‚ğs‚¤ƒNƒ‰ƒX
+    /// </summary>
     public class WallChecker : MonoBehaviour
     {
         [Header("Raycast•Ç”»’è‚Ìİ’è")]

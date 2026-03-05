@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Manmaru.Interaction
 {
+    /// <summary>
+    /// ‚Í‚«‚¾‚µ’e‚ÌUpdateˆ—ƒtƒ[‚ğ‚Ü‚Æ‚ß‚½ƒNƒ‰ƒX
+    /// </summary>
     public class StarBulletController : MonoBehaviour
     {
         [Header("ˆÚ“®İ’è")]
@@ -26,11 +29,11 @@ namespace Manmaru.Interaction
             float moveDist = _moveSpeed * Time.deltaTime;
 
             // Õ“Ë”»’è
-            if (_bulletCollision.CheckHitBySphereRay(_shootDir, moveDist, _moveSpeed, _hitSphereRadius, _targetMask, out RaycastHit hitInfo))
+            if (_bulletCollision.CheckHitBySphereRay(_shootDir, moveDist, _moveSpeed, _hitSphereRadius, _targetMask, out RaycastHit hit))
             {
-                Debug.Log($"’e:[{gameObject.name}] ‚ª [{hitInfo.transform.gameObject.name}] ‚É ‚ ‚½‚è‚Ü‚µ‚½");
+                Debug.Log($"’e:[{gameObject.name}] ‚ª [{hit.transform.gameObject.name}] ‚É ‚ ‚½‚è‚Ü‚µ‚½");
 
-                if (hitInfo.collider.TryGetComponent(out IDamageable dmgTarget))
+                if (hit.collider.TryGetComponent(out IDamageable dmgTarget))
                 {
                     dmgTarget.TakeDamage(_hitPower);
                 }

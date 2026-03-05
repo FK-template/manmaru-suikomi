@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Manmaru.Movement
 {
+    /// <summary>
+    /// プレイヤーの水平移動を制御するクラス
+    /// </summary>
     public class HorizontalMovement : MonoBehaviour
     {
         [Header("移動速度")]

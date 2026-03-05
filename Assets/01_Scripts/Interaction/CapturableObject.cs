@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace Manmaru.Interaction
 {
+    /// <summary>
+    /// すいこまれるオブジェクトの処理をまとめたクラス
+    /// </summary>
     public class CapturableObject : MonoBehaviour, ICapturable
     {
-        [Header("すいこみオブジェクトの管理者")]
-        [SerializeField] private CaptureTargetManager _captureTargetManager;
-
         [Header("すいこみアニメーション設定")]
         [SerializeField] private float _captureDuration = 0.5f;
         [SerializeField] private AnimationCurve _captureCurve;
@@ -17,8 +17,12 @@ namespace Manmaru.Interaction
         private Vector3 _startPos;
         private Vector3 _playerPos;
 
+        // 内部変数：すいこみオブジェクトの管理者（リスト除名・記名用）
+        private CaptureTargetManager _captureTargetManager;
+
         void Start()
         {
+            _captureTargetManager = CaptureTargetManager.Instance;
             _captureTargetManager.RegisterCapturableTarget(this);
         }
 

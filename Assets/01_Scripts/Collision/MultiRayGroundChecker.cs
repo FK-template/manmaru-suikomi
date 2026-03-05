@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Manmaru.Collision
 {
+    /// <summary>
+    /// 複数Rayによる着地判定を行うクラス
+    /// </summary>
     public class MultiRayGroundChecker : MonoBehaviour
     {
         [Header("Raycast着地判定の設定")]
@@ -18,16 +21,16 @@ namespace Manmaru.Collision
         /// <summary>
         /// 着地判定の結果をboolで返し、最も高い地面のy座標と法線を返すメソッド
         /// </summary>
-        public bool MultiRayCheckGrounded(float currentVelocityY, out float groundPosY, out Vector3 groundNormal, float radius, LayerMask groundLayer)
+        public bool MultiRayCheckGrounded(float curVelY, out float groundPosY, out Vector3 groundNormal, float bodyRad, LayerMask groundLayer)
         {
             groundPosY = float.MinValue;
             groundNormal = Vector3.up;
 
             // 落下速度に応じたRayの動的長さ調節
             float finalRayLength = _rayLength;
-            if (currentVelocityY < 0f)
+            if (curVelY < 0f)
             {
-                float fallDist = Mathf.Abs(currentVelocityY * Time.deltaTime);
+                float fallDist = Mathf.Abs(curVelY * Time.deltaTime);
                 finalRayLength += fallDist;
             }
 
@@ -38,12 +41,12 @@ namespace Manmaru.Collision
             Vector3[] offsets =
             {
                 Vector3.zero,
-                Vector3.forward * radius, Vector3.back * radius,
-                Vector3.left * radius, Vector3.right * radius,
-                (Vector3.forward + Vector3.left).normalized * radius,
-                (Vector3.forward + Vector3.right).normalized * radius,
-                (Vector3.back + Vector3.left).normalized * radius,
-                (Vector3.back + Vector3.right).normalized * radius
+                Vector3.forward * bodyRad, Vector3.back * bodyRad,
+                Vector3.left * bodyRad, Vector3.right * bodyRad,
+                (Vector3.forward + Vector3.left).normalized * bodyRad,
+                (Vector3.forward + Vector3.right).normalized * bodyRad,
+                (Vector3.back + Vector3.left).normalized * bodyRad,
+                (Vector3.back + Vector3.right).normalized * bodyRad
             };
 
             // --- 以下、最も高い地面のy座標と法線を計算---
