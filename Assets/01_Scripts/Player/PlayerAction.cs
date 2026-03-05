@@ -1,6 +1,7 @@
 ﻿using Manmaru.Interaction;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.GraphicsBuffer;
 
 namespace Manmaru.Player
 {
@@ -14,16 +15,20 @@ namespace Manmaru.Player
         [Header("入力設定")]
         [SerializeField] private InputActionReference _attackAction;
 
-        [Header("すいこみオブジェクトの管理者")]
-        [SerializeField] private CaptureTargetManager _captureTargetManager;
-
         [Header("はきだし設定")]
         [SerializeField] private StarBulletController _starBullet;
         [SerializeField] private Transform _spawnTrans;
 
+        [Header("依存クラス設定")]
+        [Tooltip("すいこみオブジェクトの管理者")]
+        [SerializeField] private CaptureTargetManager _captureTargetManager;
+        [Tooltip("プレイヤー状態の可視化管理者")]
+        [SerializeField] private PlayerVisualController _playerVisualController;
+        [Tooltip("すいこみパーティクル管理者")]
+        [SerializeField] private CaptureEffectController _captureEffectController;
+
         // 内部変数
-        private ICapturable _currentCapturedTarget = null;
-        private bool _isHobariMode = false;
+        private bool _isMouthfulMode = false;
         private int _capturedCount = 0;
 
         void Start()
@@ -37,7 +42,7 @@ namespace Manmaru.Player
         {
             // すいこみ・はきだし
             // （null判定はメソッド内ですると、同フレームで両方の処理が行われる可能性がある）
-            if (!_isHobariMode)
+            if (!_isMouthfulMode)
             {
                 UpdateCaptureStatus();
             }
@@ -55,16 +60,25 @@ namespace Manmaru.Player
             // Attackボタンを押している間ずっと、すいこみ判定
             if (_attackAction.action.IsPressed())
             {
+                // グラフィック情報を更新
+                _playerVisualController.ChangeToCapturing();
+                _captureEffectController.PlayWind();
+
                 // 角度を内積に変換
                 float dotThreshold = Mathf.Cos(_captureAngleRange * Mathf.Deg2Rad);
 
+                // すいこめるオブジェクトを検索し、存在したらすいこみ開始
                 ICapturable target = _captureTargetManager.FindCaptureTarget(transform, _captureMaxRange, _captureCloseRange, dotThreshold);
                 if (target == null) return;
-
                 target.OnCapture(transform);
-                //_currentCapturedTarget = target;
 
                 Debug.Log($"すいこみ！：{target.GetTransform().gameObject.name}");
+            }
+            else
+            {
+                // グラフィック情報を更新
+                _playerVisualController.ChangeToNormal();
+                _captureEffectController.StopWind();
             }
         }
 
@@ -76,18 +90,18 @@ namespace Manmaru.Player
             // Attackボタンを押した瞬間に、はきだし処理を開始
             if (_attackAction.action.WasPressedThisFrame())
             {
-                Debug.Log($"はきだし！弾の強さ：Lv.{_capturedCount}");
+                // グラフィック情報を更新
+                _playerVisualController.ChangeToNormal();
 
                 // ほおばり状態の初期化
                 _capturedCount = 0;
-                _isHobariMode = false;
+                _isMouthfulMode = false;
 
                 // 弾の生成と初期化
                 StarBulletController bullet = Instantiate(_starBullet, _spawnTrans.position, Quaternion.identity);
                 bullet.Initialize(transform.forward);
 
-                //_currentCapturedTarget.OnShoot(transform.forward);
-                //_currentCapturedTarget = null;
+                Debug.Log($"はきだし！弾の強さ：Lv.{_capturedCount}");
             }
         }
 
@@ -103,7 +117,11 @@ namespace Manmaru.Player
         // すいこみ準備完了メソッド
         private void ReadyToShoot()
         {
-            _isHobariMode = true;
+            // グラフィック情報を更新
+            _playerVisualController.ChangeToMouthful();
+            _captureEffectController.StopWind();
+
+            _isMouthfulMode = true;
             Debug.Log($"すいこみ完全完了！ほおばりモードへ");
         }
 

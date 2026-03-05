@@ -839,6 +839,8 @@ MonoBehaviour:
   _captureAngleRange: 45
   _attackAction: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _captureTargetManager: {fileID: 0}
+  _starBullet: {fileID: 805668605134999330, guid: 8640630d26f4e7b46a01242772612d08, type: 3}
+  _spawnTrans: {fileID: 105511854627499576}
 --- !u!1 &6896859274669033682
 GameObject:
   m_ObjectHideFlags: 0
