@@ -853,6 +853,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b923833d325192f4f9db80c303e8c495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Interaction.StarBulletController
+  _moveSpeed: 15
+  _hitSphereRadius: 0.75
+  _targetMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  _bulletMovement: {fileID: 8018748775015009455}
+  _bulletCollision: {fileID: 7814833391230056355}
 --- !u!114 &8018748775015009455
 MonoBehaviour:
   m_ObjectHideFlags: 0

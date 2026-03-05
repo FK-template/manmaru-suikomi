@@ -74,7 +74,7 @@ namespace Manmaru.Player
 
                 Debug.Log($"すいこみ！：{target.GetTransform().gameObject.name}");
             }
-            else
+            else if (_attackAction.action.WasReleasedThisFrame())
             {
                 // グラフィック情報を更新
                 _playerVisualController.ChangeToNormal();

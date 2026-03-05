@@ -4,14 +4,9 @@ namespace Manmaru.Interaction
 {
     public class StarBulletMovement : MonoBehaviour
     {
-        void Start()
+        public void Move(Vector3 dir, float moveDist)
         {
-
-        }
-
-        void Update()
-        {
-
+            transform.position += dir * moveDist;
         }
     }
 }
