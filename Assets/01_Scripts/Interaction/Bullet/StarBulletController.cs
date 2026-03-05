@@ -1,3 +1,4 @@
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 namespace Manmaru.Interaction
@@ -17,6 +18,7 @@ namespace Manmaru.Interaction
 
         // 内部変数：はきだし用
         private Vector3 _shootDir = Vector3.zero;
+        private float _hitPower = 1.0f;
 
         void Update()
         {
@@ -24,9 +26,15 @@ namespace Manmaru.Interaction
             float moveDist = _moveSpeed * Time.deltaTime;
 
             // 衝突判定
-            if (_bulletCollision.CheckHitBySphereRay(_shootDir, moveDist, _moveSpeed, _hitSphereRadius, _targetMask))
+            if (_bulletCollision.CheckHitBySphereRay(_shootDir, moveDist, _moveSpeed, _hitSphereRadius, _targetMask, out RaycastHit hitInfo))
             {
-                Debug.Log($"{gameObject.name}：あたりました");
+                Debug.Log($"弾:[{gameObject.name}] が [{hitInfo.transform.gameObject.name}] に あたりました");
+
+                if (hitInfo.collider.TryGetComponent(out IDamageable dmgTarget))
+                {
+                    dmgTarget.TakeDamage(_hitPower);
+                }
+
                 Destroy(gameObject);
 
                 // 衝突した場合、移動処理は行わない

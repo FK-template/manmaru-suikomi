@@ -12,7 +12,7 @@ namespace Manmaru.Interaction
         /// <param name="moveSpeed">移動速度/f</param>
         /// <param name="sphereRad">球状Rayの半径</param>
         /// <param name="targetLayer">判定を取るレイヤー</param>
-        public bool CheckHitBySphereRay(Vector3 moveDir, float moveDist, float moveSpeed, float sphereRad, LayerMask targetLayer)
+        public bool CheckHitBySphereRay(Vector3 moveDir, float moveDist, float moveSpeed, float sphereRad, LayerMask targetLayer, out RaycastHit hitInfo)
         {
             // 球状Rayで、次フレームまでの移動の軌跡を衝突判定
             // - 引数：（発射位置, 球の半径, 発射方向, 衝突相手, 発射距離, 対象レイヤー）
@@ -20,7 +20,7 @@ namespace Manmaru.Interaction
                 transform.position,
                 sphereRad,
                 moveDir,
-                out RaycastHit hitInfo,
+                out hitInfo,
                 moveDist,
                 targetLayer
             );
