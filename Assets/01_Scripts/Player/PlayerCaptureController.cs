@@ -29,6 +29,7 @@ namespace Manmaru.Player
         [SerializeField] private CaptureEffectHandler _captureEffectController;
 
         // 内部変数：ほおばり・はきだし用
+        private bool _needToRelease = false;
         private bool _isMouthfulMode = false;
         private int _capturedCount = 0;
 
@@ -47,7 +48,7 @@ namespace Manmaru.Player
         void Update()
         {
             // すいこみ・はきだし
-            // （null判定はメソッド内ですると、同フレームで両方の処理が行われる可能性がある）
+            // すいこみ条件：ほおばり状態 かつ 入力ロック状態でないとき
             if (!_isMouthfulMode)
             {
                 UpdateCaptureStatus();
@@ -63,6 +64,19 @@ namespace Manmaru.Player
         /// </summary>
         private void UpdateCaptureStatus()
         {
+            // 入力ロック
+            if (_needToRelease)
+            {
+                // ボタンリリースされたら入力ロックを解除
+                if (_attackAction.action.WasReleasedThisFrame())
+                {
+                    _needToRelease = false;
+                    Debug.Log("入力ロック解除！すいこみ可能に");
+                }
+                // リリースされなくても終了
+                return;
+            }
+
             // Attackボタンを押している間ずっと、すいこみ判定
             if (_attackAction.action.IsPressed())
             {
@@ -85,6 +99,12 @@ namespace Manmaru.Player
                 // グラフィック情報を更新
                 _playerVisualController.ChangeToNormal();
                 _captureEffectController.StopWind();
+
+                // ボタンリリース必須状態を終了
+                if (_needToRelease)
+                {
+                    _needToRelease = false;
+                }
             }
         }
 
@@ -108,6 +128,9 @@ namespace Manmaru.Player
                 // ほおばり状態の初期化
                 _capturedCount = 0;
                 _isMouthfulMode = false;
+
+                // 入力ロック（ボタンリリースされるまですいこみ禁止）
+                _needToRelease = true;
             }
         }
 
