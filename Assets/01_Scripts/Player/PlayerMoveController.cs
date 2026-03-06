@@ -20,12 +20,8 @@ namespace Manmaru.Player
         [Header("入力設定")]
         [SerializeField] private InputActionReference _moveAction;
 
-        [Header("状態ごとのパラメータデータ")]
-        [SerializeField] private PlayerMoveParameters _normalParams;
-        [SerializeField] private PlayerMoveParameters _capturingParams;
-        [SerializeField] private PlayerMoveParameters _mouthfulParams;
-
         [Header("依存クラス設定")]
+        [SerializeField] private PlayerStateManager _playerStateManager;
         [SerializeField] private MultiRayGroundChecker _groundChecker;
         [SerializeField] private GroundFitter _groundFitter;
         [SerializeField] private GravityCalculator _gravityCalculator;
@@ -39,10 +35,10 @@ namespace Manmaru.Player
         private Vector3 _currentVelocity;
         private PlayerMoveParameters _currentParams;
 
-        void Start()
+        void Awake()
         {
-            // 初期パラメータ設定
-            _currentParams = _normalParams;
+            // イベント設定（引数渡し付き）
+            _playerStateManager.OnStateChanged += ChangeParams;
         }
 
         private void Update()
@@ -65,6 +61,14 @@ namespace Manmaru.Player
             // 移動後の地面情報を再取得して補正
             isGrounded = _groundChecker.MultiRayCheckGrounded(_currentVelocity.y, out groundY, out groundNormal, _bodyRadius, _groundLayer);
             ApplyGroundFitting(groundY, isGrounded);
+        }
+
+        /// <summary>
+        /// 移動パラメータを更新するメソッド
+        /// </summary>
+        private void ChangeParams(PlayerMoveParameters nextParams)
+        {
+            _currentParams = nextParams;
         }
 
         // ---------------------------------------------------------------------------

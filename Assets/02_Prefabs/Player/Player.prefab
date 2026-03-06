@@ -343,10 +343,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Movement.GravityCalculator
   _canFunwari: 1
   _canMaxFallSpeed: 1
-  _gravity: 70
-  _maxFallSpeed: -20
-  _brakeThreshold: 5
-  _brakeGravityMultiplier: 0.5
 --- !u!1 &2939895645755829094
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,6 +668,7 @@ GameObject:
   - component: {fileID: 4101179290862480239}
   - component: {fileID: 4853790172773623360}
   - component: {fileID: 6548288914070982170}
+  - component: {fileID: 3484044696637604523}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -793,6 +790,7 @@ MonoBehaviour:
     m_Bits: 1024
   _bodyRadius: 0.5
   _moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  _playerStateManager: {fileID: 3484044696637604523}
   _groundChecker: {fileID: 4664071942934630654}
   _groundFitter: {fileID: 8337124038672732299}
   _gravityCalculator: {fileID: 6993392574513460187}
@@ -814,8 +812,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JumpAction
   _canSmallJump: 1
-  _jumpForce: 23.5
-  _jumpCutoffMultiplier: 0.4
 --- !u!114 &4101179290862480239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -828,11 +824,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1531f21704e45640ade1f1751f95c8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Movement.HorizontalMovement
-  _maxSpeed: 8
-  _groundAcceleration: 50
-  _groundDeceleration: 60
-  _airAcceleration: 20
-  _airDeceleration: 5
 --- !u!114 &4853790172773623360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -864,8 +855,24 @@ MonoBehaviour:
   _attackAction: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _starBullet: {fileID: 805668605134999330, guid: 8640630d26f4e7b46a01242772612d08, type: 3}
   _spawnTrans: {fileID: 105511854627499576}
+  _playerStateManager: {fileID: 3484044696637604523}
   _playerVisualController: {fileID: 617377012627427466}
   _captureEffectController: {fileID: 8088853294466457012}
+--- !u!114 &3484044696637604523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6310198609035381964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6b75c1a5326a9b41894a5485e118819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Player.PlayerStateManager
+  _normalParams: {fileID: 11400000, guid: 809390e70da36ad40ac1699f6d3a725f, type: 2}
+  _capturingParams: {fileID: 11400000, guid: d7aad9a919f2bd245b114e8e6c839830, type: 2}
+  _mouthfulParams: {fileID: 11400000, guid: 1dc9a5b50d4e90845bbb1da5eb448f6e, type: 2}
 --- !u!1 &6896859274669033682
 GameObject:
   m_ObjectHideFlags: 0

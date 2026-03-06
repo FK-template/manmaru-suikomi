@@ -23,9 +23,8 @@ namespace Manmaru.Player
         [SerializeField] private Transform _spawnTrans;
 
         [Header("依存クラス設定")]
-        [Tooltip("プレイヤー状態の可視化管理者")]
+        [SerializeField] private PlayerStateManager _playerStateManager;
         [SerializeField] private PlayerVisualHandler _playerVisualController;
-        [Tooltip("すいこみパーティクル管理者")]
         [SerializeField] private CaptureEffectHandler _captureEffectController;
 
         // 内部変数：ほおばり・はきだし用
@@ -77,6 +76,12 @@ namespace Manmaru.Player
                 return;
             }
 
+            // Attackボタンを押した瞬間に、すいこみ状態に遷移
+            if (_attackAction.action.WasPressedThisFrame())
+            {
+                _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Capturing);
+            }
+
             // Attackボタンを押している間ずっと、すいこみ判定
             if (_attackAction.action.IsPressed())
             {
@@ -100,11 +105,8 @@ namespace Manmaru.Player
                 _playerVisualController.ChangeToNormal();
                 _captureEffectController.StopWind();
 
-                // ボタンリリース必須状態を終了
-                if (_needToRelease)
-                {
-                    _needToRelease = false;
-                }
+                // 通常状態に遷移
+                _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Normal);
             }
         }
 
@@ -129,6 +131,9 @@ namespace Manmaru.Player
                 _capturedCount = 0;
                 _isMouthfulMode = false;
 
+                // 通常状態に遷移
+                _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Normal);
+
                 // 入力ロック（ボタンリリースされるまですいこみ禁止）
                 _needToRelease = true;
             }
@@ -143,15 +148,18 @@ namespace Manmaru.Player
             Debug.Log($"すいこみ完了！現在のストック：{_capturedCount}");
         }
 
-        // すいこみ準備完了メソッド
+        /// <summary>
+        /// すいこみ準備完了メソッド
+        /// </summary>
         private void ReadyToShoot()
         {
             // グラフィック情報を更新
             _playerVisualController.ChangeToMouthful();
             _captureEffectController.StopWind();
 
+            // ほおばり状態に遷移
             _isMouthfulMode = true;
-            Debug.Log($"すいこみ完全完了！ほおばりモードへ");
+            _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Mouthful);
         }
 
         // ----- 以下、Gemini3 Pro より出力 -----

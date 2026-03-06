@@ -19,7 +19,7 @@ namespace Manmaru.Interaction
         private List<ICapturable> _capturingList = new List<ICapturable>();
         private int _capturingCount = 0;
 
-        // 内部変数：すいこみ完了イベント
+        // すいこみ完了イベント
         public event Action OnCaptureFinished;
         public event Action OnAllCapturesFinished;
 

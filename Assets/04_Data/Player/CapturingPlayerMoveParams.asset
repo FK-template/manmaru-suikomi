@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CapturingPlayerMoveParams
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Player.PlayerMoveParameters
   CanJump: 0
-  MaxSpeed: 4
+  MaxSpeed: 2
   GroundAcceleration: 50
   GroundDeceleration: 60
   AirAcceleration: 20

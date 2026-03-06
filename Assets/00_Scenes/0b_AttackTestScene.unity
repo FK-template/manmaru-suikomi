@@ -4035,18 +4035,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3437031319443208462, guid: 300027681b4d18844a7b6f8160e4032c, type: 3}
-      propertyPath: _normalParams
-      value: 
-      objectReference: {fileID: 11400000, guid: 809390e70da36ad40ac1699f6d3a725f, type: 2}
-    - target: {fileID: 3437031319443208462, guid: 300027681b4d18844a7b6f8160e4032c, type: 3}
-      propertyPath: _mouthfulParams
-      value: 
-      objectReference: {fileID: 11400000, guid: 1dc9a5b50d4e90845bbb1da5eb448f6e, type: 2}
-    - target: {fileID: 3437031319443208462, guid: 300027681b4d18844a7b6f8160e4032c, type: 3}
-      propertyPath: _capturingParams
-      value: 
-      objectReference: {fileID: 11400000, guid: d7aad9a919f2bd245b114e8e6c839830, type: 2}
     - target: {fileID: 6310198609035381964, guid: 300027681b4d18844a7b6f8160e4032c, type: 3}
       propertyPath: m_Name
       value: Player
