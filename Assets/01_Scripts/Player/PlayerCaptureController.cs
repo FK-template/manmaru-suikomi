@@ -102,7 +102,7 @@ namespace Manmaru.Player
                 _playerVisualController.ChangeToNormal();
 
                 // 弾の生成と初期化
-                StarBulletController bullet = Instantiate(_starBullet, _spawnTrans.position, Quaternion.identity);
+                StarBulletController bullet = Instantiate(_starBullet, _spawnTrans.position, Quaternion.LookRotation(transform.forward));
                 bullet.Initialize(transform.forward, _capturedCount);
 
                 // ほおばり状態の初期化

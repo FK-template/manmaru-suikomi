@@ -855,10 +855,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Interaction.StarBulletController
   _baseMoveSpeed: 15
   _minMoveSpeed: 10
+  _rotateAngle: -1
   _baseHitSphereRadius: 0.75
   _targetMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 3072
   _penetrateThreshold: 2
   _scaleStep: 0.5
   _speedStep: 1

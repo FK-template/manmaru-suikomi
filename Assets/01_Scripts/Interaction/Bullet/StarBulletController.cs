@@ -11,6 +11,7 @@ namespace Manmaru.Interaction
         [Header("移動設定")]
         [SerializeField] private float _baseMoveSpeed = 15.0f;
         [SerializeField] private float _minMoveSpeed = 10.0f;
+        [SerializeField] private float _rotateAngle = 0.5f;
 
         [Header("コリジョン設定")]
         [SerializeField] private float _baseHitSphereRadius = 0.75f;
@@ -70,6 +71,9 @@ namespace Manmaru.Interaction
             {
                 _canPenetrate = true;
             }
+
+            // 地面にぶつからないように少し高めに移動
+            transform.Translate(0f, _currentSphereRadius, 0f);
         }
 
         void Update()
@@ -78,32 +82,44 @@ namespace Manmaru.Interaction
             float moveDist = _currentMoveSpeed * Time.deltaTime;
 
             // 衝突判定
-            if (_bulletCollision.CheckHitBySphereRay(_shootDir, moveDist, _currentMoveSpeed, _currentSphereRadius, _targetMask, out RaycastHit hit))
+            if (_bulletCollision.CheckHitsBySphereRay(_shootDir, moveDist, _currentMoveSpeed, _currentSphereRadius, _targetMask, out RaycastHit[] hits))
             {
-                Debug.Log($"弾:[{gameObject.name}] が [{hit.transform.gameObject.name}] に あたりました");
-
-                // 与ダメージ処理
-                if (hit.collider.TryGetComponent(out IDamageable dmgTarget))
+                // ※無貫通はきだし弾であっても、同時に複数体に当たった場合はいずれの対象にも与ダメする
+                bool isDestroy = false;
+                foreach (RaycastHit hit in hits)
                 {
-                    dmgTarget.TakeDamage(_hitPower);
-                }
+                    Debug.Log($"弾:[{gameObject.name}] が [{hit.transform.gameObject.name}] に あたりました");
 
-                // 貫通or消滅処理
-                if (_canPenetrate)
-                {
-                    hit.collider.enabled = false;
+                    // 与ダメージ処理
+                    if (hit.collider.TryGetComponent(out IDamageable dmgTarget))
+                    {
+                        dmgTarget.TakeDamage(_hitPower);
+
+                        // 貫通or消滅処理
+                        if (_canPenetrate)
+                        {
+                            hit.collider.enabled = false;
+                        }
+                        else
+                        {
+                            isDestroy = true;
+                        }
+                    }
+                    else
+                    {
+                        // ダメージを与えられない相手なら、消滅する
+                        isDestroy = true;
+                    }
                 }
-                else
+                if (isDestroy)
                 {
                     Destroy(gameObject);
+                    return;
                 }
-
-                // 衝突した場合、移動処理は行わない
-                return;
             }
 
-            // 移動処理
-            _bulletMovement.Move(_shootDir, moveDist);
+            // 移動処理（何かに衝突したら行わない）
+            _bulletMovement.Move(_shootDir, moveDist, _rotateAngle);
         }
 
         // ----- 以下、Gemini3 Pro より出力 -----

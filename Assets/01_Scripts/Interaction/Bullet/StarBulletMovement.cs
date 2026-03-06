@@ -7,9 +7,10 @@ namespace Manmaru.Interaction
     /// </summary>
     public class StarBulletMovement : MonoBehaviour
     {
-        public void Move(Vector3 dir, float moveDist)
+        public void Move(Vector3 dir, float moveDist, float rotAngle)
         {
             transform.position += dir * moveDist;
+            transform.Rotate(0f, rotAngle, rotAngle);
         }
     }
 }
