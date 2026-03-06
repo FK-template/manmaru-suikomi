@@ -12,29 +12,41 @@ namespace Manmaru.Movement
         [SerializeField] private bool _canFunwari = true;
         [SerializeField] private bool _canMaxFallSpeed = true;
 
+        // 内部変数：パラメータ
+        private PlayerMoveParameters _currentParams;
+
+        /// <summary>
+        /// 新しくパラメータを設定するメソッド
+        /// </summary>
+        /// <param name="newParams"></param>
+        public void SetParams(PlayerMoveParameters newParams)
+        {
+            _currentParams = newParams;
+        }
+
         /// <summary>
         /// 重力を計算して速度を返すメソッド
         /// </summary>
-        public float CalculateGravity(float curVelY, bool isGrounded, PlayerMoveParameters parameters)
+        public float CalculateGravity(float curVelY, bool isGrounded)
         {
             // 通常減速（落下）処理
             if (!isGrounded)
             {
-                float curGravity = parameters.Gravity;
+                float curGravity = _currentParams.Gravity;
 
                 // ふんわり滞空のために重力減衰
-                if (Mathf.Abs(curVelY) < parameters.BrakeThreshold && _canFunwari)
+                if (Mathf.Abs(curVelY) < _currentParams.BrakeThreshold && _canFunwari)
                 {
-                    curGravity *= parameters.BrakeGravityMultiplier;
+                    curGravity *= _currentParams.BrakeGravityMultiplier;
                 }
 
                 // 実際の落下処理
                 float nextVelY = curVelY - curGravity * Time.deltaTime;
 
                 // 落下が速くなり過ぎないように補正
-                if (nextVelY < parameters.MaxFallSpeed && _canMaxFallSpeed)
+                if (nextVelY < _currentParams.MaxFallSpeed && _canMaxFallSpeed)
                 {
-                    return parameters.MaxFallSpeed;
+                    return _currentParams.MaxFallSpeed;
                 }
 
                 return nextVelY;

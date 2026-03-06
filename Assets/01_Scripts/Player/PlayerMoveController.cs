@@ -33,7 +33,6 @@ namespace Manmaru.Player
 
         // 内部変数
         private Vector3 _currentVelocity;
-        private PlayerMoveParameters _currentParams;
 
         void Awake()
         {
@@ -64,11 +63,13 @@ namespace Manmaru.Player
         }
 
         /// <summary>
-        /// 移動パラメータを更新するメソッド
+        /// 移動パラメータを変更するメソッド
         /// </summary>
-        private void ChangeParams(PlayerMoveParameters nextParams)
+        private void ChangeParams(PlayerMoveParameters newParams)
         {
-            _currentParams = nextParams;
+            _gravityCalculator.SetParams(newParams);
+            _jumpAction.SetParams(newParams);
+            _horizontalMovement.SetParams(newParams);
         }
 
         // ---------------------------------------------------------------------------
@@ -90,14 +91,14 @@ namespace Manmaru.Player
         private void UpdateVerticalVelocity(bool isGrounded)
         {
             // 重力処理
-            _currentVelocity.y = _gravityCalculator.CalculateGravity(_currentVelocity.y, isGrounded, _currentParams);
+            _currentVelocity.y = _gravityCalculator.CalculateGravity(_currentVelocity.y, isGrounded);
 
             // ジャンプ入力情報
             bool isJumpPressed = Input.GetButtonDown("Jump");
             bool isJumpReleased = Input.GetButtonUp("Jump");
 
             // ジャンプ状態の更新
-            _currentVelocity.y = _jumpAction.UpdateJumpState(_currentVelocity.y, isGrounded, isJumpPressed, isJumpReleased, _currentParams);
+            _currentVelocity.y = _jumpAction.UpdateJumpState(_currentVelocity.y, isGrounded, isJumpPressed, isJumpReleased);
         }
 
         /// <summary>
@@ -105,7 +106,7 @@ namespace Manmaru.Player
         /// </summary>
         private void UpdateHorizontalVelocity(Vector3 inputDir, Vector3 groundNormal, bool isGrounded)
         {
-            Vector3 nextHorVel = _horizontalMovement.CalculateHorVelocity(inputDir, groundNormal, _currentVelocity, isGrounded, _currentParams);
+            Vector3 nextHorVel = _horizontalMovement.CalculateHorVelocity(inputDir, groundNormal, _currentVelocity, isGrounded);
             _currentVelocity.x = nextHorVel.x;
             _currentVelocity.z = nextHorVel.z;
         }

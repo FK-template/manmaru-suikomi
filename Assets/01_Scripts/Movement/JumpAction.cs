@@ -14,10 +14,22 @@ namespace Manmaru.Movement
         // ジャンプフラグ
         public bool IsJumping { get; private set; }
 
+        // 内部変数：パラメータ
+        private PlayerMoveParameters _currentParams;
+
+        /// <summary>
+        /// 新しくパラメータを設定するメソッド
+        /// </summary>
+        /// <param name="newParams"></param>
+        public void SetParams(PlayerMoveParameters newParams)
+        {
+            _currentParams = newParams;
+        }
+
         /// <summary>
         /// ジャンプに関する状態を更新して、y速度を返すメソッド
         /// </summary>
-        public float UpdateJumpState(float curVelY, bool isGrounded, bool jumpPressed, bool jumpReleased, PlayerMoveParameters parameters)
+        public float UpdateJumpState(float curVelY, bool isGrounded, bool jumpPressed, bool jumpReleased)
         {
             // 落下し始めたら、ジャンプフラグオフ
             if (IsJumping && curVelY <= 0f)
@@ -30,12 +42,12 @@ namespace Manmaru.Movement
             {
                 // 押したらグンと加速
                 IsJumping = true;
-                return parameters.JumpForce;
+                return _currentParams.JumpForce;
             }
             else if (jumpReleased && curVelY > 0f && _canSmallJump)
             {
                 // 上昇中に離したらキュッと減速（小ジャンプ）
-                return ApplyJumpCutoff(curVelY, parameters.JumpCutoffMultiplier);
+                return ApplyJumpCutoff(curVelY, _currentParams.JumpCutoffMultiplier);
             }
 
             // 入力がなければそのまま
