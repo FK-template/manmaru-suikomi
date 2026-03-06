@@ -15,7 +15,7 @@ namespace Manmaru.Interaction
         private bool _isCapturing = false;
         private float _captureTimer = 0f;
         private Vector3 _startPos;
-        private Vector3 _playerPos;
+        private Transform _playerTrans;
 
         // 内部変数：すいこみオブジェクトの管理者（リスト除名・記名用）
         private CaptureTargetManager _captureTargetManager;
@@ -52,7 +52,7 @@ namespace Manmaru.Interaction
             _isCapturing = true;
             _captureTimer = 0f;
             _startPos = transform.position;
-            _playerPos = playerTrans.position;
+            _playerTrans = playerTrans;
 
             // 当たり判定無効
             GetComponent<Collider>().enabled = false;
@@ -73,7 +73,7 @@ namespace Manmaru.Interaction
             float curveValue = _captureCurve.Evaluate(clampTime);
 
             // カーブの値に応じた移動
-            transform.position = Vector3.LerpUnclamped(_startPos, _playerPos, curveValue);
+            transform.position = Vector3.LerpUnclamped(_startPos, _playerTrans.position, curveValue);
 
             // すいこみ完了処理
             if (curveValue >= 1.0f)
