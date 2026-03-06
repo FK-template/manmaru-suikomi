@@ -20,6 +20,11 @@ namespace Manmaru.Player
         [Header("入力設定")]
         [SerializeField] private InputActionReference _moveAction;
 
+        [Header("状態ごとのパラメータデータ")]
+        [SerializeField] private PlayerMoveParameters _normalParams;
+        [SerializeField] private PlayerMoveParameters _capturingParams;
+        [SerializeField] private PlayerMoveParameters _mouthfulParams;
+
         [Header("依存クラス設定")]
         [SerializeField] private MultiRayGroundChecker _groundChecker;
         [SerializeField] private GroundFitter _groundFitter;
@@ -32,6 +37,13 @@ namespace Manmaru.Player
 
         // 内部変数
         private Vector3 _currentVelocity;
+        private PlayerMoveParameters _currentParams;
+
+        void Start()
+        {
+            // 初期パラメータ設定
+            _currentParams = _normalParams;
+        }
 
         private void Update()
         {
@@ -74,14 +86,14 @@ namespace Manmaru.Player
         private void UpdateVerticalVelocity(bool isGrounded)
         {
             // 重力処理
-            _currentVelocity.y = _gravityCalculator.CalculateGravity(_currentVelocity.y, isGrounded);
+            _currentVelocity.y = _gravityCalculator.CalculateGravity(_currentVelocity.y, isGrounded, _currentParams);
 
             // ジャンプ入力情報
             bool isJumpPressed = Input.GetButtonDown("Jump");
             bool isJumpReleased = Input.GetButtonUp("Jump");
 
             // ジャンプ状態の更新
-            _currentVelocity.y = _jumpAction.UpdateJumpState(_currentVelocity.y, isGrounded, isJumpPressed, isJumpReleased);
+            _currentVelocity.y = _jumpAction.UpdateJumpState(_currentVelocity.y, isGrounded, isJumpPressed, isJumpReleased, _currentParams);
         }
 
         /// <summary>
@@ -89,7 +101,7 @@ namespace Manmaru.Player
         /// </summary>
         private void UpdateHorizontalVelocity(Vector3 inputDir, Vector3 groundNormal, bool isGrounded)
         {
-            Vector3 nextHorVel = _horizontalMovement.CalculateHorVelocity(inputDir, groundNormal, _currentVelocity, isGrounded);
+            Vector3 nextHorVel = _horizontalMovement.CalculateHorVelocity(inputDir, groundNormal, _currentVelocity, isGrounded, _currentParams);
             _currentVelocity.x = nextHorVel.x;
             _currentVelocity.z = nextHorVel.z;
         }

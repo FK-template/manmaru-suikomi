@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb8254af8ee8f814bafe58fb3f850411, type: 3}
+  m_Name: MouthfullPlayerMoveParams
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Player.PlayerMoveParameters
+  CanJump: 1
+  MaxSpeed: 6
+  GroundAcceleration: 50
+  GroundDeceleration: 60
+  AirAcceleration: 20
+  AirDeceleration: 5
+  JumpForce: 21
+  JumpCutoffMultiplier: 0.4
+  Gravity: 56
+  MaxFallSpeed: -20
+  BrakeThreshold: 5
+  BrakeGravityMultiplier: 0.5
