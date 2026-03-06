@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEngine;
 
@@ -81,45 +82,71 @@ namespace Manmaru.Interaction
             // このフレームで進む予定の距離（衝突判定と実際の移動処理に使用）
             float moveDist = _currentMoveSpeed * Time.deltaTime;
 
-            // 衝突判定
+            // 衝突処理
             if (_bulletCollision.CheckHitsBySphereRay(_shootDir, moveDist, _currentMoveSpeed, _currentSphereRadius, _targetMask, out RaycastHit[] hits))
             {
-                // ※無貫通はきだし弾であっても、同時に複数体に当たった場合はいずれの対象にも与ダメする
-                bool isDestroy = false;
-                foreach (RaycastHit hit in hits)
-                {
-                    Debug.Log($"弾:[{gameObject.name}] が [{hit.transform.gameObject.name}] に あたりました");
+                bool shouldDestroy = HitsProcess(hits);
 
-                    // 与ダメージ処理
-                    if (hit.collider.TryGetComponent(out IDamageable dmgTarget))
-                    {
-                        dmgTarget.TakeDamage(_hitPower);
-
-                        // 貫通or消滅処理
-                        if (_canPenetrate)
-                        {
-                            hit.collider.enabled = false;
-                        }
-                        else
-                        {
-                            isDestroy = true;
-                        }
-                    }
-                    else
-                    {
-                        // ダメージを与えられない相手なら、消滅する
-                        isDestroy = true;
-                    }
-                }
-                if (isDestroy)
+                if (shouldDestroy)
                 {
                     Destroy(gameObject);
                     return;
                 }
             }
 
-            // 移動処理（何かに衝突したら行わない）
+            // 移動処理（消滅するならスルー）
             _bulletMovement.Move(_shootDir, moveDist, _rotateAngle);
+        }
+
+        /// <summary>
+        /// 衝突処理を衝突相手ぶんだけ繰り返し、自身を消滅させるべきかをboolで返すメソッド
+        /// </summary>
+        private bool HitsProcess(RaycastHit[] hits)
+        {
+            // ※無貫通はきだし弾であっても、同時に複数体に当たった場合はいずれの対象にも与ダメする
+            bool isDestroy = false;
+
+            foreach (RaycastHit hit in hits)
+            {
+                // 一体でも「消滅すべき」と判断したらフラグオン（もうオフにはならない）
+                if (SingleHitProcess(hit))
+                {
+                    isDestroy = true;
+                }
+            }
+
+            return isDestroy;
+        }
+
+        /// <summary>
+        /// 各衝突相手への衝突時の処理を行い、消滅すべきかをboolで返すメソッド
+        /// </summary>
+        private bool SingleHitProcess(RaycastHit hit)
+        {
+            Debug.Log($"弾:[{gameObject.name}] が [{hit.transform.gameObject.name}] に あたりました");
+
+            // 与ダメージ処理（与ダメできる相手なら）
+            if (hit.collider.TryGetComponent(out IDamageable dmgTarget))
+            {
+                dmgTarget.TakeDamage(_hitPower);
+
+                // 貫通 or 消滅
+                if (_canPenetrate)
+                {
+                    // 衝突判定が重複しないよう、相手のコリジョンをオフに
+                    hit.collider.enabled = false;
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                // ダメージを与えられない相手なら、消滅する
+                return true;
+            }
         }
 
         // ----- 以下、Gemini3 Pro より出力 -----
