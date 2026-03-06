@@ -853,11 +853,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b923833d325192f4f9db80c303e8c495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Interaction.StarBulletController
-  _moveSpeed: 15
-  _hitSphereRadius: 0.75
+  _baseMoveSpeed: 15
+  _minMoveSpeed: 10
+  _baseHitSphereRadius: 0.75
   _targetMask:
     serializedVersion: 2
     m_Bits: 1024
+  _penetrateThreshold: 2
+  _scaleStep: 0.5
+  _speedStep: 1
+  _renderer: {fileID: 5195368558477553953}
+  _superColor: {r: 0, g: 1, b: 0, a: 1}
+  _ultraColor: {r: 1, g: 0.2705882, b: 0, a: 1}
   _bulletMovement: {fileID: 8018748775015009455}
   _bulletCollision: {fileID: 7814833391230056355}
 --- !u!114 &8018748775015009455

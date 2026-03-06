@@ -96,18 +96,18 @@ namespace Manmaru.Player
             // Attackボタンを押した瞬間に、はきだし処理を開始
             if (_attackAction.action.WasPressedThisFrame())
             {
+                Debug.Log($"はきだし！弾の強さ：Lv.{_capturedCount}");
+
                 // グラフィック情報を更新
                 _playerVisualController.ChangeToNormal();
+
+                // 弾の生成と初期化
+                StarBulletController bullet = Instantiate(_starBullet, _spawnTrans.position, Quaternion.identity);
+                bullet.Initialize(transform.forward, _capturedCount);
 
                 // ほおばり状態の初期化
                 _capturedCount = 0;
                 _isMouthfulMode = false;
-
-                // 弾の生成と初期化
-                StarBulletController bullet = Instantiate(_starBullet, _spawnTrans.position, Quaternion.identity);
-                bullet.Initialize(transform.forward);
-
-                Debug.Log($"はきだし！弾の強さ：Lv.{_capturedCount}");
             }
         }
 
