@@ -9,13 +9,15 @@ namespace Manmaru.Player
         {
             Normal,
             Capturing,
-            Mouthful
+            Mouthful,
+            Damaged
         }
 
         [Header("状態ごとのパラメータデータ")]
         [SerializeField] private PlayerMoveParameters _normalParams;
         [SerializeField] private PlayerMoveParameters _capturingParams;
         [SerializeField] private PlayerMoveParameters _mouthfulParams;
+        [SerializeField] private PlayerMoveParameters _damagedParams;
 
         // 内部変数：状態管理
         private PlayerState _currentState;
@@ -49,6 +51,10 @@ namespace Manmaru.Player
                 case PlayerState.Mouthful:
                     OnStateChanged?.Invoke(_mouthfulParams);
                     Debug.Log($"PlayerState:{_currentState} すいこみ完全完了！ほおばりモードへ");
+                    break;
+                case PlayerState.Damaged:
+                    OnStateChanged?.Invoke(_damagedParams);
+                    Debug.Log($"PlayerState:{_currentState} いてっ！被ダメージモードへ");
                     break;
             }
         }
