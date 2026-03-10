@@ -28,7 +28,7 @@ namespace Manmaru.Movement
             if (isGrounded)
                 return CalculateHorVelOnGround(inputDir, groundNormal, curVel);
             else 
-                return CalculateHorVelInTheSky(inputDir,groundNormal, curVel);
+                return CalculateHorVelInTheSky(inputDir, curVel);
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Manmaru.Movement
         /// <summary>
         /// y成分を切り捨てた水平速度を計算し、Vector3で返すメソッド
         /// </summary>
-        private Vector3 CalculateHorVelInTheSky(Vector3 inputDir, Vector3 groundNormal, Vector3 curVel)
+        private Vector3 CalculateHorVelInTheSky(Vector3 inputDir, Vector3 curVel)
         {
             // 滑らか加速の目標水平速度
             Vector3 targetVel = inputDir * _currentParams.MaxSpeed;

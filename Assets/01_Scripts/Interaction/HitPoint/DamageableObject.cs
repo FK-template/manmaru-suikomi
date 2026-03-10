@@ -1,4 +1,3 @@
-using Manmaru.Interaction;
 using UnityEngine;
 
 namespace Manmaru.Interaction

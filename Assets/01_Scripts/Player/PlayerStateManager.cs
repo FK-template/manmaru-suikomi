@@ -20,10 +20,10 @@ namespace Manmaru.Player
         [SerializeField] private PlayerMoveParameters _damagedParams;
 
         // 内部変数：状態管理
-        private PlayerState _currentState;
+        public PlayerState CurrentState { get; private set;}
 
         // 状態遷移イベント
-        public Action<PlayerMoveParameters> OnStateChanged;
+        public Action<PlayerState, PlayerMoveParameters> OnStateChanged;
 
         void Start()
         {
@@ -36,25 +36,25 @@ namespace Manmaru.Player
         /// </summary>
         public void ChangeState(PlayerState nextState)
         {
-            _currentState = nextState;
+            CurrentState = nextState;
 
-            switch (_currentState)
+            switch (CurrentState)
             {
                 case PlayerState.Normal:
-                    OnStateChanged.Invoke(_normalParams);
-                    Debug.Log($"PlayerState:{_currentState} 通常モードへ");
+                    OnStateChanged.Invoke(CurrentState, _normalParams);
+                    Debug.Log($"PlayerState:{CurrentState} 通常モードへ");
                     break;
                 case PlayerState.Capturing:
-                    OnStateChanged.Invoke(_capturingParams);
-                    Debug.Log($"PlayerState:{_currentState} すいこみ状態スタート！");
+                    OnStateChanged.Invoke(CurrentState, _capturingParams);
+                    Debug.Log($"PlayerState:{CurrentState} すいこみ状態スタート！");
                     break;
                 case PlayerState.Mouthful:
-                    OnStateChanged?.Invoke(_mouthfulParams);
-                    Debug.Log($"PlayerState:{_currentState} すいこみ完全完了！ほおばりモードへ");
+                    OnStateChanged?.Invoke(CurrentState, _mouthfulParams);
+                    Debug.Log($"PlayerState:{CurrentState} すいこみ完全完了！ほおばりモードへ");
                     break;
                 case PlayerState.Damaged:
-                    OnStateChanged?.Invoke(_damagedParams);
-                    Debug.Log($"PlayerState:{_currentState} いてっ！被ダメージモードへ");
+                    OnStateChanged?.Invoke(CurrentState, _damagedParams);
+                    Debug.Log($"PlayerState:{CurrentState} いてっ！被ダメージモードへ");
                     break;
             }
         }

@@ -1,6 +1,5 @@
 using Manmaru.Collision;
 using Manmaru.Movement;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,6 +15,8 @@ namespace Manmaru.Player
 
         [Header("パラメータ設定")]
         [SerializeField] private float _bodyRadius = 0.5f;
+        [SerializeField] private float _kbBackForce = 1.0f;
+        [SerializeField] private float _kbUpForce = 3.0f;
 
         [Header("入力設定")]
         [SerializeField] private InputActionReference _moveAction;
@@ -45,13 +46,15 @@ namespace Manmaru.Player
             // 着地判定の保存
             bool isGrounded = _groundChecker.MultiRayCheckGrounded(_currentVelocity.y, out float groundY, out Vector3 groundNormal, _bodyRadius, _groundLayer);
 
-            // 入力状況の保存
-            Vector3 inputDirection = GetInputDirection(_moveAction);
-
-            // 速度・回転計算
-            UpdateHorizontalVelocity(inputDirection, groundNormal, isGrounded);
-            UpdateVerticalVelocity(isGrounded);
-            UpdateRotation(inputDirection, groundNormal);
+            // ノックバック判定
+            if (_playerStateManager.CurrentState == PlayerStateManager.PlayerState.Damaged)
+            {
+                UpdateKnockbackState();
+            }
+            else
+            {
+                UpdateNormalMoveState(isGrounded, groundNormal);
+            }
 
             // 移動・補正処理
             ApplyWallSliding();
@@ -60,16 +63,33 @@ namespace Manmaru.Player
             // 移動後の地面情報を再取得して補正
             isGrounded = _groundChecker.MultiRayCheckGrounded(_currentVelocity.y, out groundY, out groundNormal, _bodyRadius, _groundLayer);
             ApplyGroundFitting(groundY, isGrounded);
+
+            // 落下して着地したら、ノックバック解除
+            if (_currentVelocity.y <= 0f && isGrounded)
+                _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Normal);
         }
 
         /// <summary>
         /// 移動パラメータを変更するメソッド
         /// </summary>
-        private void ChangeParams(PlayerMoveParameters newParams)
+        private void ChangeParams(PlayerStateManager.PlayerState newState, PlayerMoveParameters newParams)
         {
             _gravityCalculator.SetParams(newParams);
             _jumpAction.SetParams(newParams);
             _horizontalMovement.SetParams(newParams);
+
+            if (newState == PlayerStateManager.PlayerState.Damaged)
+            {
+                ApplyKnockback();
+            }
+        }
+
+        /// <summary>
+        /// 被ダメージ時のノックバック用ベクトルを、現在の速度に適用するメソッド
+        /// </summary>
+        private void ApplyKnockback()
+        {
+            _currentVelocity = (-transform.forward * _kbBackForce) + (Vector3.up * _kbUpForce);
         }
 
         // ---------------------------------------------------------------------------
@@ -83,6 +103,32 @@ namespace Manmaru.Player
         {
             Vector2 inputVec = argInput.action.ReadValue<Vector2>();
             return new Vector3(inputVec.x, 0f, inputVec.y).normalized;
+        }
+
+        /// <summary>
+        /// ノックバック状態専用の移動・ジャンプ処理を行うメソッド
+        /// </summary>
+        private void UpdateKnockbackState()
+        {
+            // 重力処理（落下速度がゼロにならないよう、空中として処理）
+            _currentVelocity.y = _gravityCalculator.CalculateGravity(_currentVelocity.y, false);
+
+            // 水平移動処理（無入力）
+            UpdateHorizontalVelocity(Vector3.zero, Vector3.up, false);
+        }
+
+        /// <summary>
+        /// 通常時の移動・ジャンプ処理を行うメソッド
+        /// </summary>
+        private void UpdateNormalMoveState(bool isGrounded, Vector3 groundNormal)
+        {
+            // 入力状況の保存
+            Vector3 inputDirection = GetInputDirection(_moveAction);
+
+            // 速度・回転計算
+            UpdateHorizontalVelocity(inputDirection, groundNormal, isGrounded);
+            UpdateVerticalVelocity(isGrounded);
+            UpdateRotation(inputDirection, groundNormal);
         }
 
         /// <summary>

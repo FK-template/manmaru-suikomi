@@ -46,6 +46,9 @@ namespace Manmaru.Player
 
         void Update()
         {
+            // ノックバック状態なら、入力を受け付けない
+            if (_playerStateManager.CurrentState == PlayerStateManager.PlayerState.Damaged) return;
+
             // すいこみ・はきだし
             // すいこみ条件：ほおばり状態 かつ 入力ロック状態でないとき
             if (!_isMouthfulMode)

@@ -20,7 +20,7 @@ MonoBehaviour:
   AirDeceleration: 5
   JumpForce: 0
   JumpCutoffMultiplier: 0
-  Gravity: 70
+  Gravity: 52.5
   MaxFallSpeed: -20
   BrakeThreshold: 5
   BrakeGravityMultiplier: 0.5
