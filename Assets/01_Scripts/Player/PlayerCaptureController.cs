@@ -16,7 +16,7 @@ namespace Manmaru.Player
         [SerializeField] private float _captureAngleRange = 45f;
 
         [Header("入力設定")]
-        [SerializeField] private InputActionReference _attackAction;
+        [SerializeField] private InputActionReference _attackActionInput;
 
         [Header("はきだし設定")]
         [SerializeField] private StarBulletController _starBullet;
@@ -70,7 +70,7 @@ namespace Manmaru.Player
             if (_needToRelease)
             {
                 // ボタンリリースされたら入力ロックを解除
-                if (_attackAction.action.WasReleasedThisFrame())
+                if (_attackActionInput.action.WasReleasedThisFrame())
                 {
                     _needToRelease = false;
                     Debug.Log("入力ロック解除！すいこみ可能に");
@@ -80,13 +80,13 @@ namespace Manmaru.Player
             }
 
             // Attackボタンを押した瞬間に、すいこみ状態に遷移
-            if (_attackAction.action.WasPressedThisFrame())
+            if (_attackActionInput.action.WasPressedThisFrame())
             {
                 _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Capturing);
             }
 
             // Attackボタンを押している間ずっと、すいこみ判定
-            if (_attackAction.action.IsPressed())
+            if (_attackActionInput.action.IsPressed())
             {
                 // グラフィック情報を更新
                 _playerVisualController.ChangeToCapturing();
@@ -102,7 +102,7 @@ namespace Manmaru.Player
 
                 Debug.Log($"すいこみ！：{target.GetTransform().gameObject.name}");
             }
-            else if (_attackAction.action.WasReleasedThisFrame())
+            else if (_attackActionInput.action.WasReleasedThisFrame())
             {
                 // グラフィック情報を更新
                 _playerVisualController.ChangeToNormal();
@@ -119,7 +119,7 @@ namespace Manmaru.Player
         private void UpdateShootStatus()
         {
             // Attackボタンを押した瞬間に、はきだし処理を開始
-            if (_attackAction.action.WasPressedThisFrame())
+            if (_attackActionInput.action.WasPressedThisFrame())
             {
                 Debug.Log($"はきだし！弾の強さ：Lv.{_capturedCount}");
 

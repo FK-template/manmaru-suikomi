@@ -19,7 +19,8 @@ namespace Manmaru.Player
         [SerializeField] private float _kbUpForce = 3.0f;
 
         [Header("入力設定")]
-        [SerializeField] private InputActionReference _moveAction;
+        [SerializeField] private InputActionReference _moveActionInput;
+        [SerializeField] private InputActionReference _jumpActionInput;
 
         [Header("依存クラス設定")]
         [SerializeField] private PlayerStateManager _playerStateManager;
@@ -126,7 +127,7 @@ namespace Manmaru.Player
         private void UpdateNormalMoveState(bool isGrounded, Vector3 groundNormal)
         {
             // 入力状況の保存
-            Vector3 inputDirection = GetInputDirection(_moveAction);
+            Vector3 inputDirection = GetInputDirection(_moveActionInput);
 
             // 速度・回転計算
             UpdateHorizontalVelocity(inputDirection, groundNormal, isGrounded);
@@ -143,8 +144,8 @@ namespace Manmaru.Player
             _currentVelocity.y = _gravityCalculator.CalculateGravity(_currentVelocity.y, isGrounded);
 
             // ジャンプ入力情報
-            bool isJumpPressed = Input.GetButtonDown("Jump");
-            bool isJumpReleased = Input.GetButtonUp("Jump");
+            bool isJumpPressed = _jumpActionInput.action.WasPressedThisFrame();
+            bool isJumpReleased = _jumpActionInput.action.WasReleasedThisFrame();
 
             // ジャンプ状態の更新
             _currentVelocity.y = _jumpAction.UpdateJumpState(_currentVelocity.y, isGrounded, isJumpPressed, isJumpReleased);
