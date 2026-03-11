@@ -33,7 +33,7 @@ namespace Manmaru.Player
         [SerializeField] private WallFitter _wallFitter;
 
         // 内部変数
-        private Vector3 _currentVelocity;
+        public Vector3 _currentVelocity;
 
         void Awake()
         {
@@ -46,8 +46,11 @@ namespace Manmaru.Player
             // 着地判定の保存
             bool isGrounded = _groundChecker.MultiRayCheckGrounded(_currentVelocity.y, out float groundY, out Vector3 groundNormal, _bodyRadius, _groundLayer);
 
+            // ノックバック状態かどうかの保存
+            bool isDamaged = _playerStateManager.CurrentState == PlayerStateManager.PlayerState.Damaged;
+
             // ノックバック判定
-            if (_playerStateManager.CurrentState == PlayerStateManager.PlayerState.Damaged)
+            if (isDamaged)
             {
                 UpdateKnockbackState();
             }
@@ -64,8 +67,8 @@ namespace Manmaru.Player
             isGrounded = _groundChecker.MultiRayCheckGrounded(_currentVelocity.y, out groundY, out groundNormal, _bodyRadius, _groundLayer);
             ApplyGroundFitting(groundY, isGrounded);
 
-            // 落下して着地したら、ノックバック解除
-            if (_currentVelocity.y <= 0f && isGrounded)
+            // ノックバック中に落下して着地したら、ノックバック状態解除
+            if (isDamaged && _currentVelocity.y <= 0f && isGrounded)
                 _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Normal);
         }
 
