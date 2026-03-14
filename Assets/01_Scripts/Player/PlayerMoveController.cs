@@ -191,8 +191,8 @@ namespace Manmaru.Player
         /// </summary>
         private void ApplyGroundFitting(float groundY, bool isGrounded)
         {
-            // ジャンプ中 or 空中 なら終了
-            if (_jumpAction.IsJumping || !isGrounded) return;
+            // ジャンプ中 or 空中 or 上昇中 なら終了
+            if (_jumpAction.IsJumping || !isGrounded || _currentVelocity.y > 0f) return;
 
             // 着地時のめり込み補正
             transform.position = _groundFitter.FitToGround(transform.position, groundY, _groundChecker.FeetPosY);
