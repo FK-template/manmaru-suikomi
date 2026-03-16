@@ -5149,6 +5149,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 617377012627427466, guid: 300027681b4d18844a7b6f8160e4032c, type: 3}
+      propertyPath: _flashSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 617377012627427466, guid: 300027681b4d18844a7b6f8160e4032c, type: 3}
+      propertyPath: _healthController
+      value: 
+      objectReference: {fileID: 2068544481}
     - target: {fileID: 3437031319443208462, guid: 300027681b4d18844a7b6f8160e4032c, type: 3}
       propertyPath: _kbUpForce
       value: 10

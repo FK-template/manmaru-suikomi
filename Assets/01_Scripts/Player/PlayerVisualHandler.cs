@@ -20,30 +20,98 @@ namespace Manmaru.Player
         [SerializeField] private Vector3 _baseScale = Vector3.one;
         [SerializeField] private Vector3 _fatScale = new Vector3(1.2f, 1.0f, 1.0f);
 
+        [Header("点滅設定")]
+        [SerializeField] private float _flashSpeed = 10.0f;
+        [SerializeField] private float _flashColorMaxRatio = 0.5f;
+        [SerializeField] private Color _flashLerpColor = Color.white;
+
+        [Header("依存クラス設定")]
+        [SerializeField] private PlayerHealthController _healthController;
+
+        // 内部変数：点滅用
+        private bool _isFlashing = false;
+        private Color _baseColor;
+
         void Start()
         {
             _baseScale = transform.localScale;
+            _healthController.OnNoDamageStarted += StartFlashing;
+            _healthController.OnNoDamageFinished += FinishFlashing;
         }
 
+        void Update()
+        {
+            UpdateFlashing();
+        }
+
+        /// <summary>
+        /// 通常時の見た目に変更するメソッド
+        /// </summary>
         public void ChangeToNormal()
         {
             ApplyColor(_normalColor);
             ApplyScale(_baseScale);
+            _baseColor = _renderersList[0].material.color;
         }
 
+        /// <summary>
+        /// すいこみ中の見た目に変更するメソッド
+        /// </summary>
         public void ChangeToCapturing()
         {
             ApplyColor(_capturingColor);
             ApplyScale(_baseScale);
+            _baseColor = _renderersList[0].material.color;
         }
 
+        /// <summary>
+        /// ほおばり中の見た目に変更するメソッド
+        /// </summary>
         public void ChangeToMouthful()
         {
             ApplyColor(_mouthfulColor);
             ApplyScale(_fatScale);
+            _baseColor = _renderersList[0].material.color;
         }
 
+        /// <summary>
+        /// 白点滅を開始するための初期設定メソッド
+        /// </summary>
+        private void StartFlashing()
+        {
+            _isFlashing = true;
+            _baseColor = _renderersList[0].material.color;
+        }
 
+        /// <summary>
+        /// 毎フレーム呼び出し、点滅フラグがオンなら白点滅処理を更新するメソッド
+        /// </summary>
+        private void UpdateFlashing()
+        {
+            if (!_isFlashing)
+            {
+                return;
+            }
+
+            // 点滅処理（Time.timeで経過時間を参照 -> 開始地点は選べてない）
+            float blendRatio = Mathf.PingPong(Time.time * _flashSpeed, _flashColorMaxRatio);
+            ApplyColor(Color.Lerp(_baseColor, _flashLerpColor, blendRatio));
+
+            Debug.Log($"点滅状況：{blendRatio}");
+        }
+
+        /// <summary>
+        /// 白点滅を停止するときの再設定メソッド
+        /// </summary>
+        private void FinishFlashing()
+        {
+            _isFlashing = false;
+            ApplyColor(_baseColor);
+        }
+
+        /// <summary>
+        /// 体色を変更するメソッド
+        /// </summary>
         private void ApplyColor(Color argColor)
         {
             foreach (Renderer r in _renderersList)
@@ -52,6 +120,9 @@ namespace Manmaru.Player
             }
         }
 
+        /// <summary>
+        /// 体のスケールを変更するメソッド
+        /// </summary>
         private void ApplyScale(Vector3 argScale)
         {
             transform.localScale = argScale;

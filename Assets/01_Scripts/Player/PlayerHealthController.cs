@@ -17,8 +17,12 @@ namespace Manmaru.Player
         [Header("依存クラス設定")]
         [SerializeField] private PlayerStateManager _playerStateManager;
 
-        // 状態遷移イベント
+        // 状態遷移イベント：体力を返す
         public Action<float, float> OnDamaged;
+
+        // 状態遷移イベント：点滅タイミング
+        public Action OnNoDamageStarted;
+        public Action OnNoDamageFinished;
 
         void Start()
         {
@@ -28,9 +32,10 @@ namespace Manmaru.Player
 
         void Update()
         {
-            if (_noDamageTimer > 0f) 
+            if (_noDamageTimer > 0f)
             {
                 _noDamageTimer -= Time.deltaTime;
+                if (_noDamageTimer <= 0f) OnNoDamageFinished.Invoke();
             }
         }
 
@@ -59,8 +64,11 @@ namespace Manmaru.Player
             // 無敵タイマー起動
             _noDamageTimer = _noDamageFullTime;
 
+            // 色替えAction
+            OnNoDamageStarted.Invoke();
+
             // 状態遷移
-            _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Damaged);            
+            _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Damaged);
         }
 
         /// <summary>
