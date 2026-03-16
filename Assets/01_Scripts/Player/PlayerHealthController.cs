@@ -1,4 +1,5 @@
 using Manmaru.Interaction;
+using System;
 using UnityEngine;
 
 namespace Manmaru.Player
@@ -16,9 +17,13 @@ namespace Manmaru.Player
         [Header("依存クラス設定")]
         [SerializeField] private PlayerStateManager _playerStateManager;
 
+        // 状態遷移イベント
+        public Action<float, float> OnDamaged;
+
         void Start()
         {
             _currentHitPoint = _maxHitPoint;
+            OnDamaged.Invoke(_maxHitPoint, _currentHitPoint);
         }
 
         void Update()
@@ -37,9 +42,12 @@ namespace Manmaru.Player
             // 無敵タイマーが動いていたら、ダメージを受けない
             if (_noDamageTimer > 0f) return;
 
-            // 被ダメージ処理
+            // HP減算処理
             _currentHitPoint -= damageValue;
             Debug.Log($"くらった！：{gameObject.name}({_currentHitPoint}/{_maxHitPoint})");
+
+            // UI更新Action
+            OnDamaged.Invoke(_maxHitPoint, _currentHitPoint);
 
             // やられ処理
             if (_currentHitPoint <= 0)
@@ -52,7 +60,7 @@ namespace Manmaru.Player
             _noDamageTimer = _noDamageFullTime;
 
             // 状態遷移
-            _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Damaged);
+            _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Damaged);            
         }
 
         /// <summary>
