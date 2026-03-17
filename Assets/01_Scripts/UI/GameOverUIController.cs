@@ -1,28 +1,34 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Manmaru.System
 {
     public class GameOverUIController : MonoBehaviour
     {
         [Header("ゲームオーバーUI")]
-        [SerializeField] private GameObject _gameOverText;
-        [SerializeField] private GameObject _nextButton;
-        [SerializeField] private GameObject _retryButton;
+        [SerializeField] private TextMeshProUGUI _gameOverText;
+        [SerializeField] private Button _retryButton;
+        [SerializeField] private Button _titleButton;
 
         [Header("依存クラス設定")]
         [SerializeField] private GameStateManager _gameStateManager;
+        [SerializeField] private SceneFlowController _sceneFlowController;
 
         void Start()
         {
             _gameStateManager.OnGameOverState += ShowGameOverUI;
+
+            _retryButton.onClick.AddListener(_sceneFlowController.ReloadCurrentScene);
+            _titleButton.onClick.AddListener(_sceneFlowController.MoveToTitleScene);
         }
 
         private void ShowGameOverUI()
         {
             // UI表示
-            _gameOverText.SetActive(true);
-            _nextButton.SetActive(true);
-            _retryButton.SetActive(true);
+            _gameOverText.gameObject.SetActive(true);
+            _retryButton.gameObject.SetActive(true);
+            _titleButton.gameObject.SetActive(true);
         }
     }
 }
