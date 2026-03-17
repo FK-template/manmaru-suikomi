@@ -44,8 +44,8 @@ namespace Manmaru.Player
         /// </summary>
         public void TakeDamage(float damageValue)
         {
-            // 無敵タイマーが動いていたら、ダメージを受けない
-            if (_noDamageTimer > 0f) return;
+            // 無敵タイマーが動いている or 体力ゼロ なら、ダメージを受けない
+            if (_noDamageTimer > 0f || _currentHitPoint <= 0) return;
 
             // HP減算処理
             _currentHitPoint -= damageValue;
@@ -72,12 +72,11 @@ namespace Manmaru.Player
         }
 
         /// <summary>
-        /// 消滅メソッド
+        /// やられ状態に移行するメソッド
         /// </summary>
         private void OnDeath()
         {
-            Debug.Log($"やられた！：{gameObject.name}");
-            Destroy(gameObject);
+            _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Dead);
         }
     }
 }

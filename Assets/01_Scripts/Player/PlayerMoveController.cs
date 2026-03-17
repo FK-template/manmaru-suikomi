@@ -44,6 +44,9 @@ namespace Manmaru.Player
 
         private void Update()
         {
+            // ゲームオーバー状態なら、物理挙動を停止して入力も受け付けない
+            if (_playerStateManager.CurrentState == PlayerStateManager.PlayerState.Dead) return;
+
             // 着地判定の保存
             bool isGrounded = _groundChecker.MultiRayCheckGrounded(_currentVelocity.y, out float groundY, out Vector3 groundNormal, _bodyRadius, _groundLayer);
 

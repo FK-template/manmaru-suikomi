@@ -10,7 +10,8 @@ namespace Manmaru.Player
             Normal,
             Capturing,
             Mouthful,
-            Damaged
+            Damaged,
+            Dead
         }
 
         [Header("状態ごとのパラメータデータ")]
@@ -19,11 +20,12 @@ namespace Manmaru.Player
         [SerializeField] private PlayerMoveParameters _mouthfulParams;
         [SerializeField] private PlayerMoveParameters _damagedParams;
 
-        // 内部変数：状態管理
+        // 現在のプレイヤーの状態
         public PlayerState CurrentState { get; private set;}
 
-        // 状態遷移イベント
+        // 状態遷移イベント（汎用とやられ用）
         public Action<PlayerState, PlayerMoveParameters> OnStateChanged;
+        public Action OnPlayerDead;
 
         void Start()
         {
@@ -55,6 +57,10 @@ namespace Manmaru.Player
                 case PlayerState.Damaged:
                     OnStateChanged?.Invoke(CurrentState, _damagedParams);
                     Debug.Log($"PlayerState:{CurrentState} いてっ！被ダメージモードへ");
+                    break;
+                case PlayerState.Dead:
+                    OnPlayerDead?.Invoke();
+                    Debug.Log($"PlayerState:{CurrentState} やられた！ゲームオーバーモードへ");
                     break;
             }
         }
