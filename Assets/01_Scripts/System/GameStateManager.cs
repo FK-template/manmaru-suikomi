@@ -39,16 +39,15 @@ namespace Manmaru.System
         private void OnPlayerDeadHandler()
         {
             ChangeGameState(GameState.GameOver);
+            OnGameOverState?.Invoke();
         }
 
         /// <summary>
-        /// ゲームの状態を遷移させ、Actionを発火するメソッド
+        /// ゲームの状態を遷移させるメソッド
         /// </summary>
         private void ChangeGameState(GameState nextState)
         {
             CurrentState = nextState;
-            OnGameOverState?.Invoke();
-
             Debug.Log($"GameState:{CurrentState} ゲーム状態変更！");
         }
     }
