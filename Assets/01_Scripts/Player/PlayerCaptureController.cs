@@ -1,4 +1,5 @@
 using Manmaru.Interaction;
+using Manmaru.VFX;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

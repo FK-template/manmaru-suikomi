@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Manmaru.Player
+namespace Manmaru.VFX
 {
     /// <summary>
     /// すいこみエフェクトを制御するクラス
