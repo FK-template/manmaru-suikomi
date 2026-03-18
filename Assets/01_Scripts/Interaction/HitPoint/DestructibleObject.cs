@@ -5,7 +5,7 @@ namespace Manmaru.Interaction
     /// <summary>
     /// ダメージを受けうるオブジェクトの体力管理を行うクラス
     /// </summary>
-    public class DamageableObject : MonoBehaviour, IDamageable
+    public class DestructibleObject : MonoBehaviour, IDamageable
     {
         [Header("体力")]
         [SerializeField] private float _hitPoint = 1.0f;
