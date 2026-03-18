@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Manmaru.Player
 {
+    /// <summary>
+    /// プレイヤーの状態別移動パラメータをまとめたデータアセット
+    /// </summary>
     [CreateAssetMenu(fileName = "NewPlayerMoveParams", menuName = "Manmaru/PlayerMoveParameters")]
     public class PlayerMoveParameters : ScriptableObject
     {

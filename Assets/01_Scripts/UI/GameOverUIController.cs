@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 namespace Manmaru.System
 {
+    /// <summary>
+    /// ゲームオーバーに関するUI処理を制御するクラス
+    /// </summary>
     public class GameOverUIController : MonoBehaviour
     {
         [Header("ゲームオーバーUI")]
@@ -23,6 +26,9 @@ namespace Manmaru.System
             _titleButton.onClick.AddListener(_sceneFlowController.MoveToTitleScene);
         }
 
+        /// <summary>
+        /// ゲームオーバー時に必要なUIを表示するメソッド
+        /// </summary>
         private void ShowGameOverUI()
         {
             // UI表示

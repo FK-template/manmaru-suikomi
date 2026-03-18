@@ -4,10 +4,9 @@ using UnityEngine.UI;
 
 namespace Manmaru.UI
 {
-    // UIコンポーネントとアクション監視
-    // UpdateHealthBarで、現在HPと最大HPを取得し、maxValueとvalueを指定
-    // （OnDestroyにアクションの耳塞ぎを入れる。これいる？）
-
+    /// <summary>
+    /// プレイヤーのHPに関するUI処理を制御するクラス
+    /// </summary>
     public class PlayerHealthUI : MonoBehaviour
     {
         [Header("依存クラス設定")]
@@ -23,8 +22,6 @@ namespace Manmaru.UI
         /// <summary>
         /// 最大HPと現在のHPを、HPバーUIに反映するメソッド
         /// </summary>
-        /// <param name="maxHP"></param>
-        /// <param name="curHP"></param>
         private void UpdateHealthBar(float maxHP, float curHP)
         {
             _hpSlider.maxValue = maxHP;

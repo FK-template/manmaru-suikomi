@@ -20,7 +20,6 @@ namespace Manmaru.Movement
         /// <summary>
         /// 新しくパラメータを設定するメソッド
         /// </summary>
-        /// <param name="newParams"></param>
         public void SetParams(PlayerMoveParameters newParams)
         {
             _currentParams = newParams;

@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 namespace Manmaru.System
 {
+    /// <summary>
+    /// シーン遷移処理を制御するクラス
+    /// </summary>
     public class SceneFlowController : MonoBehaviour
     {
         [Header("遷移先シーン名設定")]

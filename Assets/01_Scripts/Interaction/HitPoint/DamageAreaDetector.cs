@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Manmaru.Interaction
 {
+    /// <summary>
+    /// ダメージを与える相手の干渉判定を行うクラス
+    /// </summary>
     public class DamageAreaDetector : MonoBehaviour
     {
         /// <summary>

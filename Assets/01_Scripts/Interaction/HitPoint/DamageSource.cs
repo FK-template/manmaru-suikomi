@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Manmaru.Interaction
 {
+    /// <summary>
+    /// 干渉した対象にダメージを与えるクラス
+    /// </summary>
     public class DamageSource : MonoBehaviour
     {
         [Header("ダメージ判定パラメータ")]

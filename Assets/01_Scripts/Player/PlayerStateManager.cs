@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Manmaru.Player
 {
+    /// <summary>
+    /// プレイヤーの状態を管理するクラス
+    /// </summary>
     public class PlayerStateManager : MonoBehaviour
     {
         public enum PlayerState

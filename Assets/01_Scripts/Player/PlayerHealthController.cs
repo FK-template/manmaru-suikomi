@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Manmaru.Player
 {
+    /// <summary>
+    /// プレイヤーの体力処理全般を制御するクラス
+    /// </summary>
     public class PlayerHealthController : MonoBehaviour, IDamageable
     {
         [Header("体力")]

@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Manmaru.System
 {
+    /// <summary>
+    /// ゲーム全体の状態を管理するクラス
+    /// </summary>
     public class GameStateManager : MonoBehaviour
     {
         public enum GameState
@@ -36,6 +39,9 @@ namespace Manmaru.System
             _playerStateManager.OnPlayerDead += OnPlayerDeadHandler;
         }
 
+        /// <summary>
+        /// プレイヤーやられ時のイベントハンドラメソッド
+        /// </summary>
         private void OnPlayerDeadHandler()
         {
             ChangeGameState(GameState.GameOver);
