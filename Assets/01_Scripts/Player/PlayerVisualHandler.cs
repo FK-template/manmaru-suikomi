@@ -96,8 +96,6 @@ namespace Manmaru.Player
             // 点滅処理（Time.timeで経過時間を参照 -> 開始地点は選べてない）
             float blendRatio = Mathf.PingPong(Time.time * _flashSpeed, _flashColorMaxRatio);
             ApplyColor(Color.Lerp(_baseColor, _flashLerpColor, blendRatio));
-
-            Debug.Log($"点滅状況：{blendRatio}");
         }
 
         /// <summary>

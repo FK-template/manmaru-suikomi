@@ -26,7 +26,7 @@ namespace Manmaru.Interaction
         [SerializeField] private Color _superColor = Color.green;
         [SerializeField] private Color _ultraColor = Color.orangeRed;
 
-        [Header("依存クラス")]
+        [Header("依存クラス設定")]
         [SerializeField] private StarBulletMovement _bulletMovement;
         [SerializeField] private StarBulletCollision _bulletCollision;
 

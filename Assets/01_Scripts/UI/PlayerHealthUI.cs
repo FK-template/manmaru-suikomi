@@ -9,8 +9,10 @@ namespace Manmaru.UI
     /// </summary>
     public class PlayerHealthUI : MonoBehaviour
     {
-        [Header("依存クラス設定")]
+        [Header("反映するUI")]
         [SerializeField] private Slider _hpSlider;
+
+        [Header("依存クラス設定")]
         [SerializeField] private PlayerHealthController _healthController;
 
         void Start()

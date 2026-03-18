@@ -33,7 +33,7 @@ namespace Manmaru.Player
         [SerializeField] private WallChecker _wallChecker;
         [SerializeField] private WallFitter _wallFitter;
 
-        // 内部変数
+        // 内部変数：現在の速度
         public Vector3 _currentVelocity;
 
         void Awake()

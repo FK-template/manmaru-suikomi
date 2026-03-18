@@ -17,7 +17,6 @@ namespace Manmaru.Interaction
 
         // 内部変数：すいこみ中リスト
         private List<ICapturable> _capturingList = new List<ICapturable>();
-        private int _capturingCount = 0;
 
         // すいこみ完了イベント
         public event Action OnCaptureFinished;

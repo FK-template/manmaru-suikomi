@@ -1,7 +1,6 @@
 using Manmaru.Interaction;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.GraphicsBuffer;
 
 namespace Manmaru.Player
 {

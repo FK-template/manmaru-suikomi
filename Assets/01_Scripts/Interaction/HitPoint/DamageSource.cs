@@ -15,18 +15,13 @@ namespace Manmaru.Interaction
         [Header("依存クラス設定")]
         [SerializeField] private DamageAreaDetector _damageAreaDetector;
 
-        // 内部変数
+        // 内部変数：干渉判定用
         private Collider[] _hitColliders;
-
-        void Start()
-        {
-
-        }
 
         void Update()
         {
             _hitColliders = _damageAreaDetector.GetHittingColliders(transform.position, _hitCollisionRadius, _targetLayer);
-            
+
             foreach (Collider col in _hitColliders)
             {
                 // 与ダメージ処理（与ダメできる相手なら）
