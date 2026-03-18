@@ -6,12 +6,12 @@ namespace Manmaru.System
 {
     public class GameOverUIController : MonoBehaviour
     {
-        [Header("ƒQ[ƒ€ƒI[ƒo[UI")]
+        [Header("ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼UI")]
         [SerializeField] private TextMeshProUGUI _gameOverText;
         [SerializeField] private Button _retryButton;
         [SerializeField] private Button _titleButton;
 
-        [Header("ˆË‘¶ƒNƒ‰ƒXİ’è")]
+        [Header("ä¾å­˜ã‚¯ãƒ©ã‚¹è¨­å®š")]
         [SerializeField] private GameStateManager _gameStateManager;
         [SerializeField] private SceneFlowController _sceneFlowController;
 
@@ -25,7 +25,7 @@ namespace Manmaru.System
 
         private void ShowGameOverUI()
         {
-            // UI•\¦
+            // UIè¡¨ç¤º
             _gameOverText.gameObject.SetActive(true);
             _retryButton.gameObject.SetActive(true);
             _titleButton.gameObject.SetActive(true);

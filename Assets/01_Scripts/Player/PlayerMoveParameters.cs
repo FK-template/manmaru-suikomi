@@ -5,10 +5,10 @@ namespace Manmaru.Player
     [CreateAssetMenu(fileName = "NewPlayerMoveParams", menuName = "Manmaru/PlayerMoveParameters")]
     public class PlayerMoveParameters : ScriptableObject
     {
-        [Header("移動許可フラグ")]
+        [Header("遘ｻ蜍戊ｨｱ蜿ｯ繝輔Λ繧ｰ")]
         public bool CanJump = true;
 
-        [Header("水平移動用パラメータ")]
+        [Header("豌ｴ蟷ｳ遘ｻ蜍慕畑繝代Λ繝｡繝ｼ繧ｿ")]
         public float MaxSpeed = 8.0f;
         [Space(5)]
         public float GroundAcceleration = 50.0f;
@@ -17,11 +17,11 @@ namespace Manmaru.Player
         public float AirAcceleration = 20.0f;
         public float AirDeceleration = 5.0f;
 
-        [Header("ジャンプ用パラメータ")]
+        [Header("繧ｸ繝｣繝ｳ繝礼畑繝代Λ繝｡繝ｼ繧ｿ")]
         public float JumpForce = 23.5f;
         public float JumpCutoffMultiplier = 0.4f;
 
-        [Header("重力用パラメータ")]
+        [Header("驥榊鴨逕ｨ繝代Λ繝｡繝ｼ繧ｿ")]
         public float Gravity = 70.0f;
         public float MaxFallSpeed = -20.0f;
         [Space(5)]
