@@ -30,7 +30,7 @@ namespace Manmaru.Player
         void Start()
         {
             _currentHitPoint = _maxHitPoint;
-            OnDamaged.Invoke(_maxHitPoint, _currentHitPoint);
+            OnDamaged?.Invoke(_maxHitPoint, _currentHitPoint);
         }
 
         void Update()
@@ -38,7 +38,7 @@ namespace Manmaru.Player
             if (_noDamageTimer > 0f)
             {
                 _noDamageTimer -= Time.deltaTime;
-                if (_noDamageTimer <= 0f) OnNoDamageFinished.Invoke();
+                if (_noDamageTimer <= 0f) OnNoDamageFinished?.Invoke();
             }
         }
 
@@ -55,7 +55,7 @@ namespace Manmaru.Player
             Debug.Log($"くらった！：{gameObject.name}({_currentHitPoint}/{_maxHitPoint})");
 
             // UI更新Action
-            OnDamaged.Invoke(_maxHitPoint, _currentHitPoint);
+            OnDamaged?.Invoke(_maxHitPoint, _currentHitPoint);
 
             // やられ処理
             if (_currentHitPoint <= 0)
@@ -68,7 +68,7 @@ namespace Manmaru.Player
             _noDamageTimer = _noDamageFullTime;
 
             // 色替えAction
-            OnNoDamageStarted.Invoke();
+            OnNoDamageStarted?.Invoke();
 
             // 状態遷移
             _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Damaged);

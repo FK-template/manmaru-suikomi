@@ -46,11 +46,11 @@ namespace Manmaru.Player
             switch (CurrentState)
             {
                 case PlayerState.Normal:
-                    OnStateChanged.Invoke(CurrentState, _normalParams);
+                    OnStateChanged?.Invoke(CurrentState, _normalParams);
                     Debug.Log($"PlayerState:{CurrentState} 通常モードへ");
                     break;
                 case PlayerState.Capturing:
-                    OnStateChanged.Invoke(CurrentState, _capturingParams);
+                    OnStateChanged?.Invoke(CurrentState, _capturingParams);
                     Debug.Log($"PlayerState:{CurrentState} すいこみ状態スタート！");
                     break;
                 case PlayerState.Mouthful:

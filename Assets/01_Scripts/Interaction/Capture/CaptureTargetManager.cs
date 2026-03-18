@@ -114,12 +114,12 @@ namespace Manmaru.Interaction
             UnregisterCapturingTarget(argTarget);
 
             // すいこみ済みカウンターを増やすためのイベント発動
-            OnCaptureFinished.Invoke();
+            OnCaptureFinished?.Invoke();
 
             // すいこみ中リストが空になったら、完了イベント発動
             if (_capturingList.Count == 0)
             {
-                OnAllCapturesFinished.Invoke();
+                OnAllCapturesFinished?.Invoke();
             }
         }
 
