@@ -63,6 +63,9 @@ namespace Manmaru.System
         /// </summary>
         private void ChangeGameState(GameState nextState)
         {
+            // すでにゲームが終了していたら中止
+            if (CurrentState == GameState.GameClear || CurrentState == GameState.GameOver) return;
+
             CurrentState = nextState;
             Debug.Log($"GameState:{CurrentState} ゲーム状態変更！");
         }
