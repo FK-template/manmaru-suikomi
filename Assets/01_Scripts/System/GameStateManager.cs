@@ -24,6 +24,7 @@ namespace Manmaru.System
 
         // 状態遷移イベント
         public Action OnGameOverState;
+        public Action OnGameClearState;
 
         // インスタンス設定
         public static GameStateManager Instance { get; private set; }
@@ -37,6 +38,15 @@ namespace Manmaru.System
         void Start()
         {
             _playerStateManager.OnPlayerDead += OnPlayerDeadHandler;
+        }
+
+        /// <summary>
+        /// ゲームをクリア状態に遷移させるメソッド
+        /// </summary>
+        public void ChangeToGameClearState()
+        {
+            ChangeGameState(GameState.GameClear);
+            OnGameClearState?.Invoke();
         }
 
         /// <summary>
