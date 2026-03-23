@@ -3,6 +3,9 @@ using Unity.Cinemachine;
 
 namespace Manmaru.System
 {
+    /// <summary>
+    /// カメラを切り替えるためのエリア干渉判定を行うクラス
+    /// </summary>
     public class CameraChangeTrigger : MonoBehaviour
     {
         [Header("この区間で起動するカメラ")]
@@ -23,14 +26,9 @@ namespace Manmaru.System
         }
 
         private void OnTriggerEnter(Collider other)
-        {
-            Debug.Log("Enter");
-            
+        {          
             if (((1 << other.gameObject.layer) & _playerLayer) != 0)
-            {
-                ChangeCameraPriority(_activePriority);
-                Debug.Log("Player Enter");
-            }
+                ChangeCameraPriority(_activePriority);            
         }
 
         private void OnTriggerExit(Collider other)
