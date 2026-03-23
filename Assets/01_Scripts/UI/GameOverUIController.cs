@@ -1,8 +1,9 @@
+using Manmaru.System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Manmaru.System
+namespace Manmaru.UI
 {
     /// <summary>
     /// ゲームオーバーに関するUI処理を制御するクラス
@@ -15,12 +16,12 @@ namespace Manmaru.System
         [SerializeField] private Button _titleButton;
 
         [Header("依存クラス設定")]
-        [SerializeField] private GameStateManager _gameStateManager;
         [SerializeField] private SceneFlowController _sceneFlowController;
 
         void Start()
         {
-            _gameStateManager.OnGameOverState += ShowGameOverUI;
+            // イベント購読設定
+            GameStateManager.Instance.OnGameOverState += ShowGameOverUI;
 
             _retryButton.onClick.AddListener(_sceneFlowController.ReloadCurrentScene);
             _titleButton.onClick.AddListener(_sceneFlowController.MoveToTitleScene);
@@ -35,6 +36,12 @@ namespace Manmaru.System
             _gameOverText.gameObject.SetActive(true);
             _retryButton.gameObject.SetActive(true);
             _titleButton.gameObject.SetActive(true);
+        }
+
+        private void OnDestroy()
+        {
+            // イベント購読解除
+            GameStateManager.Instance.OnGameOverState -= ShowGameOverUI;
         }
     }
 }

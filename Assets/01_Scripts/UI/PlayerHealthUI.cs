@@ -17,7 +17,7 @@ namespace Manmaru.UI
 
         void Start()
         {
-            // イベント設定（引数渡し付き）
+            // イベント購読設定（引数渡し付き）
             _healthController.OnDamaged += UpdateHealthBar;
         }
 
@@ -28,6 +28,12 @@ namespace Manmaru.UI
         {
             _hpSlider.maxValue = maxHP;
             _hpSlider.value = curHP;
+        }
+
+        private void OnDestroy()
+        {
+            // イベント購読解除
+            _healthController.OnDamaged -= UpdateHealthBar;
         }
     }
 }

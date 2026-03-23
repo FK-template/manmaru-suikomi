@@ -38,7 +38,7 @@ namespace Manmaru.Player
 
         void Awake()
         {
-            // イベント設定（引数渡し付き）
+            // イベント購読設定（引数渡し付き）
             _playerStateManager.OnStateChanged += ChangeParams;
         }
 
@@ -199,6 +199,16 @@ namespace Manmaru.Player
 
             // 着地時のめり込み補正
             transform.position = _groundFitter.FitToGround(transform.position, groundY, _groundChecker.FeetPosY);
+        }
+
+        // ---------------------------------------------------------------------------
+        // 以上
+        // ---------------------------------------------------------------------------
+
+        private void OnDestroy()
+        {
+            // イベント購読解除
+            _playerStateManager.OnStateChanged -= ChangeParams;
         }
     }
 }

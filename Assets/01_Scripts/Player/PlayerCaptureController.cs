@@ -39,7 +39,7 @@ namespace Manmaru.Player
         {
             _captureTargetManager = CaptureTargetManager.Instance;
 
-            // イベント設定
+            // イベント購読設定
             _captureTargetManager.OnCaptureFinished += AddCapturedCount;
             _captureTargetManager.OnAllCapturesFinished += ReadyToShoot;
         }
@@ -220,5 +220,12 @@ namespace Manmaru.Player
             }
         }
         // ----- 以上 -----
+
+        private void OnDestroy()
+        {
+            // イベント購読解除
+            _captureTargetManager.OnCaptureFinished -= AddCapturedCount;
+            _captureTargetManager.OnAllCapturesFinished -= ReadyToShoot;
+        }
     }
 }

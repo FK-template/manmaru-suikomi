@@ -35,6 +35,8 @@ namespace Manmaru.Player
         void Start()
         {
             _baseScale = transform.localScale;
+
+            // イベント購読設定
             _healthController.OnNoDamageStarted += StartFlashing;
             _healthController.OnNoDamageFinished += FinishFlashing;
         }
@@ -124,6 +126,13 @@ namespace Manmaru.Player
         private void ApplyScale(Vector3 argScale)
         {
             transform.localScale = argScale;
+        }
+
+        private void OnDestroy()
+        {
+            // イベント購読解除
+            _healthController.OnNoDamageStarted -= StartFlashing;
+            _healthController.OnNoDamageFinished -= FinishFlashing;
         }
     }
 }

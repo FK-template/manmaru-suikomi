@@ -37,6 +37,7 @@ namespace Manmaru.System
 
         void Start()
         {
+            // イベント購読設定
             _playerStateManager.OnPlayerDead += OnPlayerDeadHandler;
         }
 
@@ -68,6 +69,12 @@ namespace Manmaru.System
 
             CurrentState = nextState;
             Debug.Log($"GameState:{CurrentState} ゲーム状態変更！");
+        }
+
+        private void OnDestroy()
+        {
+            // イベント購読解除
+            _playerStateManager.OnPlayerDead -= OnPlayerDeadHandler;
         }
     }
 }

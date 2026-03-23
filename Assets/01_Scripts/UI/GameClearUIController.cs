@@ -1,5 +1,4 @@
 using Manmaru.System;
-
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,6 +20,7 @@ namespace Manmaru.UI
 
         void Start()
         {
+            // イベント購読設定
             GameStateManager.Instance.OnGameClearState += ShowGameClearUI;
 
             _retryButton.onClick.AddListener(_sceneFlowController.ReloadCurrentScene);
@@ -36,6 +36,12 @@ namespace Manmaru.UI
             _gameClearText.gameObject.SetActive(true);
             _retryButton.gameObject.SetActive(true);
             _nextButton.gameObject.SetActive(true);
+        }
+
+        private void OnDestroy()
+        {
+            // イベント購読解除
+            GameStateManager.Instance.OnGameClearState -= ShowGameClearUI;
         }
     }
 }
