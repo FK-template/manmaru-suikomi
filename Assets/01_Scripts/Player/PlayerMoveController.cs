@@ -208,7 +208,10 @@ namespace Manmaru.Player
         private void OnDestroy()
         {
             // イベント購読解除
-            _playerStateManager.OnStateChanged -= ChangeParams;
+            if (_playerStateManager != null)
+            {
+                _playerStateManager.OnStateChanged -= ChangeParams;
+            }
         }
     }
 }

@@ -74,7 +74,10 @@ namespace Manmaru.System
         private void OnDestroy()
         {
             // イベント購読解除
-            _playerStateManager.OnPlayerDead -= OnPlayerDeadHandler;
+            if (_playerStateManager != null)
+            {
+                _playerStateManager.OnPlayerDead -= OnPlayerDeadHandler;
+            }
         }
     }
 }

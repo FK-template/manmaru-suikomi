@@ -131,8 +131,11 @@ namespace Manmaru.Player
         private void OnDestroy()
         {
             // イベント購読解除
-            _healthController.OnNoDamageStarted -= StartFlashing;
-            _healthController.OnNoDamageFinished -= FinishFlashing;
+            if (_healthController != null)
+            {
+                _healthController.OnNoDamageStarted -= StartFlashing;
+                _healthController.OnNoDamageFinished -= FinishFlashing;
+            }
         }
     }
 }

@@ -33,7 +33,10 @@ namespace Manmaru.UI
         private void OnDestroy()
         {
             // イベント購読解除
-            _healthController.OnDamaged -= UpdateHealthBar;
+            if (_healthController != null)
+            {
+                _healthController.OnDamaged -= UpdateHealthBar;
+            }
         }
     }
 }

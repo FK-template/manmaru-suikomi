@@ -41,7 +41,10 @@ namespace Manmaru.UI
         private void OnDestroy()
         {
             // イベント購読解除
-            GameStateManager.Instance.OnGameClearState -= ShowGameClearUI;
+            if (GameStateManager.Instance != null)
+            {
+                GameStateManager.Instance.OnGameClearState -= ShowGameClearUI;
+            }
         }
     }
 }

@@ -224,8 +224,11 @@ namespace Manmaru.Player
         private void OnDestroy()
         {
             // イベント購読解除
-            _captureTargetManager.OnCaptureFinished -= AddCapturedCount;
-            _captureTargetManager.OnAllCapturesFinished -= ReadyToShoot;
+            if (_captureTargetManager != null)
+            {
+                _captureTargetManager.OnCaptureFinished -= AddCapturedCount;
+                _captureTargetManager.OnAllCapturesFinished -= ReadyToShoot;
+            }
         }
     }
 }
