@@ -6668,6 +6668,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2068544501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486094117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c840fc450ce8acc4a9d7add784140fac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Player.PlayerInputLocker
+  _anyPlayerAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!1001 &2122221018
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7242,6 +7255,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6310198609035381964, guid: 300027681b4d18844a7b6f8160e4032c, type: 3}
       insertIndex: 4
       addedObject: {fileID: 2068544500}
+    - targetCorrespondingSourceObject: {fileID: 6310198609035381964, guid: 300027681b4d18844a7b6f8160e4032c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2068544501}
   m_SourcePrefab: {fileID: 100100000, guid: 300027681b4d18844a7b6f8160e4032c, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
