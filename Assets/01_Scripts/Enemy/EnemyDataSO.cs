@@ -11,8 +11,11 @@ namespace Manmaru.Enemy
         [Header("基本ステータス")]
         public float MaxHP = 1.0f;
 
-        [Header("移動・アクション系")]
+        [Header("うろうろ移動ステータス")]
         public float PatrolSpeed = 1.0f;
+        public float PatrolRadius = 5.0f;
+        public float ReachThreshold = 1.0f;
+        
         public float DashSpeed = 3.0f;
         public float ActionWaitSecond = 1.0f;
         public float RotationSpeed = 360.0f;

@@ -16,12 +16,16 @@ namespace Manmaru.Enemy
         protected IEnemyStateLogic _currentState;
 
         // 公開変数：他クラス参照用
+        public Vector3 SpawnPosition { get; private set; }
         public Transform PlayerTransform { get; private set; }
         public EnemyDataSO Data => _data;
         public EnemyVisionSensor VisionSensor { get; private set; }
 
         protected virtual void Start()
         {
+            // 初期位置を格納
+            SpawnPosition = transform.position;
+
             // センサークラス生成
             GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
             PlayerTransform = playerObj != null ? playerObj.transform : null;
