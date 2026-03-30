@@ -27,6 +27,8 @@ namespace Manmaru.Enemy
         {
             get
             {
+                if(_targetTransform == null) return false;
+
                 // 判定用の距離2乗
                 float sightDistSqr = _data.SightRange * _data.SightRange;
 
@@ -42,6 +44,15 @@ namespace Manmaru.Enemy
 
                 return true;
             }
+        }
+
+        /// <summary>
+        /// ターゲットを再設定するメソッド
+        /// </summary>
+        /// <remarks>（用途：プレイヤーがリスポーンした時にイベント購読で呼び出す、など）</remarks>
+        public void SetTarget(Transform newTarget)
+        {
+            _targetTransform = newTarget;
         }
     }
 }
