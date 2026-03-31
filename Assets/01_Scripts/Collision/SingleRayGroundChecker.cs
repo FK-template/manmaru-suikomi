@@ -5,7 +5,7 @@ namespace Manmaru.Collision
     /// <summary>
     /// 単一Rayによる着地判定を行うクラス
     /// </summary>
-    public class GroundChecker : MonoBehaviour
+    public class SingleRayGroundChecker : MonoBehaviour
     {
         [Header("Raycast着地判定の設定")]
         [Tooltip("Rayの始点")]
