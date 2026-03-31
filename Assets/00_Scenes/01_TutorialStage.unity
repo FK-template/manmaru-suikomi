@@ -4110,8 +4110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca0c4959e241e244c9118b31cd7b0be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.System.SceneFlowController
-  _nextSceneName: 0b_AttackTestScene
-  _titleSceneName: 0b_AttackTestScene
+  _nextSceneName: 01_TutorialStage
+  _titleSceneName: 01_TutorialStage
 --- !u!1 &1156833332
 GameObject:
   m_ObjectHideFlags: 0
@@ -7200,19 +7200,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8975377129001301382, guid: 944055d8a71894c47b73719625f44e67, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8975377129001301382, guid: 944055d8a71894c47b73719625f44e67, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8975377129001301382, guid: 944055d8a71894c47b73719625f44e67, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8975377129001301382, guid: 944055d8a71894c47b73719625f44e67, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8975377129001301382, guid: 944055d8a71894c47b73719625f44e67, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7220,7 +7220,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8975377129001301382, guid: 944055d8a71894c47b73719625f44e67, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 8975377129001301382, guid: 944055d8a71894c47b73719625f44e67, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
