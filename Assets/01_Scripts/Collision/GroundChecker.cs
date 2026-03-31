@@ -19,9 +19,9 @@ namespace Manmaru.Collision
         public float FeetPosY => _feetPos.position.y;
 
         /// <summary>
-        /// 着地判定の結果をboolで返し、接地している場合は地面のy座標を返すメソッド
+        /// 着地判定の結果をboolで返し、接地している場合は地面のy座標と法線ベクトルを返すメソッド
         /// </summary>
-        public bool CheckGrounded(float curVelY, out float groundPosY, LayerMask groundLayer)
+        public bool CheckGrounded(float curVelY, out float groundPosY, out Vector3 groundNormal, LayerMask groundLayer)
         {
             // 始点を足元より少し上に（めり込み補正後、地面の内部からRayを発射しないように）
             Vector3 rayStartPos = _feetPos.position + Vector3.up * _offsetY;
@@ -35,16 +35,18 @@ namespace Manmaru.Collision
                 finalRayLength += fallDist;
             }
 
-            // 衝突判定と地面のy座標取得
+            // 衝突判定と地面のy座標＆法線取得
             if (Physics.Raycast(ray, out RaycastHit hit, finalRayLength, groundLayer))
             {
                 groundPosY = hit.point.y;
+                groundNormal = hit.normal;
                 Debug.DrawRay(rayStartPos, ray.direction * finalRayLength, Color.green);
                 return true;
             }
 
-            // 接地していなければ、仮のy座標を返す＆Ray可視化
+            // 接地していなければ、仮のy座標＆法線を返す
             groundPosY = 0f;
+            groundNormal = Vector3.up;
             Debug.DrawRay(rayStartPos, ray.direction * finalRayLength, Color.red);
             return false;
         }
