@@ -16,7 +16,11 @@ namespace Manmaru.Enemy
 
         [Header("基本移動ステータス")]
         public float RotationSpeed = 360.0f;
+        public float HighRotationSpeed = 720.0f;
+
         public float ActionWaitSecond = 1.0f;
+        public float NoticeWaitSecond = 0.5f;
+        public float KyoroKyoroWaitSecond = 3.0f;
 
         [Header("うろうろ移動ステータス")]
         public float PatrolSpeed = 1.0f;
@@ -25,6 +29,7 @@ namespace Manmaru.Enemy
 
         [Header("とっしん移動ステータス")]
         public float DashSpeed = 3.0f;
+        public float DashDurationSecond = 5.0f;
 
         [Header("視界センサーステータス")]
         public bool CanDetectPlayer = true;

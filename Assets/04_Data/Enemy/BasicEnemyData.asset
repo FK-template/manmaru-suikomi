@@ -15,11 +15,15 @@ MonoBehaviour:
   MaxHP: 1
   BodyRadius: 0.5
   RotationSpeed: 360
-  ActionWaitSecond: 3
+  HighRotationSpeed: 720
+  ActionWaitSecond: 2
+  NoticeWaitSecond: 1
+  KyoroKyoroWaitSecond: 3
   PatrolSpeed: 1
   PatrolRadius: 5
   ReachThreshold: 1
   DashSpeed: 3
+  DashDurationSecond: 3
   CanDetectPlayer: 1
-  SightRange: 3
-  SightAngle: 30
+  SightRange: 5
+  SightAngle: 60
