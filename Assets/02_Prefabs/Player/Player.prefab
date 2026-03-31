@@ -664,6 +664,7 @@ GameObject:
   - component: {fileID: 4890013171798680585}
   - component: {fileID: 8329438173198557254}
   - component: {fileID: 136569890745018190}
+  - component: {fileID: 6156104151438150593}
   - component: {fileID: 3437031319443208462}
   - component: {fileID: 1042661720142329177}
   - component: {fileID: 4101179290862480239}
@@ -671,9 +672,10 @@ GameObject:
   - component: {fileID: 6548288914070982170}
   - component: {fileID: 3484044696637604523}
   - component: {fileID: 1457915459203110213}
+  - component: {fileID: 3069721038939914824}
   m_Layer: 12
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6090,5 +6092,51 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8571583160149146211, guid: 55b997a637a4f59409b975f57f6e074c, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 6156104151438150593}
+    - targetCorrespondingSourceObject: {fileID: 8571583160149146211, guid: 55b997a637a4f59409b975f57f6e074c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3069721038939914824}
   m_SourcePrefab: {fileID: 100100000, guid: 55b997a637a4f59409b975f57f6e074c, type: 3}
+--- !u!54 &6156104151438150593
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6310198609035381964}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &3069721038939914824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6310198609035381964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c840fc450ce8acc4a9d7add784140fac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Player.PlayerInputLocker
+  _anyPlayerAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
