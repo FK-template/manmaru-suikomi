@@ -326,7 +326,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3759835714054087224}
-  - component: {fileID: 6996289097515144802}
+  - component: {fileID: 5271762293335417808}
   - component: {fileID: 2005228249059009943}
   - component: {fileID: 4110651464661012991}
   m_Layer: 12
@@ -352,7 +352,7 @@ Transform:
   - {fileID: 876347073468531094}
   m_Father: {fileID: 8975377129001301382}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6996289097515144802
+--- !u!114 &5271762293335417808
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -361,9 +361,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3670638924893813929}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c44e7cc7f72e364a851aca9c3e63132, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d8ef3964190e044bbf7a24827f8ad26, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Collision.GroundChecker
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Collision.SingleRayGroundChecker
   _feetPos: {fileID: 876347073468531094}
   _offsetY: 0.5
   _rayLength: 0.6
@@ -693,9 +693,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6695811971875125717}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 95871402558898051}
@@ -797,7 +797,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   _behaviourController: {fileID: 8521811548176291706}
-  _groundChecker: {fileID: 6996289097515144802}
+  _groundChecker: {fileID: 5271762293335417808}
   _groundFitter: {fileID: 2005228249059009943}
   _gravityCalculator: {fileID: 4110651464661012991}
   _wallChecker: {fileID: 5637457389073143332}
