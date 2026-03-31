@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Manmaru.Enemy.States
 {
+    /// <summary>
+    /// うろうろ状態の挙動処理クラス
+    /// </summary>
     public class PatrolStateLogic : IEnemyStateLogic
     {
         // 内部変数：状態管理クラス
