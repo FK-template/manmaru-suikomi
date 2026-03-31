@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b90ac057fd07ae24c80e1971b81e5cf2, type: 3}
+  m_Name: BasicEnemyData
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Enemy.EnemyDataSO
+  MaxHP: 1
+  BodyRadius: 0.5
+  RotationSpeed: 360
+  ActionWaitSecond: 3
+  PatrolSpeed: 1
+  PatrolRadius: 5
+  ReachThreshold: 1
+  DashSpeed: 3
+  CanDetectPlayer: 1
+  SightRange: 3
+  SightAngle: 30
