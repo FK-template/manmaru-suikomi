@@ -34,6 +34,7 @@ namespace Manmaru.Player
 
         void Start()
         {
+            ChangeToNormal();
             _baseScale = transform.localScale;
 
             // イベント購読設定
