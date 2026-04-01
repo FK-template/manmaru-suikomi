@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1696400764181930091}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: WallRayPos (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 8687404690339413123}
   - component: {fileID: 2302481590709396127}
   - component: {fileID: 4823853284125160440}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: Ear-L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6267082928830788779}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: WallRayPos (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 1431581533090087813}
   - component: {fileID: 5499181532332425451}
   - component: {fileID: 4814140809349801080}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: Ear-R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5002969556928401572}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: WallRayPos (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 5271762293335417808}
   - component: {fileID: 2005228249059009943}
   - component: {fileID: 4110651464661012991}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: GroundChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +402,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 508417365503013745}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: WallRayPos (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 1073055069749685386}
   - component: {fileID: 7647663732575196348}
   - component: {fileID: 6994028176557117381}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -545,7 +545,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8031933848067071098}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: WallRayPos (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -576,7 +576,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8445545114733549221}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: WallRayPos (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -607,7 +607,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4437699894750536142}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: WallRayPos (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -638,7 +638,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6164377637827880227}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: WallRayPos (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -678,7 +678,7 @@ GameObject:
   - component: {fileID: 9016084100348755238}
   - component: {fileID: 3630847073080681032}
   - component: {fileID: 695359429169989928}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BasicEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -926,7 +926,7 @@ GameObject:
   - component: {fileID: 8954683572559158402}
   - component: {fileID: 5714887182887103952}
   - component: {fileID: 7211232273891852167}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1039,7 +1039,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 876347073468531094}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: FeetPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1073,7 +1073,7 @@ GameObject:
   - component: {fileID: 8859663870531518998}
   - component: {fileID: 26403443420954139}
   - component: {fileID: 6714516772444490924}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: Nose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1186,7 +1186,7 @@ GameObject:
   - component: {fileID: 7018121166264563530}
   - component: {fileID: 5637457389073143332}
   - component: {fileID: 3617582799151529544}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: WallChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1258,7 +1258,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9152795402949545618}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: WallRayPos (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
