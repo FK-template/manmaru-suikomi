@@ -29,7 +29,6 @@ namespace Manmaru.Player
 
         // 内部変数：ほおばり・はきだし用
         private bool _needToRelease = false;
-        private bool _isMouthfulMode = false;
         private int _capturedCount = 0;
 
         // 内部変数：すいこみオブジェクトの管理者（イベント購読用）
@@ -50,15 +49,14 @@ namespace Manmaru.Player
             if (_playerStateManager.CurrentState == PlayerStateManager.PlayerState.Damaged ||
                 _playerStateManager.CurrentState == PlayerStateManager.PlayerState.Dead) return;
 
-            // すいこみ・はきだし
-            // すいこみ条件：ほおばり状態 かつ 入力ロック状態でないとき
-            if (!_isMouthfulMode)
+            // すいこみ・はきだし（すいこみ開始条件：ほおばり状態でない かつ 入力ロック状態でないとき）
+            if (_playerStateManager.CurrentState == PlayerStateManager.PlayerState.Mouthful)
             {
-                UpdateCaptureStatus();
+                UpdateShootStatus();
             }
             else
             {
-                UpdateShootStatus();
+                UpdateCaptureStatus();
             }
         }
 
@@ -74,7 +72,6 @@ namespace Manmaru.Player
                 if (_attackActionInput.action.WasReleasedThisFrame())
                 {
                     _needToRelease = false;
-                    Debug.Log("入力ロック解除！すいこみ可能に");
                 }
                 // リリースされなくても終了
                 return;
@@ -83,6 +80,10 @@ namespace Manmaru.Player
             // Attackボタンを押した瞬間に、すいこみ状態に遷移
             if (_attackActionInput.action.WasPressedThisFrame())
             {
+                // グラフィック情報を更新
+                _playerVisualController.ChangeToCapturing();
+                _captureEffectController.PlayWind();
+
                 _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Vacuuming);
             }
 
@@ -90,10 +91,6 @@ namespace Manmaru.Player
             if (_attackActionInput.action.IsPressed()
                 || _playerStateManager.CurrentState == PlayerStateManager.PlayerState.Capturing)
             {
-                // グラフィック情報を更新
-                _playerVisualController.ChangeToCapturing();
-                _captureEffectController.PlayWind();
-
                 // 角度を内積に変換
                 float dotThreshold = Mathf.Cos(_captureAngleRange * Mathf.Deg2Rad);
 
@@ -104,11 +101,9 @@ namespace Manmaru.Player
 
                 // ひきよせ状態に遷移
                 _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Capturing);
-
-                Debug.Log($"すいこみ成功！：{target.GetTransform().gameObject.name}");
             }
 
-            // Attackボタンを離した瞬間に、ひきよせ状態でなければ
+            // Attackボタンを離した瞬間に、ひきよせ状態でなければ、通常状態に遷移
             if (_attackActionInput.action.WasReleasedThisFrame()
                 && _playerStateManager.CurrentState != PlayerStateManager.PlayerState.Capturing)
             {
@@ -116,7 +111,6 @@ namespace Manmaru.Player
                 _playerVisualController.ChangeToNormal();
                 _captureEffectController.StopWind();
 
-                // 通常状態に遷移
                 _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Normal);
             }
         }
@@ -140,7 +134,6 @@ namespace Manmaru.Player
 
                 // ほおばり状態の初期化
                 _capturedCount = 0;
-                _isMouthfulMode = false;
 
                 // 通常状態に遷移
                 _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Normal);
@@ -160,7 +153,7 @@ namespace Manmaru.Player
         }
 
         /// <summary>
-        /// すいこみ準備完了メソッド
+        /// はきだし準備完了メソッド
         /// </summary>
         private void ReadyToShoot()
         {
@@ -169,7 +162,6 @@ namespace Manmaru.Player
             _captureEffectController.StopWind();
 
             // ほおばり状態に遷移
-            _isMouthfulMode = true;
             _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Mouthful);
         }
 
