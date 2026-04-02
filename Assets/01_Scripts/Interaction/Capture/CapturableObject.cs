@@ -1,3 +1,4 @@
+using Manmaru.Enemy;
 using UnityEngine;
 
 namespace Manmaru.Interaction
@@ -54,8 +55,11 @@ namespace Manmaru.Interaction
             _startPos = transform.position;
             _playerTrans = playerTrans;
 
-            // 当たり判定無効
-            GetComponent<Collider>().enabled = false;
+            // 無力化（当たり判定、移動、ダメージ判定など）
+            if (TryGetComponent<Collider>(out var col)) col.enabled = false;
+            if (TryGetComponent<EnemyMoveController>(out var mover)) mover.enabled = false;
+            if (TryGetComponent<EnemyBehaviourController>(out var brain)) brain.enabled = false;
+            if (TryGetComponent<DamageSource>(out var dmgSrc)) dmgSrc.enabled = false;
 
             // すいこみ候補リストから、すいこみ中リストへ移動
             _captureTargetManager.UnregisterCapturableTarget(this);
