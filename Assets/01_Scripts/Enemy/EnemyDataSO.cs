@@ -8,13 +8,13 @@ namespace Manmaru.Enemy
     [CreateAssetMenu(fileName = "EnemyDataSO", menuName = "Manmaru/EnemyData")]
     public class EnemyDataSO : ScriptableObject
     {
-        [Header("基本ステータス")]
+        [Header("基本パラメータ")]
         public float MaxHP = 1.0f;
 
-        [Header("当たり判定ステータス")]
+        [Header("当たり判定パラメータ")]
         public float BodyRadius = 0.5f;
 
-        [Header("基本移動ステータス")]
+        [Header("基本移動パラメータ")]
         public float RotationSpeed = 360.0f;
         public float HighRotationSpeed = 720.0f;
 
@@ -22,16 +22,16 @@ namespace Manmaru.Enemy
         public float NoticeWaitSecond = 0.5f;
         public float KyoroKyoroWaitSecond = 3.0f;
 
-        [Header("うろうろ移動ステータス")]
+        [Header("うろうろ移動パラメータ")]
         public float PatrolSpeed = 1.0f;
         public float PatrolRadius = 5.0f;
         public float ReachThreshold = 1.0f;
 
-        [Header("とっしん移動ステータス")]
+        [Header("とっしん移動パラメータ")]
         public float DashSpeed = 3.0f;
         public float DashDurationSecond = 5.0f;
 
-        [Header("視界センサーステータス")]
+        [Header("視界センサーパラメータ")]
         public bool CanDetectPlayer = true;
         public float SightRange = 3.0f;
         public float SightAngle = 30.0f;
