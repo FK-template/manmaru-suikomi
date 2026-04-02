@@ -9,12 +9,12 @@ namespace Manmaru.Movement
     public class HorizontalMovement : MonoBehaviour
     {
         // 内部変数：パラメータ
-        private PlayerMoveParameters _currentParams;
+        private PlayerMoveParametersSO _currentParams;
 
         /// <summary>
         /// 新しくパラメータを設定するメソッド
         /// </summary>
-        public void SetParams(PlayerMoveParameters newParams)
+        public void SetParams(PlayerMoveParametersSO newParams)
         {
             _currentParams = newParams;
         }

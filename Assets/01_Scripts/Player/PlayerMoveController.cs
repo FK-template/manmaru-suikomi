@@ -79,7 +79,7 @@ namespace Manmaru.Player
         /// <summary>
         /// 移動パラメータを変更するメソッド
         /// </summary>
-        private void ChangeParams(PlayerStateManager.PlayerState newState, PlayerMoveParameters newParams)
+        private void ChangeParams(PlayerStateManager.PlayerState newState, PlayerMoveParametersSO newParams)
         {
             _gravityCalculator.SetParams(newParams);
             _jumpAction.SetParams(newParams);

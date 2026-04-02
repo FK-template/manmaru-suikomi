@@ -6,7 +6,7 @@ namespace Manmaru.Player
     /// プレイヤーの状態別移動パラメータをまとめたデータアセット
     /// </summary>
     [CreateAssetMenu(fileName = "NewPlayerMoveParams", menuName = "Manmaru/PlayerMoveParameters")]
-    public class PlayerMoveParameters : ScriptableObject
+    public class PlayerMoveParametersSO : ScriptableObject
     {
         [Header("移動許可フラグ")]
         public bool CanJump = true;

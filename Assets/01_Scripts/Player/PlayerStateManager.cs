@@ -19,16 +19,16 @@ namespace Manmaru.Player
         }
 
         [Header("状態ごとのパラメータデータ")]
-        [SerializeField] private PlayerMoveParameters _normalParams;
-        [SerializeField] private PlayerMoveParameters _capturingParams;
-        [SerializeField] private PlayerMoveParameters _mouthfulParams;
-        [SerializeField] private PlayerMoveParameters _damagedParams;
+        [SerializeField] private PlayerMoveParametersSO _normalParams;
+        [SerializeField] private PlayerMoveParametersSO _capturingParams;
+        [SerializeField] private PlayerMoveParametersSO _mouthfulParams;
+        [SerializeField] private PlayerMoveParametersSO _damagedParams;
 
         // 現在のプレイヤーの状態
         public PlayerState CurrentState { get; private set;}
 
         // 状態遷移イベント（汎用とやられ用）
-        public Action<PlayerState, PlayerMoveParameters> OnStateChanged;
+        public Action<PlayerState, PlayerMoveParametersSO> OnStateChanged;
         public Action OnPlayerDead;
 
         // 内部変数：強制状態遷移フラグ（主に状態の初期設定に使う）
