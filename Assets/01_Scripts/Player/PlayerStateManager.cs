@@ -31,10 +31,14 @@ namespace Manmaru.Player
         public Action<PlayerState, PlayerMoveParameters> OnStateChanged;
         public Action OnPlayerDead;
 
+        // 内部変数：強制状態遷移フラグ（主に状態の初期設定に使う）
+        private bool _force = true;
+
         void Start()
         {
-            // パラメータ初期化
+            // パラメータを初期化し、強制フラグを無効化
             ChangeState(PlayerState.Normal);
+            _force = false;
         }
 
         /// <summary>
@@ -43,7 +47,7 @@ namespace Manmaru.Player
         public void ChangeState(PlayerState nextState)
         {
             // 現在の状態に重複遷移しようとしてたら、早期リターン
-            if (CurrentState == nextState) return;
+            if (!_force && CurrentState == nextState) return;
 
             CurrentState = nextState;
 
