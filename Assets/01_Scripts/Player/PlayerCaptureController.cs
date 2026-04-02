@@ -83,11 +83,12 @@ namespace Manmaru.Player
             // Attackボタンを押した瞬間に、すいこみ状態に遷移
             if (_attackActionInput.action.WasPressedThisFrame())
             {
-                _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Capturing);
+                _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Vacuuming);
             }
 
-            // Attackボタンを押している間ずっと、すいこみ判定
-            if (_attackActionInput.action.IsPressed())
+            // Attackボタンを押しているか、ひきよせ状態の間ずっと、すいこみ判定
+            if (_attackActionInput.action.IsPressed()
+                || _playerStateManager.CurrentState == PlayerStateManager.PlayerState.Capturing)
             {
                 // グラフィック情報を更新
                 _playerVisualController.ChangeToCapturing();
@@ -96,14 +97,20 @@ namespace Manmaru.Player
                 // 角度を内積に変換
                 float dotThreshold = Mathf.Cos(_captureAngleRange * Mathf.Deg2Rad);
 
-                // すいこめるオブジェクトを検索し、存在したらすいこみ開始
+                // すいこめるオブジェクトを検索し、存在したらひきよせ開始
                 ICapturable target = _captureTargetManager.FindCaptureTarget(transform, _captureMaxRange, _captureCloseRange, dotThreshold);
                 if (target == null) return;
                 target.OnCapture(transform);
 
-                Debug.Log($"すいこみ！：{target.GetTransform().gameObject.name}");
+                // ひきよせ状態に遷移
+                _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Capturing);
+
+                Debug.Log($"すいこみ成功！：{target.GetTransform().gameObject.name}");
             }
-            else if (_attackActionInput.action.WasReleasedThisFrame())
+
+            // Attackボタンを離した瞬間に、ひきよせ状態でなければ
+            if (_attackActionInput.action.WasReleasedThisFrame()
+                && _playerStateManager.CurrentState != PlayerStateManager.PlayerState.Capturing)
             {
                 // グラフィック情報を更新
                 _playerVisualController.ChangeToNormal();
