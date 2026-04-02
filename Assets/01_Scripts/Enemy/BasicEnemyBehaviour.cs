@@ -12,7 +12,7 @@ namespace Manmaru.Enemy
         private PatrolStateLogic _patrol;
         private NoticeStateLogic _notice;
         private DashStateLogic _dash;
-        private CooldownStateLogic _kyoro;
+        private CooldownStateLogic _cooldown;
 
         protected override void Start()
         {
@@ -22,13 +22,13 @@ namespace Manmaru.Enemy
             _patrol = new PatrolStateLogic(this);
             _notice = new NoticeStateLogic(this);
             _dash = new DashStateLogic(this);
-            _kyoro = new CooldownStateLogic(this);
+            _cooldown = new CooldownStateLogic(this);
 
             // 状態遷移設定
             _patrol.OnPlayerFound += () => ChangeState(_notice);
             _notice.OnChargeReady += () => ChangeState(_dash);
-            _dash.OnDashFinished += () => ChangeState(_kyoro);
-            _kyoro.OnCooldownFinished += () => ChangeState(_patrol);
+            _dash.OnDashFinished += () => ChangeState(_cooldown);
+            _cooldown.OnCooldownFinished += () => ChangeState(_patrol);
 
             ChangeState(_patrol);
         }

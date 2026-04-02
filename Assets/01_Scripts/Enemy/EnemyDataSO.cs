@@ -20,7 +20,7 @@ namespace Manmaru.Enemy
 
         public float ActionWaitSecond = 1.0f;
         public float NoticeWaitSecond = 0.5f;
-        public float KyoroKyoroWaitSecond = 3.0f;
+        public float CooldownWaitSecond = 3.0f;
 
         [Header("うろうろ移動パラメータ")]
         public float PatrolSpeed = 1.0f;

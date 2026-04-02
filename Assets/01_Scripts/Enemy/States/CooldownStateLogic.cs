@@ -25,7 +25,7 @@ namespace Manmaru.Enemy.States
 
         public void Enter() 
         {
-            _readyTime = _brain.Data.KyoroKyoroWaitSecond;
+            _readyTime = _brain.Data.CooldownWaitSecond;
         }
 
         public Vector3 UpdateState() 
