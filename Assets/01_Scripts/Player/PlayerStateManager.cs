@@ -11,7 +11,8 @@ namespace Manmaru.Player
         public enum PlayerState
         {
             Normal,
-            Capturing,
+            Vacuuming,  // すいこみ状態
+            Capturing,  // ひきよせ状態（すいこみ成功）
             Mouthful,
             Damaged,
             Dead
@@ -41,6 +42,9 @@ namespace Manmaru.Player
         /// </summary>
         public void ChangeState(PlayerState nextState)
         {
+            // 現在の状態に重複遷移しようとしてたら、早期リターン
+            if (CurrentState == nextState) return;
+
             CurrentState = nextState;
 
             switch (CurrentState)
@@ -49,9 +53,13 @@ namespace Manmaru.Player
                     OnStateChanged?.Invoke(CurrentState, _normalParams);
                     Debug.Log($"PlayerState:{CurrentState} 通常モードへ");
                     break;
-                case PlayerState.Capturing:
+                case PlayerState.Vacuuming:
                     OnStateChanged?.Invoke(CurrentState, _capturingParams);
                     Debug.Log($"PlayerState:{CurrentState} すいこみ状態スタート！");
+                    break;
+                case PlayerState.Capturing:
+                    // すいこみ成功時のイベント発火はホリュウ
+                    Debug.Log($"PlayerState:{CurrentState} すいこみ成功！すいこみを自動継続します");
                     break;
                 case PlayerState.Mouthful:
                     OnStateChanged?.Invoke(CurrentState, _mouthfulParams);
