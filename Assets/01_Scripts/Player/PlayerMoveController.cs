@@ -84,6 +84,7 @@ namespace Manmaru.Player
             _gravityCalculator.SetParams(newParams);
             _jumpAction.SetParams(newParams);
             _horizontalMovement.SetParams(newParams);
+            _playerRotation.SetParams(newParams);
 
             if (newState == PlayerStateManager.PlayerState.Damaged)
             {

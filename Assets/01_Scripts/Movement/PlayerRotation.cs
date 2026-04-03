@@ -1,3 +1,4 @@
+using Manmaru.Player;
 using UnityEngine;
 
 namespace Manmaru.Movement
@@ -7,8 +8,16 @@ namespace Manmaru.Movement
     /// </summary>
     public class PlayerRotation : MonoBehaviour
     {
-        [Header("回転設定")]
-        [SerializeField] private float _rotationSpeed = 720.0f;
+        // 内部変数：パラメータ
+        private PlayerMoveParametersSO _currentParams;
+
+        /// <summary>
+        /// 新しくパラメータを設定するメソッド
+        /// </summary>
+        public void SetParams(PlayerMoveParametersSO newParams)
+        {
+            _currentParams = newParams;
+        }
 
         /// <summary>
         /// 入力と地面の傾きに基づいて次のフレームの向きを計算し、Quaternionで返すメソッド
@@ -26,7 +35,7 @@ namespace Manmaru.Movement
             Quaternion targetRot = Quaternion.LookRotation(forwardDir, groundNormal);
 
             // 滑らかに回転したあとの角度を返す
-            return Quaternion.RotateTowards(curRot, targetRot, _rotationSpeed * Time.deltaTime);
+            return Quaternion.RotateTowards(curRot, targetRot, _currentParams.RotationSpeed * Time.deltaTime);
         }
     }
 }
