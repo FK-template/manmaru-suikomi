@@ -20,6 +20,7 @@ namespace Manmaru.Player
 
         [Header("状態ごとのパラメータデータ")]
         [SerializeField] private PlayerMoveParametersSO _normalParams;
+        [SerializeField] private PlayerMoveParametersSO _vacuumingParams;
         [SerializeField] private PlayerMoveParametersSO _capturingParams;
         [SerializeField] private PlayerMoveParametersSO _mouthfulParams;
         [SerializeField] private PlayerMoveParametersSO _damagedParams;
@@ -58,11 +59,11 @@ namespace Manmaru.Player
                     Debug.Log($"PlayerState:{CurrentState} 通常モードへ");
                     break;
                 case PlayerState.Vacuuming:
-                    OnStateChanged?.Invoke(CurrentState, _capturingParams);
+                    OnStateChanged?.Invoke(CurrentState, _vacuumingParams);
                     Debug.Log($"PlayerState:{CurrentState} すいこみ状態スタート！");
                     break;
                 case PlayerState.Capturing:
-                    // すいこみ成功時のイベント発火はホリュウ
+                    OnStateChanged?.Invoke(CurrentState, _capturingParams);
                     Debug.Log($"PlayerState:{CurrentState} すいこみ成功！すいこみを自動継続します");
                     break;
                 case PlayerState.Mouthful:

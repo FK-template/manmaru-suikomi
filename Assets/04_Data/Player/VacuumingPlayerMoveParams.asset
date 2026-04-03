@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb8254af8ee8f814bafe58fb3f850411, type: 3}
-  m_Name: CapturingPlayerMoveParams
+  m_Name: VacuumingPlayerMoveParams
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Player.PlayerMoveParameters
   CanJump: 0
-  MaxSpeed: 2
+  MaxSpeed: 1
   GroundAcceleration: 50
   GroundDeceleration: 60
   AirAcceleration: 20
   AirDeceleration: 5
-  RotationSpeed: 10
+  RotationSpeed: 360
   JumpForce: 0
   JumpCutoffMultiplier: 0
   Gravity: 70
