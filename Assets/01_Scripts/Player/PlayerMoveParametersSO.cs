@@ -20,6 +20,9 @@ namespace Manmaru.Player
         public float AirAcceleration = 20.0f;
         public float AirDeceleration = 5.0f;
 
+        [Header("回転用パラメータ")]
+        public float RotationSpeed = 720.0f;
+
         [Header("ジャンプ用パラメータ")]
         public float JumpForce = 23.5f;
         public float JumpCutoffMultiplier = 0.4f;
