@@ -13,7 +13,7 @@ namespace Manmaru.Player
 
         [Header("状態ごとの色")]
         [SerializeField] private Color _normalColor = Color.magenta;
-        [SerializeField] private Color _capturingColor = Color.red;
+        [SerializeField] private Color _vacuumingColor = Color.red;
         [SerializeField] private Color _mouthfulColor = Color.yellow;
 
         [Header("状態ごとのスケール")]
@@ -62,7 +62,7 @@ namespace Manmaru.Player
         /// </summary>
         public void ChangeToCapturing()
         {
-            ApplyColor(_capturingColor);
+            ApplyColor(_vacuumingColor);
             ApplyScale(_baseScale);
             _baseColor = _renderersList[0].material.color;
         }

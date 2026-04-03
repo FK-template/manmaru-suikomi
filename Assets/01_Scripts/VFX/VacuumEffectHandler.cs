@@ -5,7 +5,7 @@ namespace Manmaru.VFX
     /// <summary>
     /// すいこみエフェクトを制御するクラス
     /// </summary>
-    public class CaptureEffectHandler : MonoBehaviour
+    public class VacuumEffectHandler : MonoBehaviour
     {
         [Header("すいこみパーティクル")]
         [SerializeField] private ParticleSystem _windParticle;

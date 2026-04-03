@@ -25,7 +25,7 @@ namespace Manmaru.Player
         [Header("依存クラス設定")]
         [SerializeField] private PlayerStateManager _playerStateManager;
         [SerializeField] private PlayerVisualHandler _playerVisualController;
-        [SerializeField] private CaptureEffectHandler _captureEffectController;
+        [SerializeField] private VacuumEffectHandler _vacuumEffectController;
 
         // 内部変数：ほおばり・はきだし用
         private bool _needToRelease = false;
@@ -82,7 +82,7 @@ namespace Manmaru.Player
             {
                 // グラフィック情報を更新
                 _playerVisualController.ChangeToCapturing();
-                _captureEffectController.PlayWind();
+                _vacuumEffectController.PlayWind();
 
                 _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Vacuuming);
             }
@@ -109,7 +109,7 @@ namespace Manmaru.Player
             {
                 // グラフィック情報を更新
                 _playerVisualController.ChangeToNormal();
-                _captureEffectController.StopWind();
+                _vacuumEffectController.StopWind();
 
                 _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Normal);
             }
@@ -159,7 +159,7 @@ namespace Manmaru.Player
         {
             // グラフィック情報を更新
             _playerVisualController.ChangeToMouthful();
-            _captureEffectController.StopWind();
+            _vacuumEffectController.StopWind();
 
             // ほおばり状態に遷移
             _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Mouthful);
