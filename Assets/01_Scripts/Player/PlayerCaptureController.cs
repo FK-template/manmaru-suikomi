@@ -19,6 +19,7 @@ namespace Manmaru.Player
         [SerializeField] private InputActionReference _attackActionInput;
 
         [Header("はきだし設定")]
+        [SerializeField] private int _captureCountLimit = 5;
         [SerializeField] private StarBulletController _starBullet;
         [SerializeField] private Transform _spawnTrans;
 
@@ -130,7 +131,7 @@ namespace Manmaru.Player
 
                 // 弾の生成と初期化
                 StarBulletController bullet = Instantiate(_starBullet, _spawnTrans.position, Quaternion.LookRotation(transform.forward));
-                bullet.Initialize(transform.forward, _capturedCount);
+                bullet.Initialize(transform.forward, Mathf.Min(_capturedCount, _captureCountLimit));
 
                 // ほおばり状態の初期化
                 _capturedCount = 0;
