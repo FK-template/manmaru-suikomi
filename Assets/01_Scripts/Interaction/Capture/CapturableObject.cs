@@ -8,9 +8,15 @@ namespace Manmaru.Interaction
     /// </summary>
     public class CapturableObject : MonoBehaviour, ICapturable
     {
+        [Header("すいこみ質量")]
+        [SerializeField] private int _captureMass = 1;
+
         [Header("すいこみアニメーション設定")]
         [SerializeField] private float _captureDuration = 0.5f;
         [SerializeField] private AnimationCurve _captureCurve;
+
+        // PlayerCaptureControllerから参照するためのプロパティ
+        public int CaptureMass => _captureMass;
 
         // 内部変数：すいこみ用
         private bool _isCapturing = false;

@@ -7,6 +7,7 @@ namespace Manmaru.Interaction
     /// </summary>
     public interface ICapturable
     {
+        int CaptureMass { get; }
         Transform GetTransform();
         void OnCapture(Transform playerTrans);
     }

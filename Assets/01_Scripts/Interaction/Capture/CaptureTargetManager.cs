@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using Manmaru.Player;
+using static Manmaru.Player.PlayerStateManager;
 
 namespace Manmaru.Interaction
 {
@@ -19,7 +21,7 @@ namespace Manmaru.Interaction
         private List<ICapturable> _capturingList = new List<ICapturable>();
 
         // すいこみ完了イベント
-        public event Action OnCaptureFinished;
+        public event Action<ICapturable> OnCaptureFinished;
         public event Action OnAllCapturesFinished;
 
         // インスタンス設定
@@ -114,7 +116,7 @@ namespace Manmaru.Interaction
             UnregisterCapturingTarget(argTarget);
 
             // すいこみ済みカウンターを増やすためのイベント発動
-            OnCaptureFinished?.Invoke();
+            OnCaptureFinished?.Invoke(argTarget);
 
             // すいこみ中リストが空になったら、完了イベント発動
             if (_capturingList.Count == 0)

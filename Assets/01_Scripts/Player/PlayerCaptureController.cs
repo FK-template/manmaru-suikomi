@@ -146,9 +146,9 @@ namespace Manmaru.Player
         /// <summary>
         /// すいこみ済みカウンターを増やすメソッド
         /// </summary>
-        private void AddCapturedCount()
+        private void AddCapturedCount(ICapturable captureTarget)
         {
-            _capturedCount++;
+            _capturedCount += captureTarget.CaptureMass;
             Debug.Log($"すいこみ完了！現在のストック：{_capturedCount}");
         }
 
