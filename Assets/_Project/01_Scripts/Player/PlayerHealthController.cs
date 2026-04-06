@@ -20,17 +20,17 @@ namespace Manmaru.Player
         [Header("依存クラス設定")]
         [SerializeField] private PlayerStateManager _playerStateManager;
 
-        // 状態遷移イベント：体力を返す
-        public Action<float, float> OnDamaged;
+        // 公開変数：体力更新を伝えるイベント
+        public Action<float, float> OnHealthChanged;
 
-        // 状態遷移イベント：点滅タイミング
+        // 公開変数：無敵タイミングを伝えるイベント
         public Action OnNoDamageStarted;
         public Action OnNoDamageFinished;
 
         void Start()
         {
             _currentHitPoint = _maxHitPoint;
-            OnDamaged?.Invoke(_maxHitPoint, _currentHitPoint);
+            OnHealthChanged?.Invoke(_maxHitPoint, _currentHitPoint);
         }
 
         void Update()
@@ -55,7 +55,7 @@ namespace Manmaru.Player
             Debug.Log($"くらった！：{gameObject.name}({_currentHitPoint}/{_maxHitPoint})");
 
             // UI更新Action
-            OnDamaged?.Invoke(_maxHitPoint, _currentHitPoint);
+            OnHealthChanged?.Invoke(_maxHitPoint, _currentHitPoint);
 
             // やられ処理
             if (_currentHitPoint <= 0)

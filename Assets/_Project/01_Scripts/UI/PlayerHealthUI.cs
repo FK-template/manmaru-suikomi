@@ -18,7 +18,7 @@ namespace Manmaru.UI
         void Start()
         {
             // イベント購読設定（引数渡し付き）
-            _healthController.OnDamaged += UpdateHealthBar;
+            _healthController.OnHealthChanged += UpdateHealthBar;
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Manmaru.UI
             // イベント購読解除
             if (_healthController != null)
             {
-                _healthController.OnDamaged -= UpdateHealthBar;
+                _healthController.OnHealthChanged -= UpdateHealthBar;
             }
         }
     }
