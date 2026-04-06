@@ -43,5 +43,13 @@ namespace Manmaru.Player
         {
             _damagedAudio.Play(_source);
         }
+
+        private void OnDestroy()
+        {
+            // イベント購読解除
+            if (_jumpAction != null) _jumpAction.OnJumped -= PlayJumpSound;
+            if (_playerHealthController != null) _playerHealthController.OnTookDamage -= PlayDamagedSound;
+        }
+
     }
 }
