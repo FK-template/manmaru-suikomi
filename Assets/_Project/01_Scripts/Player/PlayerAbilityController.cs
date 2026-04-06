@@ -6,9 +6,9 @@ using UnityEngine.InputSystem;
 namespace Manmaru.Player
 {
     /// <summary>
-    /// プレイヤーのすいこみ・はきだし処理を制御するクラス
+    /// プレイヤーの固有アクション全般を制御するクラス
     /// </summary>
-    public class PlayerCaptureController : MonoBehaviour
+    public class PlayerAbilityController : MonoBehaviour
     {
         [Header("すいこみパラメータ設定")]
         [SerializeField] private float _captureMaxRange = 5.0f;
