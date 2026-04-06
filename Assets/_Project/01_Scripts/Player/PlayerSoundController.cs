@@ -13,14 +13,22 @@ namespace Manmaru.Player
         [Header("スピーカー設定")]
         [SerializeField] private AudioSource _source;
 
+        [Header("依存クラス設定（ジャンプ）")]
+        [SerializeField] private JumpAction _jumpAction;
+        [SerializeField] private AudioEventSO _jumpAudio;
+
         void Start()
         {
-
+            // イベント購読設定
+            _jumpAction.OnJumped += PlayJumpSound;
         }
 
-        void Update()
+        /// <summary>
+        /// ジャンプ時のサウンドを再生するメソッド
+        /// </summary>
+        private void PlayJumpSound()
         {
-
+            _jumpAudio.Play(_source);
         }
     }
 }

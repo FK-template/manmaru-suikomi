@@ -520,6 +520,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Player.PlayerSoundController
   _source: {fileID: -7565134324487803106}
+  _jumpAction: {fileID: 8050286311653644445}
+  _jumpAudio: {fileID: 11400000, guid: 86eff3ce1e5271641a336376b9f709c4, type: 2}
 --- !u!82 &-7565134324487803106
 AudioSource:
   m_ObjectHideFlags: 0

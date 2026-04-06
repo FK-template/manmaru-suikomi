@@ -1,4 +1,5 @@
 using Manmaru.Player;
+using System;
 using UnityEngine;
 
 namespace Manmaru.Movement
@@ -13,6 +14,9 @@ namespace Manmaru.Movement
 
         // ジャンプフラグ
         public bool IsJumping { get; private set; }
+
+        // 公開変数：サウンド用イベント
+        public Action OnJumped;
 
         // 内部変数：パラメータ
         private PlayerMoveParametersSO _currentParams;
@@ -39,6 +43,9 @@ namespace Manmaru.Movement
             // ジャンプ入力に応じて、y速度を計算
             if (jumpPressed && isGrounded)
             {
+                // サウンド用イベントを発火
+                OnJumped?.Invoke();
+
                 // 押したらグンと加速
                 IsJumping = true;
                 return _currentParams.JumpForce;
