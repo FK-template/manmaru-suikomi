@@ -97,3 +97,9 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# 外部アセットおよび加工済みサウンド（再配布防止）
+/[Aa]ssets/Plugins/
+/[Aa]ssets/Plugins.meta
+/[Aa]ssets/_Project/05_Sounds/
+/[Aa]ssets/_Project/05_Sounds.meta
