@@ -230,12 +230,13 @@ GameObject:
   - component: {fileID: 5576582393117396493}
   - component: {fileID: 6744160247790625198}
   - component: {fileID: 600826131234890383}
+  - component: {fileID: 1380759849199559847}
   - component: {fileID: 4688875060399923483}
   - component: {fileID: 8050286311653644445}
   - component: {fileID: 6545076993116287265}
   - component: {fileID: 4591360937273305065}
   - component: {fileID: 4118890988847287733}
-  - component: {fileID: 1380759849199559847}
+  - component: {fileID: 8351851710768700808}
   - component: {fileID: 1953666305681331860}
   - component: {fileID: 3978628970632068069}
   - component: {fileID: 8176274300784794013}
@@ -371,6 +372,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1380759849199559847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040040419397020299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6b75c1a5326a9b41894a5485e118819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Player.PlayerStateManager
+  _normalParams: {fileID: 11400000, guid: 809390e70da36ad40ac1699f6d3a725f, type: 2}
+  _vacuumingParams: {fileID: 11400000, guid: e3b2efc8fd067374a98f772803f3b29d, type: 2}
+  _capturingParams: {fileID: 11400000, guid: d7aad9a919f2bd245b114e8e6c839830, type: 2}
+  _mouthfulParams: {fileID: 11400000, guid: 1dc9a5b50d4e90845bbb1da5eb448f6e, type: 2}
+  _damagedParams: {fileID: 11400000, guid: e69dd980595c26149be641d7d760d8d9, type: 2}
 --- !u!114 &4688875060399923483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,17 +468,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b0813f8b16b45499db0fc1caae4853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Player.PlayerCaptureController
-  _captureMaxRange: 3
-  _captureCloseRange: 1
-  _captureAngleRange: 30
   _attackActionInput: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _captureCountLimit: 5
   _starBullet: {fileID: 805668605134999330, guid: 8640630d26f4e7b46a01242772612d08, type: 3}
   _spawnTrans: {fileID: 7799497883365763443}
   _playerStateManager: {fileID: 1380759849199559847}
+  _vacuumAction: {fileID: 8351851710768700808}
   _playerVisualController: {fileID: 724812542574124737}
-  _vacuumEffectController: {fileID: 918982957623446952}
---- !u!114 &1380759849199559847
+--- !u!114 &8351851710768700808
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -469,14 +484,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1040040419397020299}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6b75c1a5326a9b41894a5485e118819, type: 3}
+  m_Script: {fileID: 11500000, guid: 521fab0be9cb64b4c8a86c4dc8773eb5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Player.PlayerStateManager
-  _normalParams: {fileID: 11400000, guid: 809390e70da36ad40ac1699f6d3a725f, type: 2}
-  _vacuumingParams: {fileID: 11400000, guid: e3b2efc8fd067374a98f772803f3b29d, type: 2}
-  _capturingParams: {fileID: 11400000, guid: d7aad9a919f2bd245b114e8e6c839830, type: 2}
-  _mouthfulParams: {fileID: 11400000, guid: 1dc9a5b50d4e90845bbb1da5eb448f6e, type: 2}
-  _damagedParams: {fileID: 11400000, guid: e69dd980595c26149be641d7d760d8d9, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Ability.VacuumAction
+  _captureMaxRange: 3
+  _captureCloseRange: 1
+  _captureAngleRange: 30
+  _playerStateManager: {fileID: 1380759849199559847}
+  _playerVisualController: {fileID: 724812542574124737}
+  _vacuumEffectController: {fileID: 918982957623446952}
 --- !u!114 &1953666305681331860
 MonoBehaviour:
   m_ObjectHideFlags: 0
