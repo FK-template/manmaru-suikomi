@@ -17,10 +17,15 @@ namespace Manmaru.Player
         [SerializeField] private JumpAction _jumpAction;
         [SerializeField] private AudioEventSO _jumpAudio;
 
+        [Tooltip("依存クラス設定（被ダメージ）")]
+        [SerializeField] private PlayerHealthController _playerHealthController;
+        [SerializeField] private AudioEventSO _damagedAudio;
+
         void Start()
         {
             // イベント購読設定
             _jumpAction.OnJumped += PlayJumpSound;
+            _playerHealthController.OnTookDamage += PlayDamagedSound;
         }
 
         /// <summary>
@@ -29,6 +34,14 @@ namespace Manmaru.Player
         private void PlayJumpSound()
         {
             _jumpAudio.Play(_source);
+        }
+
+        /// <summary>
+        /// 被ダメージ時のサウンドを再生するメソッド
+        /// </summary>
+        private void PlayDamagedSound()
+        {
+            _damagedAudio.Play(_source);
         }
     }
 }

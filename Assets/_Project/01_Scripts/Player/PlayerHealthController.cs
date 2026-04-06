@@ -23,6 +23,9 @@ namespace Manmaru.Player
         // 公開変数：体力更新を伝えるイベント
         public Action<float, float> OnHealthChanged;
 
+        // 公開変数：サウンド用イベント
+        public Action OnTookDamage;
+
         // 公開変数：無敵タイミングを伝えるイベント
         public Action OnNoDamageStarted;
         public Action OnNoDamageFinished;
@@ -54,8 +57,9 @@ namespace Manmaru.Player
             _currentHitPoint -= damageValue;
             Debug.Log($"くらった！：{gameObject.name}({_currentHitPoint}/{_maxHitPoint})");
 
-            // UI更新Action
+            // 被ダメージイベント発火
             OnHealthChanged?.Invoke(_maxHitPoint, _currentHitPoint);
+            OnTookDamage?.Invoke();
 
             // やられ処理
             if (_currentHitPoint <= 0)
