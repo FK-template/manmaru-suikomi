@@ -14,14 +14,10 @@ namespace Manmaru.Player
         [Header("入力設定")]
         [SerializeField] private InputActionReference _attackActionInput;
 
-        [Header("はきだし設定")]
-        [SerializeField] private int _captureCountLimit = 5;
-        [SerializeField] private StarBulletController _starBullet;
-        [SerializeField] private Transform _spawnTrans;
-
         [Header("依存クラス設定")]
         [SerializeField] private PlayerStateManager _playerStateManager;
         [SerializeField] private VacuumAction _vacuumAction;
+        [SerializeField] private ShootAction _shootAction;
         [SerializeField] private PlayerVisualHandler _playerVisualController;
 
         // 内部変数：ほおばり・はきだし用
@@ -100,31 +96,36 @@ namespace Manmaru.Player
         }
 
         /// <summary>
-        /// 入力に応じた、はきだし処理を行うメソッド
+        /// 入力に応じてはきだし処理を行うメソッド
         /// </summary>
         private void UpdateShootStatus()
         {
             // Attackボタンを押した瞬間に、はきだし処理を開始
             if (_attackActionInput.action.WasPressedThisFrame())
             {
-                Debug.Log($"はきだし！弾の強さ：Lv.{_capturedCount}");
-
-                // グラフィック情報を更新
-                _playerVisualController.ChangeToNormal();
-
-                // 弾の生成と初期化
-                StarBulletController bullet = Instantiate(_starBullet, _spawnTrans.position, Quaternion.LookRotation(transform.forward));
-                bullet.Initialize(transform.forward, Mathf.Min(_capturedCount, _captureCountLimit));
-
-                // ほおばり状態の初期化
-                _capturedCount = 0;
-
-                // 通常状態に遷移
-                _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Normal);
-
-                // 入力ロック（ボタンリリースされるまですいこみ禁止）
-                _needToRelease = true;
+                _shootAction.Shoot(_capturedCount);
+                FinishMouthful();
+                LockInput();
             }
+        }
+
+        /// <summary>
+        /// ほおばり終了処理を行うメソッド
+        /// </summary>
+        private void FinishMouthful()
+        {
+            _capturedCount = 0;
+            _playerVisualController.ChangeToNormal();
+            _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Normal);
+        }
+
+        /// <summary>
+        /// 入力ロックを有効にするメソッド
+        /// </summary>
+        /// <remarks>用途例：はきだし処理とすいこみ開始が同時に起きないようにする</remarks>
+        private void LockInput()
+        {
+            _needToRelease = true;
         }
 
         /// <summary>

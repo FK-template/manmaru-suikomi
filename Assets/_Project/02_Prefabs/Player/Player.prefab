@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 4591360937273305065}
   - component: {fileID: 4118890988847287733}
   - component: {fileID: 8351851710768700808}
+  - component: {fileID: -617088151957877742}
   - component: {fileID: 1953666305681331860}
   - component: {fileID: 3978628970632068069}
   - component: {fileID: 8176274300784794013}
@@ -469,11 +470,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Player.PlayerCaptureController
   _attackActionInput: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  _captureCountLimit: 5
-  _starBullet: {fileID: 805668605134999330, guid: 8640630d26f4e7b46a01242772612d08, type: 3}
-  _spawnTrans: {fileID: 7799497883365763443}
   _playerStateManager: {fileID: 1380759849199559847}
   _vacuumAction: {fileID: 8351851710768700808}
+  _shootAction: {fileID: -617088151957877742}
   _playerVisualController: {fileID: 724812542574124737}
 --- !u!114 &8351851710768700808
 MonoBehaviour:
@@ -493,6 +492,23 @@ MonoBehaviour:
   _playerStateManager: {fileID: 1380759849199559847}
   _playerVisualController: {fileID: 724812542574124737}
   _vacuumEffectController: {fileID: 918982957623446952}
+--- !u!114 &-617088151957877742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040040419397020299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb5d4d60618d68b4ab32edf2566908b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Ability.ShootAction
+  _captureCountLimit: 5
+  _starBullet: {fileID: 805668605134999330, guid: 8640630d26f4e7b46a01242772612d08, type: 3}
+  _spawnTrans: {fileID: 7799497883365763443}
+  _playerStateManager: {fileID: 1380759849199559847}
+  _playerVisualController: {fileID: 724812542574124737}
 --- !u!114 &1953666305681331860
 MonoBehaviour:
   m_ObjectHideFlags: 0
