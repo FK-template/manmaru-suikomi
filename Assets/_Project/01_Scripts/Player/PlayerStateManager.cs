@@ -86,6 +86,14 @@ namespace Manmaru.Player
         }
 
         /// <summary>
+        /// イベント発火や前状態の更新を行わず、現在状態の更新のみを行うメソッド
+        /// </summary>
+        public void OnlyChangeState(PlayerState nextState)
+        {
+            CurrentState = nextState;
+        }
+
+        /// <summary>
         /// 1つ前の状態に復帰するメソッド
         /// </summary>
         public void ResumePreviousState()

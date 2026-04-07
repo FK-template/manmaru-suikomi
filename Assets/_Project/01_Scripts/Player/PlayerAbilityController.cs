@@ -41,6 +41,7 @@ namespace Manmaru.Player
             _captureTargetManager = CaptureTargetManager.Instance;
 
             // イベント購読設定
+            _playerStateManager.OnStateChanged += StopVacuumByDamaged;
             _captureTargetManager.OnCaptureFinished += _mouthfulStock.AddCapturedCount;
             _captureTargetManager.OnAllCapturesFinished += ReadyToShoot;
         }
@@ -189,11 +190,39 @@ namespace Manmaru.Player
             }
         }
 
+        /// <summary>
+        /// 状態遷移イベントを受け取り、被ダメ関連の状態に遷移する場合はすいこみを止めるメソッド
+        /// </summary>
+        private void StopVacuumByDamaged(PlayerStateManager.PlayerState newState, PlayerMoveParametersSO _)
+        {
+            // すいこみ中にダメージを受けたときのみ、処理を継続
+            bool isVacuumingOrCapturing
+                = (_playerStateManager.PreviousState == PlayerStateManager.PlayerState.Vacuuming
+                || _playerStateManager.PreviousState == PlayerStateManager.PlayerState.Capturing);
+            if (!isVacuumingOrCapturing || newState != PlayerStateManager.PlayerState.Damaged) return;
+
+            // 1つ以上ほおばってる or ひきよせ中 かどうかに応じて、状態遷移とビジュアル情報の更新
+            if (_mouthfulStock.CapturedCount > 0 || _playerStateManager.PreviousState == PlayerStateManager.PlayerState.Capturing)
+            {
+                // ほおばり状態→被ダメ状態へ
+                ReadyToShoot();
+                _playerStateManager.OnlyChangeState(PlayerStateManager.PlayerState.Damaged);
+            }
+            else
+            {
+                // 通常状態→被ダメ状態へ（＋すいこみ継続発生防止）
+                FinishVacuuming();
+                _playerStateManager.OnlyChangeState(PlayerStateManager.PlayerState.Damaged);
+                LockInput();
+            }
+        }
+
         private void OnDestroy()
         {
             // イベント購読解除
             if (_captureTargetManager != null)
             {
+                _playerStateManager.OnStateChanged -= StopVacuumByDamaged;
                 _captureTargetManager.OnCaptureFinished -= _mouthfulStock.AddCapturedCount;
                 _captureTargetManager.OnAllCapturesFinished -= ReadyToShoot;
             }
