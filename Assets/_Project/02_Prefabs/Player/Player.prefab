@@ -407,6 +407,7 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 1024
+  _landingSpeedThreshold: -1
   _bodyRadius: 0.5
   _kbBackForce: 5
   _kbUpForce: 10
@@ -556,6 +557,8 @@ MonoBehaviour:
   _vacuumSource: {fileID: 8854917572561965090}
   _jumpAction: {fileID: 8050286311653644445}
   _jumpAudio: {fileID: 11400000, guid: 86eff3ce1e5271641a336376b9f709c4, type: 2}
+  _moveController: {fileID: 4688875060399923483}
+  _landAudio: {fileID: 11400000, guid: e70adb7e1d1397f4fae718ed67c0a8a3, type: 2}
   _vacuumPitchDuration: 0.5
   _abilityController: {fileID: 4118890988847287733}
   _vacuumAudio: {fileID: 11400000, guid: ee4b921fc17b9b942ab962fa0fd9cb0b, type: 2}

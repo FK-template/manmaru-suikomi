@@ -1,3 +1,4 @@
+using System;
 using Manmaru.Collision;
 using Manmaru.Movement;
 using UnityEngine;
@@ -10,8 +11,9 @@ namespace Manmaru.Player
     /// </summary>
     public class PlayerMoveController : MonoBehaviour
     {
-        [Header("地形判定を取るレイヤー")]
+        [Header("地形判定パラメータ")]
         [SerializeField] private LayerMask _groundLayer;
+        [SerializeField] private float _landingSpeedThreshold = -1.0f; 
 
         [Header("パラメータ設定")]
         [SerializeField] private float _bodyRadius = 0.5f;
@@ -33,8 +35,14 @@ namespace Manmaru.Player
         [SerializeField] private WallChecker _wallChecker;
         [SerializeField] private WallFitter _wallFitter;
 
-        // 内部変数：現在の速度
+        // 公開変数：サウンド用イベント
+        public Action OnLanded;
+
+        // 公開変数：現在の速度
         public Vector3 _currentVelocity;
+
+        // 内部変数
+        private bool _isPreviousGrounded = false;
 
         void Awake()
         {
@@ -74,6 +82,13 @@ namespace Manmaru.Player
             // ノックバック中に落下して着地したら、ノックバック状態解除
             if (isDamaged && _currentVelocity.y <= 0f && isGrounded)
                 _playerStateManager.ResumePreviousState();
+
+            // 前フレームは空中 かつ 現フレームは着地 かつ 落下してるなら、イベント発火
+            if(!_isPreviousGrounded && isGrounded && _currentVelocity.y <= _landingSpeedThreshold)
+                OnLanded?.Invoke();
+
+            // 次フレームのために着地判定を格納
+            _isPreviousGrounded = isGrounded;
         }
 
         /// <summary>

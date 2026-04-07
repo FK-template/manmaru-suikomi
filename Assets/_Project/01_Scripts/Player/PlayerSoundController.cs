@@ -21,6 +21,10 @@ namespace Manmaru.Player
         [SerializeField] private JumpAction _jumpAction;
         [SerializeField] private AudioEventSO _jumpAudio;
 
+        [Header("着地音設定")]
+        [SerializeField] private PlayerMoveController _moveController;
+        [SerializeField] private AudioEventSO _landAudio;
+
         [Header("すいこみ・はきだし音設定")]
         [SerializeField] private float _vacuumPitchDuration = 0.5f;
         [SerializeField] private PlayerAbilityController _abilityController;
@@ -44,6 +48,7 @@ namespace Manmaru.Player
 
             // イベント購読設定
             _jumpAction.OnJumped += PlayJumpSound;
+            _moveController.OnLanded += PlayLandSound;
             _abilityController.OnVacuumStarted += PlayVacuumSound;
             _abilityController.OnVacuumFinished += StopVacuumSound;
             _captureTargetManager.OnCaptureFinished += PlayCaptureSound;
@@ -65,6 +70,14 @@ namespace Manmaru.Player
         private void PlayJumpSound()
         {
             _jumpAudio.PlayRandomPitch(_oneShotSource);
+        }
+
+        /// <summary>
+        /// 着地時のサウンドを再生するメソッド
+        /// </summary>
+        private void PlayLandSound()
+        {
+            _landAudio.PlayRandomPitch(_oneShotSource);
         }
 
         /// <summary>
@@ -134,6 +147,7 @@ namespace Manmaru.Player
         {
             // イベント購読解除
             if (_jumpAction != null) _jumpAction.OnJumped -= PlayJumpSound;
+            if (_moveController != null) _moveController.OnLanded -= PlayLandSound;
             if (_abilityController != null)
             {
                 _abilityController.OnVacuumStarted -= PlayVacuumSound;
