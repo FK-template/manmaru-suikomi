@@ -26,7 +26,7 @@ namespace Manmaru.Player
         [SerializeField] private PlayerAbilityController _abilityController;
         [SerializeField] private AudioEventSO _vacuumAudio;
         [SerializeField] private AudioEventSO _captureAudio;
-        //[SerializeField] private AudioEventSO _shootAudio;
+        [SerializeField] private AudioEventSO _shootAudio;
         private CaptureTargetManager _captureTargetManager;
 
         [Header("被ダメージ音設定")]
@@ -47,6 +47,7 @@ namespace Manmaru.Player
             _abilityController.OnVacuumStarted += PlayVacuumSound;
             _abilityController.OnVacuumFinished += StopVacuumSound;
             _captureTargetManager.OnCaptureFinished += PlayCaptureSound;
+            _abilityController.OnShooted += PlayShootSound;
             _playerHealthController.OnTookDamage += PlayDamagedSound;
         }
 
@@ -111,6 +112,17 @@ namespace Manmaru.Player
         }
 
         /// <summary>
+        /// はきだし時、ほおばりカウントに応じてピッチを調整したサウンドを再生するメソッド
+        /// </summary>
+        private void PlayShootSound()
+        {
+            float t = (float)_abilityController.CapturedCount / (float)_abilityController.CaptureCountLimit;
+            float pitch = Mathf.Lerp(_captureAudio.MinPitch, _captureAudio.MaxPitch, t);
+
+            _shootAudio.PlayAllWithSetPitch(_oneShotSource, pitch);
+        }
+
+        /// <summary>
         /// 被ダメージ時のサウンドを再生するメソッド
         /// </summary>
         private void PlayDamagedSound()
@@ -126,6 +138,7 @@ namespace Manmaru.Player
             {
                 _abilityController.OnVacuumStarted -= PlayVacuumSound;
                 _abilityController.OnVacuumFinished -= StopVacuumSound;
+                _abilityController.OnShooted -= PlayShootSound;
             }
             if (_captureTargetManager != null) _captureTargetManager.OnCaptureFinished -= PlayCaptureSound;
             if (_playerHealthController != null) _playerHealthController.OnTookDamage -= PlayDamagedSound;

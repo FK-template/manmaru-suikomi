@@ -30,6 +30,7 @@ namespace Manmaru.Player
         // 公開変数：サウンド用イベント
         public Action OnVacuumStarted;
         public Action OnVacuumFinished;
+        public Action OnShooted;
 
         // プロパティ
         public int CapturedCount => _mouthfulStock.CapturedCount;
@@ -156,6 +157,7 @@ namespace Manmaru.Player
             // Attackボタンを押した瞬間に、はきだし処理を開始
             if (_attackActionInput.action.WasPressedThisFrame())
             {
+                OnShooted?.Invoke();
                 _shootAction.Shoot(_mouthfulStock.CapturedCount);
                 FinishMouthful();
                 LockInput();

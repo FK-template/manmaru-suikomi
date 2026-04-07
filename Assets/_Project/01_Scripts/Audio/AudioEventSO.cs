@@ -46,7 +46,7 @@ namespace Manmaru.Audio
         }
 
         /// <summary>
-        /// 任意のAudioSourceと任意のピッチで、設定された音源からランダムに再生するメソッド
+        /// 任意のAudioSourceとピッチで、設定された音源からランダムに再生するメソッド
         /// </summary>
         public void PlaySetPitch(AudioSource source, float pitch)
         {
@@ -64,6 +64,25 @@ namespace Manmaru.Audio
             // 再生処理
             if (_isOneShot) source.PlayOneShot(clip);
             else source.Play();
+        }
+
+        /// <summary>
+        /// 任意のAudioSourceとピッチで、設定された音源を全て再生するメソッド
+        /// </summary>
+        /// <remarks>（※PlayOneShotのみ対応。Playは処理を受け付けない）</remarks>
+        public void PlayAllWithSetPitch(AudioSource source, float pitch)
+        {
+            if (_clips == null || _clips.Length == 0 || !_isOneShot) return;
+
+            // ピッチを固定
+            source.pitch = pitch;
+            source.volume = _volume;
+
+            // 再生処理
+            foreach (var c in _clips)
+            {
+                source.PlayOneShot(c);
+            }
         }
     }
 }
