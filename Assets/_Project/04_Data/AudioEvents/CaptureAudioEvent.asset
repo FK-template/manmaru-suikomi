@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Audio.AudioEventSO
   _clips:
   - {fileID: 8300000, guid: aa1d9d29acdff2d47bbebfaa2be763d4, type: 3}
-  _maxPitch: 1.2
-  _minPitch: 0.8
+  _maxPitch: 1.5
+  _minPitch: 0.9
   _volume: 0.1
   _isOneShot: 1
