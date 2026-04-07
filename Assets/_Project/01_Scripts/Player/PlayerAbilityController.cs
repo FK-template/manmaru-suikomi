@@ -1,6 +1,7 @@
 using Manmaru.Ability;
 using Manmaru.Interaction;
 using Manmaru.VFX;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,6 +26,11 @@ namespace Manmaru.Player
         [SerializeField] private PlayerVisualHandler _playerVisualController;
         [SerializeField] private VacuumEffectHandler _vacuumEffectController;
         private CaptureTargetManager _captureTargetManager;
+
+        // 公開変数：サウンド用イベント
+        public Action OnVacuumStarted;
+        public Action OnVacuumFinished;
+        public Action OnCaptureFinished;
 
         // 内部変数
         private bool _needToRelease = false;
@@ -96,7 +102,7 @@ namespace Manmaru.Player
         /// </summary>
         private void StartVacuuming()
         {
-            // ＜サウンド用イベントをここに追加予定＞
+            OnVacuumStarted?.Invoke();
             _playerVisualController.ChangeToCapturing();
             _vacuumEffectController.PlayWind();
             _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Vacuuming);
@@ -121,7 +127,7 @@ namespace Manmaru.Player
         /// </summary>
         private void FinishVacuuming()
         {
-            // ＜サウンド用イベントをここに追加予定＞
+            OnVacuumFinished?.Invoke();
             _playerVisualController.ChangeToNormal();
             _vacuumEffectController.StopWind();
             _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Normal);
@@ -132,7 +138,8 @@ namespace Manmaru.Player
         /// </summary>
         private void ReadyToShoot()
         {
-            // ＜サウンド用イベントをここに追加予定＞
+            OnVacuumFinished?.Invoke();
+            OnCaptureFinished?.Invoke();
             _playerVisualController.ChangeToMouthful();
             _vacuumEffectController.StopWind();
             _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Mouthful);

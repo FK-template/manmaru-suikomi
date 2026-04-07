@@ -20,6 +20,10 @@ namespace Manmaru.Audio
         [Header("鳴らし方")]
         [SerializeField] private bool _isOneShot = true;
 
+        // 外部に再生処理を依頼する場合用のプロパティ
+        public float MaxPitch => _maxPitch;
+        public float MinPitch => _minPitch;
+
         /// <summary>
         /// 任意のAudioSourceで、設定された音源からランダムに再生するメソッド
         /// </summary>
