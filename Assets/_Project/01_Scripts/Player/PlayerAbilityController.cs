@@ -67,21 +67,22 @@ namespace Manmaru.Player
         /// </summary>
         private void UpdateCaptureStatus()
         {
-            // Attackボタンを押した瞬間に、すいこみ状態に遷移
-            if (_attackActionInput.action.WasPressedThisFrame())
+            // Attackボタンを押した瞬間に、ひきよせ状態でなければ、すいこみ状態に遷移
+            if (_attackActionInput.action.WasPressedThisFrame()
+                && _playerStateManager.CurrentState != PlayerStateManager.PlayerState.Capturing)
             {
                 StartVacuuming();
             }
 
             // Attackボタンを押しているか、ひきよせ状態の間ずっと、すいこみ判定
-            if (_attackActionInput.action.IsPressed()
+            else if (_attackActionInput.action.IsPressed()
                 || _playerStateManager.CurrentState == PlayerStateManager.PlayerState.Capturing)
             {
                 ProcessVacuum();
             }
 
             // Attackボタンを離した瞬間に、ひきよせ状態でなければ、通常状態に遷移
-            if (_attackActionInput.action.WasReleasedThisFrame()
+            else if (_attackActionInput.action.WasReleasedThisFrame()
                 && _playerStateManager.CurrentState != PlayerStateManager.PlayerState.Capturing)
             {
                 FinishVacuuming();
