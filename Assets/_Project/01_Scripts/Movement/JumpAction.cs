@@ -9,6 +9,9 @@ namespace Manmaru.Movement
     /// </summary>
     public class JumpAction : MonoBehaviour
     {
+        [Header("ジャンプパラメータ設定")]
+        [SerializeField] private float _jumpForceThreshold = 0.01f;
+
         [Header("デバッグ用 - 機能オンオフ")]
         [SerializeField] private bool _canSmallJump = true;
 
@@ -34,6 +37,11 @@ namespace Manmaru.Movement
         /// </summary>
         public float UpdateJumpState(float curVelY, bool isGrounded, bool jumpPressed, bool jumpReleased)
         {
+            float jumpForce = _currentParams.JumpForce;
+
+            // ジャンプ力パラメータが極端に低い時は、処理をスキップ
+            if (jumpForce < _jumpForceThreshold) return curVelY;
+
             // 落下し始めたら、ジャンプフラグオフ
             if (IsJumping && curVelY <= 0f)
             {
@@ -48,7 +56,7 @@ namespace Manmaru.Movement
 
                 // 押したらグンと加速
                 IsJumping = true;
-                return _currentParams.JumpForce;
+                return jumpForce;
             }
             else if (jumpReleased && curVelY > 0f && _canSmallJump)
             {
@@ -65,7 +73,6 @@ namespace Manmaru.Movement
         /// </summary>
         private float ApplyJumpCutoff(float curVelY, float jumpCutoffMultiplier)
         {
-            Debug.Log("ジャンプ中断（小ジャンプ）");
             return curVelY * jumpCutoffMultiplier;
         }
     }
