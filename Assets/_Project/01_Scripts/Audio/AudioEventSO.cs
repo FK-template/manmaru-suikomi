@@ -25,9 +25,9 @@ namespace Manmaru.Audio
         public float MinPitch => _minPitch;
 
         /// <summary>
-        /// 任意のAudioSourceで、設定された音源からランダムに再生するメソッド
+        /// 任意のAudioSourceで、設定された音源とピッチからランダムに再生するメソッド
         /// </summary>
-        public void Play(AudioSource source)
+        public void PlayRandomPitch(AudioSource source)
         {
             if (_clips == null || _clips.Length == 0) return;
 
@@ -38,6 +38,27 @@ namespace Manmaru.Audio
 
             // ランダムにピッチずらし（音を生き生きとさせるため）
             source.pitch = Random.Range(_minPitch, _maxPitch);
+            source.volume = _volume;
+
+            // 再生処理
+            if (_isOneShot) source.PlayOneShot(clip);
+            else source.Play();
+        }
+
+        /// <summary>
+        /// 任意のAudioSourceと任意のピッチで、設定された音源からランダムに再生するメソッド
+        /// </summary>
+        public void PlaySetPitch(AudioSource source, float pitch)
+        {
+            if (_clips == null || _clips.Length == 0) return;
+
+            // ランダムに音源を選択
+            int randomIndex = Random.Range(0, _clips.Length);
+            AudioClip clip = _clips[randomIndex];
+            source.clip = clip;
+
+            // ピッチを固定
+            source.pitch = pitch;
             source.volume = _volume;
 
             // 再生処理

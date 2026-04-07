@@ -30,7 +30,10 @@ namespace Manmaru.Player
         // 公開変数：サウンド用イベント
         public Action OnVacuumStarted;
         public Action OnVacuumFinished;
-        public Action OnCaptureFinished;
+
+        // プロパティ
+        public int CapturedCount => _mouthfulStock.CapturedCount;
+        public int CaptureCountLimit => _captureCountLimit;
 
         // 内部変数
         private bool _needToRelease = false;
@@ -140,7 +143,6 @@ namespace Manmaru.Player
         private void ReadyToShoot()
         {
             OnVacuumFinished?.Invoke();
-            OnCaptureFinished?.Invoke();
             _playerVisualController.ChangeToMouthful();
             _vacuumEffectController.StopWind();
             _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Mouthful);

@@ -559,6 +559,7 @@ MonoBehaviour:
   _vacuumPitchDuration: 0.5
   _abilityController: {fileID: 4118890988847287733}
   _vacuumAudio: {fileID: 11400000, guid: ee4b921fc17b9b942ab962fa0fd9cb0b, type: 2}
+  _captureAudio: {fileID: 11400000, guid: 438a6df3f911a1a4a8d6ec05e8c454b2, type: 2}
   _playerHealthController: {fileID: 1953666305681331860}
   _damagedAudio: {fileID: 11400000, guid: a9db209aa5c0abd46a80d00ed52a9eb7, type: 2}
 --- !u!1 &1983110970107794533

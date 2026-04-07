@@ -1,5 +1,6 @@
 using Manmaru.Audio;
 using Manmaru.Collision;
+using Manmaru.Interaction;
 using Manmaru.Movement;
 using UnityEngine;
 
@@ -24,8 +25,9 @@ namespace Manmaru.Player
         [SerializeField] private float _vacuumPitchDuration = 0.5f;
         [SerializeField] private PlayerAbilityController _abilityController;
         [SerializeField] private AudioEventSO _vacuumAudio;
-        //[SerializeField] private AudioEventSO _capturedAudio;
+        [SerializeField] private AudioEventSO _captureAudio;
         //[SerializeField] private AudioEventSO _shootAudio;
+        private CaptureTargetManager _captureTargetManager;
 
         [Header("被ダメージ音設定")]
         [SerializeField] private PlayerHealthController _playerHealthController;
@@ -38,10 +40,13 @@ namespace Manmaru.Player
 
         void Start()
         {
+            _captureTargetManager = CaptureTargetManager.Instance;
+
             // イベント購読設定
             _jumpAction.OnJumped += PlayJumpSound;
             _abilityController.OnVacuumStarted += PlayVacuumSound;
             _abilityController.OnVacuumFinished += StopVacuumSound;
+            _captureTargetManager.OnCaptureFinished += PlayCaptureSound;
             _playerHealthController.OnTookDamage += PlayDamagedSound;
         }
 
@@ -58,7 +63,7 @@ namespace Manmaru.Player
         /// </summary>
         private void PlayJumpSound()
         {
-            _jumpAudio.Play(_oneShotSource);
+            _jumpAudio.PlayRandomPitch(_oneShotSource);
         }
 
         /// <summary>
@@ -68,10 +73,9 @@ namespace Manmaru.Player
         {
             _isVacuuming = true;
             _vacuumTargetPitch = _vacuumAudio.MaxPitch;
-            _vacuumSource.pitch = _vacuumAudio.MinPitch;
             _vacuumPitchTimer = 0;
 
-            _vacuumAudio.Play(_vacuumSource);
+            _vacuumAudio.PlaySetPitch(_vacuumSource, _vacuumAudio.MinPitch);
         }
 
         /// <summary>
@@ -96,11 +100,22 @@ namespace Manmaru.Player
         }
 
         /// <summary>
+        /// すいこみ終わった瞬間、ほおばりカウントに応じてピッチを調整したサウンドを再生するメソッド
+        /// </summary>
+        private void PlayCaptureSound(ICapturable _)
+        {
+            float t = (float)_abilityController.CapturedCount / (float)_abilityController.CaptureCountLimit;
+            float pitch = Mathf.Lerp(_captureAudio.MinPitch, _captureAudio.MaxPitch, t);
+
+            _captureAudio.PlaySetPitch(_oneShotSource, pitch);
+        }
+
+        /// <summary>
         /// 被ダメージ時のサウンドを再生するメソッド
         /// </summary>
         private void PlayDamagedSound()
         {
-            _damagedAudio.Play(_oneShotSource);
+            _damagedAudio.PlayRandomPitch(_oneShotSource);
         }
 
         private void OnDestroy()
@@ -112,6 +127,7 @@ namespace Manmaru.Player
                 _abilityController.OnVacuumStarted -= PlayVacuumSound;
                 _abilityController.OnVacuumFinished -= StopVacuumSound;
             }
+            if (_captureTargetManager != null) _captureTargetManager.OnCaptureFinished -= PlayCaptureSound;
             if (_playerHealthController != null) _playerHealthController.OnTookDamage -= PlayDamagedSound;
         }
 
