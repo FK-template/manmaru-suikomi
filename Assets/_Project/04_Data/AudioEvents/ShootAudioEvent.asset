@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ShootAudioEvent
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Audio.AudioEventSO
   _clips:
-  - {fileID: 8300000, guid: 97c3e74b2f6060c4ca63c69637f3c4fb, type: 3}
-  - {fileID: 8300000, guid: db5d500efaac749448a05cb21c66d507, type: 3}
+  - {fileID: 8300000, guid: cf53895657bda3f488364d16b144efa3, type: 3}
+  - {fileID: 8300000, guid: 491ce922b21598d4c8fb8c001ff591a5, type: 3}
   _maxPitch: 1
   _minPitch: 1
   _volume: 0.1
