@@ -14,6 +14,9 @@ namespace Manmaru.Player
         [Header("入力設定")]
         [SerializeField] private InputActionReference _attackActionInput;
 
+        [Header("ほおばり上限（実行中の変更は無効）")]
+        [SerializeField] private int _captureCountLimit = 5;
+
         [Header("依存クラス設定")]
         [SerializeField] private PlayerStateManager _playerStateManager;
         [SerializeField] private VacuumAction _vacuumAction;
@@ -28,7 +31,7 @@ namespace Manmaru.Player
 
         void Start()
         {
-            _mouthfulStock = new MouthfulStock();
+            _mouthfulStock.SetCountLimit(_captureCountLimit);
             _captureTargetManager = CaptureTargetManager.Instance;
 
             // イベント購読設定

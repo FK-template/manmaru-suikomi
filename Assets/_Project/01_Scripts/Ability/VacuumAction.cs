@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Manmaru.Ability
 {
+    /// <summary>
+    /// すいこみ処理と範囲の可視化を行うクラス
+    /// </summary>
     public class VacuumAction : MonoBehaviour
     {
         [Header("すいこみパラメータ設定")]
