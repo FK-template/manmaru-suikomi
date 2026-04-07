@@ -18,22 +18,21 @@ namespace Manmaru.Player
         [SerializeField] private PlayerStateManager _playerStateManager;
         [SerializeField] private VacuumAction _vacuumAction;
         [SerializeField] private ShootAction _shootAction;
+        [SerializeField] private MouthfulStock _mouthfulStock;
         [SerializeField] private PlayerVisualHandler _playerVisualController;
         [SerializeField] private VacuumEffectHandler _vacuumEffectController;
-
-        // 内部変数：ほおばり・はきだし用
-        private bool _needToRelease = false;
-        private int _capturedCount = 0;
-
-        // 内部変数：すいこみオブジェクトの管理者（イベント購読用）
         private CaptureTargetManager _captureTargetManager;
+
+        // 内部変数
+        private bool _needToRelease = false;
 
         void Start()
         {
+            _mouthfulStock = new MouthfulStock();
             _captureTargetManager = CaptureTargetManager.Instance;
 
             // イベント購読設定
-            _captureTargetManager.OnCaptureFinished += AddCapturedCount;
+            _captureTargetManager.OnCaptureFinished += _mouthfulStock.AddCapturedCount;
             _captureTargetManager.OnAllCapturesFinished += ReadyToShoot;
         }
 
@@ -126,15 +125,6 @@ namespace Manmaru.Player
         }
 
         /// <summary>
-        /// すいこみ済みカウンターを増やすメソッド
-        /// </summary>
-        private void AddCapturedCount(ICapturable captureTarget)
-        {
-            _capturedCount += captureTarget.CaptureMass;
-            Debug.Log($"すいこみ完了！現在のストック：{_capturedCount}");
-        }
-
-        /// <summary>
         /// はきだし準備完了メソッド
         /// </summary>
         private void ReadyToShoot()
@@ -153,7 +143,7 @@ namespace Manmaru.Player
             // Attackボタンを押した瞬間に、はきだし処理を開始
             if (_attackActionInput.action.WasPressedThisFrame())
             {
-                _shootAction.Shoot(_capturedCount);
+                _shootAction.Shoot(_mouthfulStock.CapturedCount);
                 FinishMouthful();
                 LockInput();
             }
@@ -164,7 +154,7 @@ namespace Manmaru.Player
         /// </summary>
         private void FinishMouthful()
         {
-            _capturedCount = 0;
+            _mouthfulStock.ResetCapturedCount();
             _playerVisualController.ChangeToNormal();
             _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Normal);
         }
@@ -194,7 +184,7 @@ namespace Manmaru.Player
             // イベント購読解除
             if (_captureTargetManager != null)
             {
-                _captureTargetManager.OnCaptureFinished -= AddCapturedCount;
+                _captureTargetManager.OnCaptureFinished -= _mouthfulStock.AddCapturedCount;
                 _captureTargetManager.OnAllCapturesFinished -= ReadyToShoot;
             }
         }
