@@ -9,6 +9,7 @@ namespace Manmaru.Interaction
     {
         int CaptureMass { get; }
         Transform GetTransform();
+        Collider GetCollider();
         void OnCapture(Transform playerTrans);
     }
 }

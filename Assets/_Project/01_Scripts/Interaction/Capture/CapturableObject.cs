@@ -42,12 +42,19 @@ namespace Manmaru.Interaction
         }
 
         /// <summary>
-        /// Transformを取得して返すメソッド
+        /// 自身のTransformを取得して返すメソッド
         /// </summary>
-        /// <remarks>外部からインターフェースを用いて検索をかけるため、改めてTransformを返す必要がある</remarks>
         public Transform GetTransform()
         {
             return transform;
+        }
+
+        /// <summary>
+        /// 自身のColliderを取得して返すメソッド
+        /// </summary>
+        public Collider GetCollider()
+        {
+            return GetComponent<Collider>();
         }
 
         /// <summary>

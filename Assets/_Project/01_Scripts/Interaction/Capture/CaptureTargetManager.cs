@@ -69,14 +69,20 @@ namespace Manmaru.Interaction
             foreach (ICapturable target in _targetList)
             {
                 Transform targetTrans = target.GetTransform();
+                Collider targetCol = target.GetCollider();
 
-                // プレイヤーとの距離を判定
-                Vector3 dirToTarget = targetTrans.position - playerTrans.position;
+                // プレイヤーと、当たり判定上の最近点の距離を判定
+                Vector3 closestPoint = targetCol.ClosestPoint(playerTrans.position);
+                Vector3 dirToTarget = closestPoint - playerTrans.position;
                 float distSqr = dirToTarget.sqrMagnitude;
+
+                // 遠すぎたら除外
                 if (distSqr > maxDistSqr) continue;
 
                 // プレイヤーとの角度（内積）を判定
-                float dot = Vector3.Dot(playerTrans.forward, dirToTarget);
+                Vector3 dirNormal = dirToTarget.normalized;
+                float dot = Vector3.Dot(playerTrans.forward, dirNormal);
+
                 if (distSqr < closeDistSqr)
                 {
                     // 至近距離なら、真横でも許容
