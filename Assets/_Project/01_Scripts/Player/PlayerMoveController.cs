@@ -73,7 +73,7 @@ namespace Manmaru.Player
 
             // ノックバック中に落下して着地したら、ノックバック状態解除
             if (isDamaged && _currentVelocity.y <= 0f && isGrounded)
-                _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Normal);
+                _playerStateManager.ResumePreviousState();
         }
 
         /// <summary>

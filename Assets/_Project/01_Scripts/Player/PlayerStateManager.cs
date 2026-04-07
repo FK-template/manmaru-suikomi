@@ -25,8 +25,9 @@ namespace Manmaru.Player
         [SerializeField] private PlayerMoveParametersSO _mouthfulParams;
         [SerializeField] private PlayerMoveParametersSO _damagedParams;
 
-        // 現在のプレイヤーの状態
-        public PlayerState CurrentState { get; private set;}
+        [Header("プレイヤーの状態（デバッグ用に表示）")]
+        public PlayerState CurrentState;
+        public PlayerState PreviousState;
 
         // 状態遷移イベント（汎用とやられ用）
         public Action<PlayerState, PlayerMoveParametersSO> OnStateChanged;
@@ -49,6 +50,9 @@ namespace Manmaru.Player
         {
             // 現在の状態に重複遷移しようとしてたら、早期リターン
             if (!_force && CurrentState == nextState) return;
+
+            // 前の状態として今の状態を格納（被ダメ状態とやられ状態はスルー）
+            if (nextState != PlayerState.Damaged && nextState != PlayerState.Dead) PreviousState = nextState;
 
             CurrentState = nextState;
 
@@ -79,6 +83,14 @@ namespace Manmaru.Player
                     Debug.Log($"PlayerState:{CurrentState} やられた！ゲームオーバーモードへ");
                     break;
             }
+        }
+
+        /// <summary>
+        /// 1つ前の状態に復帰するメソッド
+        /// </summary>
+        public void ResumePreviousState()
+        {
+            ChangeState(PreviousState);
         }
     }
 }
