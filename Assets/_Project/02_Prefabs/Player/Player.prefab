@@ -474,6 +474,7 @@ MonoBehaviour:
   _vacuumAction: {fileID: 8351851710768700808}
   _shootAction: {fileID: -617088151957877742}
   _playerVisualController: {fileID: 724812542574124737}
+  _vacuumEffectController: {fileID: 918982957623446952}
 --- !u!114 &8351851710768700808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,8 +491,6 @@ MonoBehaviour:
   _captureCloseRange: 1
   _captureAngleRange: 30
   _playerStateManager: {fileID: 1380759849199559847}
-  _playerVisualController: {fileID: 724812542574124737}
-  _vacuumEffectController: {fileID: 918982957623446952}
 --- !u!114 &-617088151957877742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -507,8 +506,6 @@ MonoBehaviour:
   _captureCountLimit: 5
   _starBullet: {fileID: 805668605134999330, guid: 8640630d26f4e7b46a01242772612d08, type: 3}
   _spawnTrans: {fileID: 7799497883365763443}
-  _playerStateManager: {fileID: 1380759849199559847}
-  _playerVisualController: {fileID: 724812542574124737}
 --- !u!114 &1953666305681331860
 MonoBehaviour:
   m_ObjectHideFlags: 0

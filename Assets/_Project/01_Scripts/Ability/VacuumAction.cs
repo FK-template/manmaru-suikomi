@@ -1,8 +1,5 @@
 using Manmaru.Interaction;
-using Manmaru.Player;
-using Manmaru.VFX;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Manmaru.Ability
 {
@@ -13,71 +10,33 @@ namespace Manmaru.Ability
         [SerializeField] private float _captureCloseRange = 1.0f;
         [SerializeField] private float _captureAngleRange = 30.0f;
 
-        [Header("依存クラス設定")]
-        [SerializeField] private PlayerStateManager _playerStateManager;
-        [SerializeField] private PlayerVisualHandler _playerVisualController;
-        [SerializeField] private VacuumEffectHandler _vacuumEffectController;
+        // 依存クラス
         private CaptureTargetManager _captureTargetManager;
 
         void Start()
         {
             _captureTargetManager = CaptureTargetManager.Instance;
-
-            // イベント購読設定
-            _captureTargetManager.OnAllCapturesFinished += ReadyToShoot;
         }
 
         /// <summary>
-        /// すいこみ開始処理を行うメソッド
+        /// すいこめるオブジェクトを検索し、結果をboolで返すメソッド
         /// </summary>
-        public void StartVacuuming()
-        {
-            // ＜サウンド用イベントをここに追加予定＞
-            _playerVisualController.ChangeToCapturing();
-            _vacuumEffectController.PlayWind();
-            _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Vacuuming);
-        }
-
-        /// <summary>
-        /// すいこみ中の処理を行うメソッド
-        /// </summary>
-        public void Vacuuming()
+        public bool IsCaptureTargetDetected()
         {
             // 角度を内積に変換
             float dotThreshold = Mathf.Cos(_captureAngleRange * Mathf.Deg2Rad);
 
-            // すいこめるオブジェクトを検索し、存在したらひきよせ開始
+            // すいこめるオブジェクトを検索
             ICapturable target = _captureTargetManager.FindCaptureTarget(transform, _captureMaxRange, _captureCloseRange, dotThreshold);
-            if (target == null) return;
+            if (target == null) return false;
+
+            // 検索が成功したら、ひきよせを開始させて成功報告
             target.OnCapture(transform);
-
-            // ひきよせ状態に遷移
-            _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Capturing);
-        }
-
-        /// <summary>
-        /// すいこみ終了処理を行うメソッド
-        /// </summary>
-        public void FinishVacuuming()
-        {
-            // ＜サウンド用イベントをここに追加予定＞
-            _playerVisualController.ChangeToNormal();
-            _vacuumEffectController.StopWind();
-            _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Normal);
-        }
-
-        /// <summary>
-        /// はきだし準備完了メソッド
-        /// </summary>
-        private void ReadyToShoot()
-        {
-            // ＜サウンド用イベントをここに追加予定＞
-            _playerVisualController.ChangeToMouthful();
-            _vacuumEffectController.StopWind();
-            _playerStateManager.ChangeState(PlayerStateManager.PlayerState.Mouthful);
+            return true;
         }
 
         // ----- 以下、Gemini3 Pro より出力 -----
+
         private void OnDrawGizmosSelected()
         {
             // 全て水色に統一
@@ -130,15 +89,7 @@ namespace Manmaru.Ability
                 closePrevPoint = currentPoint;
             }
         }
-        // ----- 以上 -----
 
-        private void OnDestroy()
-        {
-            // イベント購読解除
-            if (_captureTargetManager != null)
-            {
-                _captureTargetManager.OnAllCapturesFinished -= ReadyToShoot;
-            }
-        }
+        // ----- 以上 -----
     }
 }
