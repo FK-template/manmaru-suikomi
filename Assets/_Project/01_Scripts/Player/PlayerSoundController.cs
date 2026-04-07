@@ -11,13 +11,16 @@ namespace Manmaru.Player
     public class PlayerSoundController : MonoBehaviour
     {
         [Header("スピーカー設定")]
-        [SerializeField] private AudioSource _source;
+        [Tooltip("単発音専用スピーカー")]
+        [SerializeField] private AudioSource _oneShotSource;
+        [Tooltip("すいこみ音専用スピーカー")]
+        [SerializeField] private AudioSource _vacuumSource;
 
         [Header("ジャンプ音設定")]
         [SerializeField] private JumpAction _jumpAction;
         [SerializeField] private AudioEventSO _jumpAudio;
 
-        [Header("すいこみ・はきだし音設定）")]
+        [Header("すいこみ・はきだし音設定")]
         [SerializeField] private float _vacuumPitchDuration = 0.5f;
         [SerializeField] private PlayerAbilityController _abilityController;
         [SerializeField] private AudioEventSO _vacuumAudio;
@@ -55,7 +58,7 @@ namespace Manmaru.Player
         /// </summary>
         private void PlayJumpSound()
         {
-            _jumpAudio.Play(_source);
+            _jumpAudio.Play(_oneShotSource);
         }
 
         /// <summary>
@@ -63,12 +66,12 @@ namespace Manmaru.Player
         /// </summary>
         private void PlayVacuumSound()
         {
-            _vacuumAudio.Play(_source);
-
             _isVacuuming = true;
             _vacuumTargetPitch = _vacuumAudio.MaxPitch;
-            _source.pitch = _vacuumAudio.MinPitch;
+            _vacuumSource.pitch = _vacuumAudio.MinPitch;
             _vacuumPitchTimer = 0;
+
+            _vacuumAudio.Play(_vacuumSource);
         }
 
         /// <summary>
@@ -79,7 +82,7 @@ namespace Manmaru.Player
             _vacuumPitchTimer += Time.deltaTime;
 
             float t = _vacuumPitchTimer / _vacuumPitchDuration;
-            _source.pitch = Mathf.Lerp(_vacuumAudio.MinPitch, _vacuumTargetPitch, t);
+            _vacuumSource.pitch = Mathf.Lerp(_vacuumAudio.MinPitch, _vacuumTargetPitch, t);
         }
 
         /// <summary>
@@ -87,8 +90,8 @@ namespace Manmaru.Player
         /// </summary>
         private void StopVacuumSound()
         {
-            _source.Stop();
-            _source.pitch = 1.0f;
+            _vacuumSource.Stop();
+            _vacuumSource.pitch = 1.0f;
             _isVacuuming = false;
         }
 
@@ -97,7 +100,7 @@ namespace Manmaru.Player
         /// </summary>
         private void PlayDamagedSound()
         {
-            _damagedAudio.Play(_source);
+            _damagedAudio.Play(_oneShotSource);
         }
 
         private void OnDestroy()
