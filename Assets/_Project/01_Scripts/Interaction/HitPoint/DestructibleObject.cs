@@ -1,3 +1,4 @@
+using Manmaru.Effect;
 using UnityEngine;
 
 namespace Manmaru.Interaction
@@ -7,9 +8,12 @@ namespace Manmaru.Interaction
     /// </summary>
     public class DestructibleObject : MonoBehaviour, IDamageable
     {
-        [Header("体力")]
+        [Header("体力パラメータ設定")]
         [SerializeField] private float _hitPoint = 1.0f;
         [SerializeField] private float _maxHitPoint = 1.0f;
+
+        [Header("エフェクト設定")]
+        [SerializeField] private OneShotEffectHandler _hitEffect;
 
         // 内部変数：すいこみ候補としての自分
         private ICapturable _capturable;
@@ -33,6 +37,11 @@ namespace Manmaru.Interaction
             _hitPoint -= damageValue;
             Debug.Log($"くらった！：{gameObject.name}({_hitPoint}/{_maxHitPoint})");
 
+
+            // エフェクト生成
+            Instantiate(_hitEffect, transform.position, Quaternion.identity);
+
+            // やられ処理
             if (_hitPoint <= 0)
             {
                 // すいこみ候補リストからも、世界からも、消滅
