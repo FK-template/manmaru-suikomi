@@ -7,7 +7,7 @@ namespace Manmaru.Interaction
     /// </summary>
     public class DamageSource : MonoBehaviour
     {
-        [Header("ダメージ判定パラメータ")]
+        [Header("ダメージ判定パラメータ設定")]
         [SerializeField] private float _hitCollisionRadius;
         [SerializeField] private float _hitDamage;
         [SerializeField] private LayerMask _targetLayer;
