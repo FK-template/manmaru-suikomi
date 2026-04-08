@@ -11,7 +11,7 @@ namespace Manmaru.Player
     /// </summary>
     public class PlayerMoveController : MonoBehaviour
     {
-        [Header("地形判定パラメータ")]
+        [Header("地形判定パラメータ設定")]
         [SerializeField] private LayerMask _groundLayer;
         [SerializeField] private float _landingSpeedThreshold = -1.0f; 
 

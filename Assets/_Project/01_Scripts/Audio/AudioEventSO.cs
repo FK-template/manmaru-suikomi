@@ -12,7 +12,7 @@ namespace Manmaru.Audio
         [Header("鳴らしたい音源（※複数個あるとランダム再生）")]
         [SerializeField] private AudioClip[] _clips;
 
-        [Header("音調整パラメータ")]
+        [Header("音調整パラメータ設定")]
         [SerializeField] private float _maxPitch = 1.1f;
         [SerializeField] private float _minPitch = 0.9f;
         [SerializeField][Range(0f, 1f)] private float _volume = 1.0f;

@@ -37,7 +37,6 @@ namespace Manmaru.Interaction
             _hitPoint -= damageValue;
             Debug.Log($"くらった！：{gameObject.name}({_hitPoint}/{_maxHitPoint})");
 
-
             // エフェクト生成
             Instantiate(_hitEffect, transform.position, Quaternion.identity);
 

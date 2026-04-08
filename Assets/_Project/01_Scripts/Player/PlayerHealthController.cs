@@ -9,11 +9,11 @@ namespace Manmaru.Player
     /// </summary>
     public class PlayerHealthController : MonoBehaviour, IDamageable
     {
-        [Header("体力")]
+        [Header("体力パラメータ設定")]
         [SerializeField] private float _currentHitPoint = 1.0f;
         [SerializeField] private float _maxHitPoint = 1.0f;
 
-        [Header("無敵")]
+        [Header("無敵パラメータ設定")]
         [SerializeField] private float _noDamageTimer = 0f;
         [SerializeField] private float _noDamageFullTime = 3.0f;
 

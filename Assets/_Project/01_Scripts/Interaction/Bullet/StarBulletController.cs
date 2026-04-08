@@ -8,7 +8,7 @@ namespace Manmaru.Interaction
     /// </summary>
     public class StarBulletController : MonoBehaviour
     {
-        [Header("移動設定")]
+        [Header("移動パラメータ設定")]
         [SerializeField] private float _baseMoveSpeed = 15.0f;
         [SerializeField] private float _minMoveSpeed = 10.0f;
         [SerializeField] private float _rotateAngle = 0.5f;
@@ -17,7 +17,7 @@ namespace Manmaru.Interaction
         [SerializeField] private float _baseHitSphereRadius = 0.75f;
         [SerializeField] private LayerMask _targetMask;
 
-        [Header("貫通弾設定")]
+        [Header("貫通弾パラメータ設定")]
         [SerializeField] private int _penetrateThreshold = 2;
         [SerializeField] private float _scaleStep = 0.5f;
         [SerializeField] private float _speedStep = 1.0f;
