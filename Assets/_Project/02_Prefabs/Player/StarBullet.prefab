@@ -866,6 +866,7 @@ MonoBehaviour:
   _renderer: {fileID: 5195368558477553953}
   _superColor: {r: 0, g: 1, b: 0, a: 1}
   _ultraColor: {r: 1, g: 0.2705882, b: 0, a: 1}
+  _impactEffect: {fileID: 3694736342690437502, guid: 72fee03fbcc030c418f87b3ea82deb0a, type: 3}
   _bulletMovement: {fileID: 8018748775015009455}
   _bulletCollision: {fileID: 7814833391230056355}
 --- !u!114 &8018748775015009455

@@ -1,3 +1,4 @@
+using Manmaru.Effect;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -21,10 +22,13 @@ namespace Manmaru.Interaction
         [SerializeField] private int _penetrateThreshold = 2;
         [SerializeField] private float _scaleStep = 0.5f;
         [SerializeField] private float _speedStep = 1.0f;
-
+        [Space(5)]
         [SerializeField] private Renderer _renderer;
         [SerializeField] private Color _superColor = Color.green;
         [SerializeField] private Color _ultraColor = Color.orangeRed;
+
+        [Header("エフェクト設定")]
+        [SerializeField] private OneShotEffectHandler _impactEffect;
 
         [Header("依存クラス設定")]
         [SerializeField] private StarBulletMovement _bulletMovement;
@@ -143,9 +147,18 @@ namespace Manmaru.Interaction
             }
             else
             {
-                // ダメージを与えられない相手なら、消滅する
+                // ダメージを与えられない相手なら、エフェクトを生成して消滅する
+                SpawnImpactEffect();
                 return true;
             }
+        }
+
+        /// <summary>
+        /// ダメージを与えられない相手に当たった時のエフェクトを生成するメソッド
+        /// </summary>
+        private void SpawnImpactEffect()
+        {
+            Instantiate(_impactEffect, transform.position, Quaternion.identity);
         }
 
         // ----- 以下、Gemini3 Pro より出力 -----
