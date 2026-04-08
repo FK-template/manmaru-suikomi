@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Manmaru.VFX
 {
+    /// <summary>
+    /// 単発再生専門のエフェクト制御クラス
+    /// </summary>
     public class OneShotEffectHandler : MonoBehaviour
     {
         [Header("ビジュアルエフェクト設定")]
@@ -39,7 +42,7 @@ namespace Manmaru.VFX
             if (_particles == null || _particles.Length == 0) return;
             foreach (var p in _particles)
             {
-                if (p == null || !p.isPlaying) return;
+                if (p == null || p.isPlaying) continue;
                 p.Play();
             }
         }
@@ -52,7 +55,7 @@ namespace Manmaru.VFX
             if (_sounds == null || _sounds.Length == 0) return;
             foreach (var s in _sounds)
             {
-                if (s == null) return;
+                if (s == null) continue;
                 s.PlayRandomPitch(_source);
             }
         }
@@ -68,7 +71,7 @@ namespace Manmaru.VFX
                 bool isWorking = false;
 
                 // サウンド再生状況チェック
-                if (_source.isPlaying)
+                if (_source != null && _source.isPlaying)
                 {
                     isWorking = true;
                 }
