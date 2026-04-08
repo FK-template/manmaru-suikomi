@@ -2,7 +2,7 @@ using Manmaru.Audio;
 using System.Collections;
 using UnityEngine;
 
-namespace Manmaru.VFX
+namespace Manmaru.Effect
 {
     /// <summary>
     /// 単発再生専門のエフェクト制御クラス

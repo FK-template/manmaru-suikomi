@@ -1,6 +1,6 @@
 using Manmaru.Ability;
 using Manmaru.Interaction;
-using Manmaru.VFX;
+using Manmaru.Effect;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
