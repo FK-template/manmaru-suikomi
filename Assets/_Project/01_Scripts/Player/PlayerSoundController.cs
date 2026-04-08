@@ -33,10 +33,6 @@ namespace Manmaru.Player
         [SerializeField] private AudioEventSO _shootAudio;
         private CaptureTargetManager _captureTargetManager;
 
-        [Header("被ダメージ音設定")]
-        [SerializeField] private PlayerHealthController _playerHealthController;
-        [SerializeField] private AudioEventSO _damagedAudio;
-
         // 内部変数
         private bool _isVacuuming = false;
         private float _vacuumTargetPitch;
@@ -53,7 +49,6 @@ namespace Manmaru.Player
             _abilityController.OnVacuumFinished += StopVacuumSound;
             _captureTargetManager.OnCaptureFinished += PlayCaptureSound;
             _abilityController.OnShooted += PlayShootSound;
-            _playerHealthController.OnTookDamage += PlayDamagedSound;
         }
 
         void Update()
@@ -135,14 +130,6 @@ namespace Manmaru.Player
             _shootAudio.PlayAllWithSetPitch(_oneShotSource, pitch);
         }
 
-        /// <summary>
-        /// 被ダメージ時のサウンドを再生するメソッド
-        /// </summary>
-        private void PlayDamagedSound()
-        {
-            _damagedAudio.PlayRandomPitch(_oneShotSource);
-        }
-
         private void OnDestroy()
         {
             // イベント購読解除
@@ -155,7 +142,6 @@ namespace Manmaru.Player
                 _abilityController.OnShooted -= PlayShootSound;
             }
             if (_captureTargetManager != null) _captureTargetManager.OnCaptureFinished -= PlayCaptureSound;
-            if (_playerHealthController != null) _playerHealthController.OnTookDamage -= PlayDamagedSound;
         }
 
     }
