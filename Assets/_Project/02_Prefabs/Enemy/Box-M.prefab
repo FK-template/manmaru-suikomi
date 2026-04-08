@@ -184,3 +184,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Interaction.DamageableObject
   _hitPoint: 1
   _maxHitPoint: 1
+  _hitEffect: {fileID: 8545168204422290334, guid: fed4623add07f43408ae613a9cb2ffec, type: 3}
