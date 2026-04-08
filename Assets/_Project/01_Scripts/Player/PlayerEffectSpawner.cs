@@ -27,6 +27,7 @@ namespace Manmaru.Player
         {
             Instantiate(_damagedEffect, transform.position, Quaternion.identity);
         }
+
         private void OnDestroy()
         {
             // イベント購読解除
