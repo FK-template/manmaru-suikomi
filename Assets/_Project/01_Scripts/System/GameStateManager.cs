@@ -78,6 +78,9 @@ namespace Manmaru.System
             {
                 _playerStateManager.OnPlayerDead -= OnPlayerDeadHandler;
             }
+
+            // インスタンス削除
+            if (Instance == this) Instance = null;
         }
     }
 }

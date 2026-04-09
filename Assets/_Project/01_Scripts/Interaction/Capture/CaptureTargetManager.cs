@@ -139,5 +139,11 @@ namespace Manmaru.Interaction
             if (!_capturingList.Contains(argTarget)) return;
             _capturingList.Remove(argTarget);
         }
+
+        private void OnDestroy()
+        {
+            // インスタンス削除
+            if (Instance == this) Instance = null;
+        }
     }
 }
