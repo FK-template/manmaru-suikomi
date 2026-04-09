@@ -18,12 +18,12 @@ MonoBehaviour:
   HighRotationSpeed: 720
   ActionWaitSecond: 2
   NoticeWaitSecond: 1
-  KyoroKyoroWaitSecond: 3
+  CooldownWaitSecond: 3
   PatrolSpeed: 1
   PatrolRadius: 0.01
   ReachThreshold: 1
   DashSpeed: 3
   DashDurationSecond: 3
   CanDetectPlayer: 1
-  SightRange: 10
+  SightRange: 15
   SightAngle: 60
