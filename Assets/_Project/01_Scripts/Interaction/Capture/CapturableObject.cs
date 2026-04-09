@@ -11,9 +11,14 @@ namespace Manmaru.Interaction
         [Header("すいこみ質量")]
         [SerializeField] private int _captureMass = 1;
 
+        [Header("距離判定パラメータ")]
+        [SerializeField] private float _closeDistThreshold = 1.0f;
+
         [Header("すいこみアニメーション設定")]
         [SerializeField] private float _captureDuration = 0.5f;
         [SerializeField] private AnimationCurve _captureCurve;
+        [SerializeField] private float _closeCaptureDuration = 0.1f;
+        [SerializeField] private AnimationCurve _closeCaptureCurve;
 
         // PlayerCaptureControllerから参照するためのプロパティ
         public int CaptureMass => _captureMass;
@@ -23,6 +28,8 @@ namespace Manmaru.Interaction
         private float _captureTimer = 0f;
         private Vector3 _startPos;
         private Transform _playerTrans;
+        private float _activeDuration;
+        private AnimationCurve _activeCurve;
 
         // 内部変数：すいこみオブジェクトの管理者（リスト除名・記名用）
         private CaptureTargetManager _captureTargetManager;
@@ -68,6 +75,19 @@ namespace Manmaru.Interaction
             _startPos = transform.position;
             _playerTrans = playerTrans;
 
+            // 至近距離なら、短縮バージョン
+            if (IsPlayerClose(_playerTrans))
+            {
+                _activeDuration = _closeCaptureDuration;
+                _activeCurve = _closeCaptureCurve;
+            }
+            else
+            {
+                _activeDuration = _captureDuration;
+                _activeCurve = _captureCurve;
+            }
+            Debug.Log($"ちかいですか：{IsPlayerClose(_playerTrans)}");
+
             // 無力化（当たり判定、移動、ダメージ判定など）
             if (TryGetComponent<Collider>(out var col)) col.enabled = false;
             if (TryGetComponent<EnemyMoveController>(out var mover)) mover.enabled = false;
@@ -80,20 +100,35 @@ namespace Manmaru.Interaction
         }
 
         /// <summary>
+        /// プレイヤーが至近距離にいるかどうかを判定し、boolで返すメソッド
+        /// </summary>
+        private bool IsPlayerClose(Transform playerTrans)
+        {
+            Collider myCol = GetCollider();
+
+            // プレイヤーと、当たり判定上の最近点の距離を判定
+            Vector3 closestPoint = myCol.ClosestPoint(playerTrans.position);
+            Vector3 dirToTarget = closestPoint - playerTrans.position;
+            float sqrThreshold = _closeDistThreshold * _closeDistThreshold;
+
+            return dirToTarget.sqrMagnitude <= sqrThreshold;
+        }
+
+        /// <summary>
         /// すいこみ中のアニメーション処理を行うメソッド
         /// </summary>
         private void UpdateCapturingAnimation()
         {
             // 経過時間に対応したカーブの値を取得
             _captureTimer += Time.deltaTime;
-            float clampTime = Mathf.Clamp01(_captureTimer / _captureDuration);
-            float curveValue = _captureCurve.Evaluate(clampTime);
+            float clampTime = Mathf.Clamp01(_captureTimer / _activeDuration);
+            float curveValue = _activeCurve.Evaluate(clampTime);
 
             // カーブの値に応じた移動
             transform.position = Vector3.LerpUnclamped(_startPos, _playerTrans.position, curveValue);
 
             // すいこみ完了処理
-            if (curveValue >= 1.0f)
+            if (curveValue >= _activeDuration)
             {
                 _isCapturing = false;
                 _captureTargetManager.NotifyCaptureCompleted(this);

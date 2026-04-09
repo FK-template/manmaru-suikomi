@@ -8280,10 +8280,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4118890988847287733, guid: 7d8cf4ef80a4e5e4a97a7884ccc62489, type: 3}
-      propertyPath: _captureCountLimit
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7799497883365763443, guid: 7d8cf4ef80a4e5e4a97a7884ccc62489, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
