@@ -8,6 +8,9 @@ namespace Manmaru.System
     /// </summary>
     public class GameStatePresenter : MonoBehaviour
     {
+        [Header("シーン開幕時パラメータ設定")]
+        [SerializeField] private BGMDataSO _sceneStartBGMData;
+
         [Header("ゲームオーバーパラメータ設定")]
         [SerializeField] private BGMDataSO _gameOverBGMData;
 
@@ -26,6 +29,16 @@ namespace Manmaru.System
             // イベント購読設定
             _gameStateManager.OnGameOverState += PresentGameOver;
             _gameStateManager.OnGameClearState += PresentGameClear;
+
+            PresentGameStart();
+        }
+
+        /// <summary>
+        /// シーン開幕時の演出を再生するメソッド
+        /// </summary>
+        private void PresentGameStart()
+        {
+            _bgmPlayer.PlayJingleAndBGM(_sceneStartBGMData);
         }
 
         /// <summary>
