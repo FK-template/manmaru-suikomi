@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 837494157488347845}
   - component: {fileID: 4299773613958580574}
+  - component: {fileID: 7671124309957798291}
   - component: {fileID: 5170679723252155343}
   m_Layer: 0
   m_Name: GameManager
@@ -46,6 +47,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.System.GameStateManager
   _playerStateManager: {fileID: 0}
+--- !u!114 &7671124309957798291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4442520616189577465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3aea6fe278517649b10ef2c82a27f1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.System.GameStatePresenter
+  _gameOverBGMData: {fileID: 11400000, guid: b9f59be8c56308148aeebe0e6bf6cf37, type: 2}
+  _gameClearBGMData: {fileID: 11400000, guid: a0762123793637d44a61a6b2dd0fba6b, type: 2}
 --- !u!114 &5170679723252155343
 MonoBehaviour:
   m_ObjectHideFlags: 0
