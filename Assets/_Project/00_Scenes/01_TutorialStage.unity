@@ -3071,6 +3071,7 @@ GameObject:
   - component: {fileID: 792090759}
   - component: {fileID: 792090758}
   - component: {fileID: 792090757}
+  - component: {fileID: 792090760}
   m_Layer: 5
   m_Name: RetryButton
   m_TagString: Untagged
@@ -3180,6 +3181,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 792090755}
   m_CullTransparentMesh: 1
+--- !u!114 &792090760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792090755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 078bef3e92c3d3c4dbbd44ddc665640c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.UI.FirstSelectedUISetter
 --- !u!1001 &793702636
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5294,6 +5307,7 @@ GameObject:
   - component: {fileID: 1244724547}
   - component: {fileID: 1244724546}
   - component: {fileID: 1244724545}
+  - component: {fileID: 1244724548}
   m_Layer: 5
   m_Name: TitleButton
   m_TagString: Untagged
@@ -5403,6 +5417,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244724543}
   m_CullTransparentMesh: 1
+--- !u!114 &1244724548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244724543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 078bef3e92c3d3c4dbbd44ddc665640c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.UI.FirstSelectedUISetter
 --- !u!1001 &1245730308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8762,6 +8788,7 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1741196436}
   - {fileID: 1066756217}
   - {fileID: 410087041}
   - {fileID: 832575519}
@@ -8773,5 +8800,4 @@ SceneRoots:
   - {fileID: 897776458}
   - {fileID: 207171942}
   - {fileID: 944004396}
-  - {fileID: 1741196436}
   - {fileID: 161852742}
