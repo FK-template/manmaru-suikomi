@@ -8,7 +8,7 @@ namespace Manmaru.UI
     /// </summary>
     public class FirstSelectedUISetter : MonoBehaviour
     {
-        private void OnEnabled()
+        void OnEnable()
         {
             SetFirstSelectedUI(this.gameObject);
         }
