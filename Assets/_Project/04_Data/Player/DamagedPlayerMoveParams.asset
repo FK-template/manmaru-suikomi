@@ -18,8 +18,13 @@ MonoBehaviour:
   GroundDeceleration: 60
   AirAcceleration: 20
   AirDeceleration: 5
+  RotationSpeed: 720
   JumpForce: 0
   JumpCutoffMultiplier: 0
+  _gravity: 52.5
+  _maxFallSpeed: -20
+  _jumpTopThreshold: 5
+  _jumpTopGravityScale: 0.5
   Gravity: 52.5
   MaxFallSpeed: -20
   BrakeThreshold: 5

@@ -21,6 +21,10 @@ MonoBehaviour:
   RotationSpeed: 10
   JumpForce: 0
   JumpCutoffMultiplier: 0
+  _gravity: 70
+  _maxFallSpeed: -20
+  _jumpTopThreshold: 5
+  _jumpTopGravityScale: 0.5
   Gravity: 70
   MaxFallSpeed: -20
   BrakeThreshold: 5
