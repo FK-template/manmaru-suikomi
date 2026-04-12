@@ -1,8 +1,6 @@
 using Manmaru.Collision;
 using Manmaru.Movement;
-using Manmaru.Player;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Manmaru.Enemy
 {
@@ -25,6 +23,11 @@ namespace Manmaru.Enemy
         // 内部変数：現在の速度
         private Vector3 _currentVelocity;
 
+        void Start()
+        {
+            _gravityCalculator.SetParams(_behaviourController.Data);
+        }
+
         void Update()
         {
             // 着地判定の保存
@@ -45,7 +48,7 @@ namespace Manmaru.Enemy
             MoveToFinalPos();
 
             // 移動後の地面情報を再取得して位置補正
-            isGrounded = _groundChecker.CheckGrounded(_currentVelocity.y, out groundY, out groundNormal,_groundLayer);
+            isGrounded = _groundChecker.CheckGrounded(_currentVelocity.y, out groundY, out groundNormal, _groundLayer);
             ApplyGroundFitting(groundY, isGrounded);
         }
 
