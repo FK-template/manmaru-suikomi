@@ -1,3 +1,4 @@
+using Manmaru.Movement;
 using UnityEngine;
 
 namespace Manmaru.Player
@@ -6,7 +7,7 @@ namespace Manmaru.Player
     /// プレイヤーの状態別移動パラメータをまとめたデータアセット
     /// </summary>
     [CreateAssetMenu(fileName = "NewPlayerMoveParams", menuName = "Manmaru/PlayerMoveParameters")]
-    public class PlayerMoveParametersSO : ScriptableObject
+    public class PlayerMoveParametersSO : ScriptableObject, IGravityParameters
     {
         [Header("移動許可フラグ")]
         public bool CanJump = true;
@@ -28,10 +29,16 @@ namespace Manmaru.Player
         public float JumpCutoffMultiplier = 0.4f;
 
         [Header("重力用パラメータ")]
-        public float Gravity = 70.0f;
-        public float MaxFallSpeed = -20.0f;
+        [SerializeField] private float _gravity = 70.0f;
+        [SerializeField] private float _maxFallSpeed = -20.0f;
         [Space(5)]
-        public float BrakeThreshold = 5.0f;
-        public float BrakeGravityMultiplier = 0.5f;
+        [SerializeField] private float _jumpTopThreshold = 5.0f;
+        [SerializeField] private float _jumpTopGravityScale = 0.5f;
+
+        // プロパティ：重力用パラメータ
+        public float Gravity => _gravity;
+        public float MaxFallSpeed => _maxFallSpeed;
+        public float JumpTopThreshold => _jumpTopThreshold;
+        public float JumpTopGravityScale => _jumpTopGravityScale;
     }
 }
