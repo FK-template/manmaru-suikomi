@@ -1,4 +1,3 @@
-using Manmaru.Player;
 using UnityEngine;
 
 namespace Manmaru.Movement
@@ -13,12 +12,12 @@ namespace Manmaru.Movement
         [SerializeField] private bool _canMaxFallSpeed = true;
 
         // 内部変数：パラメータ
-        private PlayerMoveParametersSO _currentParams;
+        private IGravityParameters _currentParams;
 
         /// <summary>
         /// 新しくパラメータを設定するメソッド
         /// </summary>
-        public void SetParams(PlayerMoveParametersSO newParams)
+        public void SetParams(IGravityParameters newParams)
         {
             _currentParams = newParams;
         }
@@ -28,15 +27,17 @@ namespace Manmaru.Movement
         /// </summary>
         public float CalculateGravity(float curVelY, bool isGrounded)
         {
+            if (_currentParams == null) return curVelY;
+
             // 通常減速（落下）処理
             if (!isGrounded)
             {
                 float curGravity = _currentParams.Gravity;
 
                 // ふんわり滞空のために重力減衰
-                if (Mathf.Abs(curVelY) < _currentParams.BrakeThreshold && _canFunwari)
+                if (Mathf.Abs(curVelY) < _currentParams.JumpTopThreshold && _canFunwari)
                 {
-                    curGravity *= _currentParams.BrakeGravityMultiplier;
+                    curGravity *= _currentParams.JumpTopGravityScale;
                 }
 
                 // 実際の落下処理
