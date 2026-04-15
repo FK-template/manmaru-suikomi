@@ -5948,7 +5948,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5170679723252155343, guid: b5cdc8f1ece05f24ca8c953a9b211cc8, type: 3}
   m_PrefabInstance: {fileID: 5970439500308856646}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1503338336}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca0c4959e241e244c9118b31cd7b0be2, type: 3}
@@ -8065,36 +8065,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3a48a1348907a54f85b4603a6a53bcf, type: 3}
---- !u!1 &1503338336 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4442520616189577465, guid: b5cdc8f1ece05f24ca8c953a9b211cc8, type: 3}
-  m_PrefabInstance: {fileID: 5970439500308856646}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1503338337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1503338336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21d986ae06edbc74a84be55d44da4c5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.System.SystemInputController
-  _pauseActionInput: {fileID: -6199717571607452039, guid: 052faaac586de48259a63d0c4782560b, type: 3}
---- !u!114 &1503338341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1503338336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72e99c17d785178448de658af12d5218, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.System.GameTimeController
 --- !u!1001 &1543072575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10186,20 +10156,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 7671124309957798291, guid: b5cdc8f1ece05f24ca8c953a9b211cc8, type: 3}
-      propertyPath: _sceneStartBGMData
-      value: 
-      objectReference: {fileID: 11400000, guid: 5b096c8ad2e17854d85ab4b3f436d9d6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4442520616189577465, guid: b5cdc8f1ece05f24ca8c953a9b211cc8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1503338341}
-    - targetCorrespondingSourceObject: {fileID: 4442520616189577465, guid: b5cdc8f1ece05f24ca8c953a9b211cc8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1503338337}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5cdc8f1ece05f24ca8c953a9b211cc8, type: 3}
 --- !u!114 &6014863318710740968 stripped
 MonoBehaviour:

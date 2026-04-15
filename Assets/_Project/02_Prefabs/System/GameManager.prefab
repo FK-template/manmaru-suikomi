@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4299773613958580574}
   - component: {fileID: 7671124309957798291}
   - component: {fileID: 5170679723252155343}
+  - component: {fileID: 212721191423955505}
+  - component: {fileID: 4398630278335533853}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -59,6 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3aea6fe278517649b10ef2c82a27f1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.System.GameStatePresenter
+  _sceneStartBGMData: {fileID: 11400000, guid: 5b096c8ad2e17854d85ab4b3f436d9d6, type: 2}
   _gameOverBGMData: {fileID: 11400000, guid: b9f59be8c56308148aeebe0e6bf6cf37, type: 2}
   _gameClearBGMData: {fileID: 11400000, guid: a0762123793637d44a61a6b2dd0fba6b, type: 2}
 --- !u!114 &5170679723252155343
@@ -75,3 +78,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.System.SceneFlowController
   _nextSceneName: 01_TutorialStage
   _titleSceneName: 01_TutorialStage
+--- !u!114 &212721191423955505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4442520616189577465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e99c17d785178448de658af12d5218, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.System.GameTimeController
+--- !u!114 &4398630278335533853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4442520616189577465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d986ae06edbc74a84be55d44da4c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.System.SystemInputController
+  _pauseActionInput: {fileID: -6199717571607452039, guid: 052faaac586de48259a63d0c4782560b, type: 3}
