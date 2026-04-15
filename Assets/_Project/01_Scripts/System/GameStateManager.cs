@@ -12,6 +12,7 @@ namespace Manmaru.System
         public enum GameState
         {
             Playing,
+            Pause,
             GameOver,
             GameClear
         }
@@ -23,6 +24,8 @@ namespace Manmaru.System
         public GameState CurrentState { get; private set; }
 
         // 状態遷移イベント
+        public Action OnPauseState;
+        public Action OnResumed;
         public Action OnGameOverState;
         public Action OnGameClearState;
 
@@ -42,12 +45,27 @@ namespace Manmaru.System
         }
 
         /// <summary>
+        /// ゲームプレイ中状態に遷移させるメソッド
+        /// </summary>
+        public void ChangeToPlayingState()
+        {
+            ChangeGameState(GameState.Playing);
+        }
+
+        /// <summary>
+        /// ゲームをポーズ状態に遷移させるメソッド
+        /// </summary>
+        public void ChangeToPauseState()
+        {
+            ChangeGameState(GameState.Pause);
+        }
+
+        /// <summary>
         /// ゲームをクリア状態に遷移させるメソッド
         /// </summary>
         public void ChangeToGameClearState()
         {
             ChangeGameState(GameState.GameClear);
-            OnGameClearState?.Invoke();
         }
 
         /// <summary>
@@ -56,7 +74,6 @@ namespace Manmaru.System
         private void OnPlayerDeadHandler()
         {
             ChangeGameState(GameState.GameOver);
-            OnGameOverState?.Invoke();
         }
 
         /// <summary>
@@ -69,6 +86,22 @@ namespace Manmaru.System
 
             CurrentState = nextState;
             Debug.Log($"GameState:{CurrentState} ゲーム状態変更！");
+
+            switch (CurrentState)
+            {
+                case GameState.Playing:
+                    OnResumed?.Invoke();
+                    break;
+                case GameState.Pause:
+                    OnPauseState?.Invoke();
+                    break;
+                case GameState.GameOver:
+                    OnGameOverState?.Invoke();
+                    break;
+                case GameState.GameClear:
+                    OnGameClearState?.Invoke();
+                    break;
+            }
         }
 
         private void OnDestroy()
