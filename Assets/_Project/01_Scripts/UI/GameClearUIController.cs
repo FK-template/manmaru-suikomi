@@ -14,6 +14,7 @@ namespace Manmaru.UI
         [SerializeField] private TextMeshProUGUI _gameClearText;
         [SerializeField] private Button _retryButton;
         [SerializeField] private Button _nextButton;
+        [SerializeField] private Button _titleButton;
 
         [Header("依存クラス設定")]
         [SerializeField] private SceneFlowController _sceneFlowController;
@@ -25,6 +26,7 @@ namespace Manmaru.UI
 
             _retryButton.onClick.AddListener(_sceneFlowController.ReloadCurrentScene);
             _nextButton.onClick.AddListener(_sceneFlowController.MoveToTitleScene);
+            _titleButton.onClick.AddListener(_sceneFlowController.MoveToTitleScene);
         }
 
         /// <summary>
@@ -36,6 +38,7 @@ namespace Manmaru.UI
             _gameClearText.gameObject.SetActive(true);
             _retryButton.gameObject.SetActive(true);
             _nextButton.gameObject.SetActive(true);
+            _titleButton.gameObject.SetActive(true);
         }
 
         private void OnDestroy()
