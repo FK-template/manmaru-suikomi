@@ -1,0 +1,49 @@
+using Manmaru.System;
+using UnityEngine;
+
+namespace Manmaru.UI
+{
+    /// <summary>
+    /// 画面全体の表示・非表示の切り替えと、初期化フローの共通基盤を提供する、各画面UIの基底クラス
+    /// </summary>
+    /// <remarks>（※このクラス自体はアタッチせず、継承した子クラスをUIの種類ごとに作成する）</remarks>
+    public abstract class BaseUIController : MonoBehaviour
+    {
+        [Header("表示を切り替えるUIパネル")]
+        [SerializeField] protected GameObject _rootPanel;
+
+        [Header("共通依存クラス設定")]
+        [SerializeField] protected SceneFlowController _sceneFlowController;
+
+        /// <summary>
+        /// 共通の初期化処理をまとめたスタート関数
+        /// </summary>
+        protected virtual void Start()
+        {
+            HideUI();
+            RegisterEvents();
+        }
+
+        /// <summary>
+        /// UI表示タイミングやボタンのイベント登録を行う抽象メソッド
+        /// </summary>
+        /// <remarks>（※子クラスで必ず実装させる）</remarks>
+        protected abstract void RegisterEvents();
+
+        /// <summary>
+        /// UIを表示する共通メソッド
+        /// </summary>
+        protected virtual void ShowUI()
+        {
+            if(_rootPanel != null) _rootPanel.SetActive(true);
+        }
+
+        /// <summary>
+        /// UIを非表示にする共通メソッド
+        /// </summary>
+        protected virtual void HideUI()
+        {
+            if (_rootPanel != null) _rootPanel.SetActive(false);
+        }
+    }
+}
