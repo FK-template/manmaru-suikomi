@@ -10,7 +10,7 @@ namespace Manmaru.UI
     /// <para>（※このクラス自体はアタッチせず、継承した子クラスをUIの種類ごとに作成する。）</para>
     /// <para>（※子クラスは「UIの表示切り替え」と「各ボタンのイベント配線」のみを担うこと。）</para>
     /// </remarks>
-    public abstract class BaseUIController : MonoBehaviour
+    public abstract class BaseScreen : MonoBehaviour
     {
         [Header("表示を切り替えるUIパネル")]
         [SerializeField] protected GameObject _rootPanel;

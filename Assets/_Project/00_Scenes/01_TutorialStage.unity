@@ -2561,7 +2561,7 @@ GameObject:
   - component: {fileID: 775947001}
   - component: {fileID: 775947003}
   m_Layer: 5
-  m_Name: UIController
+  m_Name: ScreenController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
