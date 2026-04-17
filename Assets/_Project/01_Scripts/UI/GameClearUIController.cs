@@ -1,44 +1,28 @@
 using Manmaru.System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Manmaru.UI
 {
     /// <summary>
-    /// ゲームクリアに関するUI処理を制御するクラス
+    /// ゲームクリア画面の表示制御とボタン入力を管理するクラス
     /// </summary>
-    public class GameClearUIController : MonoBehaviour
+    public class GameClearUIController : BaseUIController
     {
-        [Header("ゲームクリアUI")]
-        [SerializeField] private TextMeshProUGUI _gameClearText;
+        [Header("ボタン設定")]
         [SerializeField] private Button _retryButton;
         [SerializeField] private Button _nextButton;
         [SerializeField] private Button _titleButton;
 
-        [Header("依存クラス設定")]
-        [SerializeField] private SceneFlowController _sceneFlowController;
-
-        void Start()
+        protected override void RegisterEvents()
         {
             // イベント購読設定
-            GameStateManager.Instance.OnGameClearState += ShowGameClearUI;
+            GameStateManager.Instance.OnGameClearState += ShowUI;
 
+            // ボタンの役割設定
             _retryButton.onClick.AddListener(_sceneFlowController.ReloadCurrentScene);
-            _nextButton.onClick.AddListener(_sceneFlowController.MoveToTitleScene);
+            _nextButton.onClick.AddListener(_sceneFlowController.MoveToNextScene);
             _titleButton.onClick.AddListener(_sceneFlowController.MoveToTitleScene);
-        }
-
-        /// <summary>
-        /// ゲームクリア時に必要なUIを表示するメソッド
-        /// </summary>
-        private void ShowGameClearUI()
-        {
-            // UI表示
-            _gameClearText.gameObject.SetActive(true);
-            _retryButton.gameObject.SetActive(true);
-            _nextButton.gameObject.SetActive(true);
-            _titleButton.gameObject.SetActive(true);
         }
 
         private void OnDestroy()
@@ -46,7 +30,7 @@ namespace Manmaru.UI
             // イベント購読解除
             if (GameStateManager.Instance != null)
             {
-                GameStateManager.Instance.OnGameClearState -= ShowGameClearUI;
+                GameStateManager.Instance.OnGameClearState -= ShowUI;
             }
         }
     }

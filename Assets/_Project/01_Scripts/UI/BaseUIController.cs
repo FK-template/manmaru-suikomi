@@ -6,7 +6,10 @@ namespace Manmaru.UI
     /// <summary>
     /// 画面全体の表示・非表示の切り替えと、初期化フローの共通基盤を提供する、各画面UIの基底クラス
     /// </summary>
-    /// <remarks>（※このクラス自体はアタッチせず、継承した子クラスをUIの種類ごとに作成する）</remarks>
+    /// <remarks>
+    /// <para>（※このクラス自体はアタッチせず、継承した子クラスをUIの種類ごとに作成する。）</para>
+    /// <para>（※子クラスは「UIの表示切り替え」と「各ボタンのイベント配線」のみを担うこと。）</para>
+    /// </remarks>
     public abstract class BaseUIController : MonoBehaviour
     {
         [Header("表示を切り替えるUIパネル")]

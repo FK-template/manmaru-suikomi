@@ -1,41 +1,26 @@
 using Manmaru.System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Manmaru.UI
 {
     /// <summary>
-    /// ゲームオーバーに関するUI処理を制御するクラス
+    /// ゲームオーバー画面の表示制御とボタン入力を管理するクラス
     /// </summary>
-    public class GameOverUIController : MonoBehaviour
+    public class GameOverUIController : BaseUIController
     {
-        [Header("ゲームオーバーUI")]
-        [SerializeField] private TextMeshProUGUI _gameOverText;
+        [Header("ボタン設定")]
         [SerializeField] private Button _retryButton;
         [SerializeField] private Button _titleButton;
 
-        [Header("依存クラス設定")]
-        [SerializeField] private SceneFlowController _sceneFlowController;
-
-        void Start()
+        protected override void RegisterEvents()
         {
             // イベント購読設定
-            GameStateManager.Instance.OnGameOverState += ShowGameOverUI;
+            GameStateManager.Instance.OnGameOverState += ShowUI;
 
+            // ボタンの役割設定
             _retryButton.onClick.AddListener(_sceneFlowController.ReloadCurrentScene);
             _titleButton.onClick.AddListener(_sceneFlowController.MoveToTitleScene);
-        }
-
-        /// <summary>
-        /// ゲームオーバー時に必要なUIを表示するメソッド
-        /// </summary>
-        private void ShowGameOverUI()
-        {
-            // UI表示
-            _gameOverText.gameObject.SetActive(true);
-            _retryButton.gameObject.SetActive(true);
-            _titleButton.gameObject.SetActive(true);
         }
 
         private void OnDestroy()
@@ -43,7 +28,7 @@ namespace Manmaru.UI
             // イベント購読解除
             if (GameStateManager.Instance != null)
             {
-                GameStateManager.Instance.OnGameOverState -= ShowGameOverUI;
+                GameStateManager.Instance.OnGameOverState -= ShowUI;
             }
         }
     }

@@ -1,57 +1,29 @@
 using Manmaru.System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Manmaru.UI
 {
     /// <summary>
-    /// ポーズ画面に関するUI処理を制御するクラス
+    /// ポーズ画面の表示制御とボタン入力を管理するクラス
     /// </summary>
-    public class PauseUIController : MonoBehaviour
+    public class PauseUIController : BaseUIController
     {
-        [Header("ポーズUI")]
-        [SerializeField] private TextMeshProUGUI _pauseText;
+        [Header("ボタン設定")]
         [SerializeField] private Button _closeButton;
         [SerializeField] private Button _retryButton;
         [SerializeField] private Button _titleButton;
 
-        [Header("依存クラス設定")]
-        [SerializeField] private SceneFlowController _sceneFlowController;
-
-        void Start()
+        protected override void RegisterEvents()
         {
             // イベント購読設定
-            GameStateManager.Instance.OnPauseState += ShowPauseUI;
-            GameStateManager.Instance.OnResumed += HidePauseUI;
+            GameStateManager.Instance.OnPauseState += ShowUI;
+            GameStateManager.Instance.OnResumed += HideUI;
 
+            // ボタンの役割設定
             _closeButton.onClick.AddListener(GameStateManager.Instance.ChangeToPlayingState);
             _retryButton.onClick.AddListener(_sceneFlowController.ReloadCurrentScene);
             _titleButton.onClick.AddListener(_sceneFlowController.MoveToTitleScene);
-        }
-
-        /// <summary>
-        /// ポーズ画面に必要なUIを表示するメソッド
-        /// </summary>
-        private void ShowPauseUI()
-        {
-            // UI表示
-            _pauseText.gameObject.SetActive(true);
-            _closeButton.gameObject.SetActive(true);
-            _retryButton.gameObject.SetActive(true);
-            _titleButton.gameObject.SetActive(true);
-        }
-
-        /// <summary>
-        /// ポーズ画面に必要なUIを非表示にするメソッド
-        /// </summary>
-        private void HidePauseUI()
-        {
-            // UI表示
-            _pauseText.gameObject.SetActive(false);
-            _closeButton.gameObject.SetActive(false);
-            _retryButton.gameObject.SetActive(false);
-            _titleButton.gameObject.SetActive(false);
         }
 
         private void OnDestroy()
@@ -59,8 +31,8 @@ namespace Manmaru.UI
             // イベント購読解除
             if (GameStateManager.Instance != null)
             {
-                GameStateManager.Instance.OnPauseState -= ShowPauseUI;
-                GameStateManager.Instance.OnResumed -= HidePauseUI;
+                GameStateManager.Instance.OnPauseState -= ShowUI;
+                GameStateManager.Instance.OnResumed -= HideUI;
             }
         }
     }
