@@ -20,7 +20,7 @@ namespace Manmaru.UI
 
             // ボタンの役割設定
             _retryButton.onClick.AddListener(_sceneFlowController.ReloadCurrentScene);
-            _titleButton.onClick.AddListener(_sceneFlowController.MoveToTitleScene);
+            _titleButton.onClick.AddListener(() => _sceneFlowController.LoadSceneByName(_sceneFlowController.TitleSceneName));
         }
 
         private void OnDestroy()

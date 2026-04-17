@@ -12,28 +12,24 @@ namespace Manmaru.System
         [SerializeField] private string _nextSceneName;
         [SerializeField] private string _titleSceneName;
 
+        // プロパティ
+        public string NextSceneName => _nextSceneName;
+        public string TitleSceneName => _titleSceneName;
+
+        /// <summary>
+        /// 指定された名前のシーンをロードするメソッド
+        /// </summary>
+        public void LoadSceneByName(string sceneName)
+        {
+            SceneManager.LoadScene(sceneName);
+        }
+
         /// <summary>
         /// 現在のシーンを再ロードするメソッド
         /// </summary>
         public void ReloadCurrentScene()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-
-        /// <summary>
-        /// 次のステージシーンをロードするメソッド
-        /// </summary>
-        public void MoveToNextScene()
-        {
-            SceneManager.LoadScene(_nextSceneName);
-        }
-
-        /// <summary>
-        /// タイトルシーンをロードするメソッド
-        /// </summary>
-        public void MoveToTitleScene()
-        {
-            SceneManager.LoadScene(_titleSceneName);
+            LoadSceneByName(SceneManager.GetActiveScene().name);
         }
     }
 }
