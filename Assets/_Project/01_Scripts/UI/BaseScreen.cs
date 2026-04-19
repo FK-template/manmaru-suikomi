@@ -12,6 +12,9 @@ namespace Manmaru.UI
     /// </remarks>
     public abstract class BaseScreen : MonoBehaviour
     {
+        [Header("初期状態設定")]
+        [SerializeField] protected bool _showOnStart = false;
+
         [Header("表示を切り替えるUIパネル")]
         [SerializeField] protected GameObject _rootPanel;
 
@@ -23,7 +26,9 @@ namespace Manmaru.UI
         /// </summary>
         protected virtual void Start()
         {
-            HideUI();
+            if (_showOnStart) ShowUI();
+            else HideUI();
+
             RegisterEvents();
         }
 
