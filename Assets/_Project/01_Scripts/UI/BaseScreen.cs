@@ -36,15 +36,17 @@ namespace Manmaru.UI
         /// <summary>
         /// UIを表示する共通メソッド
         /// </summary>
-        protected virtual void ShowUI()
+        /// <remarks>（publicの理由：外部からボタン入力などを監視して画面表示を操作するため）</remarks>
+        public virtual void ShowUI()
         {
-            if(_rootPanel != null) _rootPanel.SetActive(true);
+            if (_rootPanel != null) _rootPanel.SetActive(true);
         }
 
         /// <summary>
         /// UIを非表示にする共通メソッド
         /// </summary>
-        protected virtual void HideUI()
+        /// <remarks>（publicの理由：外部からボタン入力などを監視して画面表示を操作するため）</remarks>
+        public virtual void HideUI()
         {
             if (_rootPanel != null) _rootPanel.SetActive(false);
         }
