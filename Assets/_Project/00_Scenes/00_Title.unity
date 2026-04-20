@@ -119,6 +119,60 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &136298788
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 136298789}
+  - component: {fileID: 136298792}
+  m_Layer: 5
+  m_Name: ScreenController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &136298789
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136298788}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3684243127382273101}
+  - {fileID: 937903684120408823}
+  m_Father: {fileID: 898721767}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &136298792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136298788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd673a890fe317e43a548e16efa1d97e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.UI.TitleScenePresenter
+  _titleScreen: {fileID: 3684243127382273105}
+  _stageSelectScreen: {fileID: 3656490462795906707}
+  _confirmScreen: {fileID: 0}
+  _appQuitHandler: {fileID: 0}
 --- !u!1 &731494753
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,8 +394,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3684243127382273101}
-  - {fileID: 937903684120408823}
+  - {fileID: 136298789}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -586,7 +639,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 898721767}
+    m_TransformParent: {fileID: 136298789}
     m_Modifications:
     - target: {fileID: 3029207082120949036, guid: 5fa173c32a9358a41ae1108093b7d941, type: 3}
       propertyPath: m_Pivot.x
@@ -638,15 +691,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3029207082120949036, guid: 5fa173c32a9358a41ae1108093b7d941, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3029207082120949036, guid: 5fa173c32a9358a41ae1108093b7d941, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3029207082120949036, guid: 5fa173c32a9358a41ae1108093b7d941, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3029207082120949036, guid: 5fa173c32a9358a41ae1108093b7d941, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -672,22 +725,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: StageSelectPanel
       objectReference: {fileID: 0}
-    - target: {fileID: 5372617159786827775, guid: 5fa173c32a9358a41ae1108093b7d941, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fa173c32a9358a41ae1108093b7d941, type: 3}
+--- !u!114 &3656490462795906707 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2032070161782678597, guid: 5fa173c32a9358a41ae1108093b7d941, type: 3}
+  m_PrefabInstance: {fileID: 3656490462795906705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaef42e5196f95040b135d5a36f7e87d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.UI.StageSelectScreen
 --- !u!1001 &3684243127382273100
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 898721767}
+    m_TransformParent: {fileID: 136298789}
     m_Modifications:
     - target: {fileID: 5774862817009057894, guid: f7eb048e6049c214182891bd126312fc, type: 3}
       propertyPath: m_Pivot.x
@@ -739,15 +799,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5774862817009057894, guid: f7eb048e6049c214182891bd126312fc, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5774862817009057894, guid: f7eb048e6049c214182891bd126312fc, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5774862817009057894, guid: f7eb048e6049c214182891bd126312fc, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5774862817009057894, guid: f7eb048e6049c214182891bd126312fc, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -773,10 +833,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TitlePanel
       objectReference: {fileID: 0}
-    - target: {fileID: 7696003675885592591, guid: f7eb048e6049c214182891bd126312fc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -787,6 +843,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5774862817009057894, guid: f7eb048e6049c214182891bd126312fc, type: 3}
   m_PrefabInstance: {fileID: 3684243127382273100}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3684243127382273105 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 509072946527329106, guid: f7eb048e6049c214182891bd126312fc, type: 3}
+  m_PrefabInstance: {fileID: 3684243127382273100}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8261fa6237306b34fa35644267d258b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.UI.TitleScreen
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
