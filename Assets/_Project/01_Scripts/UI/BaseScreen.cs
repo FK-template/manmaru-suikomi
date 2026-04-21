@@ -12,23 +12,14 @@ namespace Manmaru.UI
     /// </remarks>
     public abstract class BaseScreen : MonoBehaviour
     {
-        [Header("初期状態設定")]
-        [SerializeField] protected bool _showOnStart = false;
-
         [Header("表示を切り替えるUIパネル")]
         [SerializeField] protected GameObject _rootPanel;
-
-        [Header("共通依存クラス設定")]
-        [SerializeField] protected SceneFlowController _sceneFlowController;
 
         /// <summary>
         /// 共通の初期化処理をまとめたスタート関数
         /// </summary>
         protected virtual void Start()
         {
-            if (_showOnStart) ShowUI();
-            else HideUI();
-
             RegisterEvents();
         }
 

@@ -13,6 +13,9 @@ namespace Manmaru.UI
         [SerializeField] private Button _retryButton;
         [SerializeField] private Button _titleButton;
 
+        [Header("シーン管理クラス")]
+        [SerializeField] private SceneFlowController _sceneFlowController;
+
         protected override void RegisterEvents()
         {
             // イベント購読設定

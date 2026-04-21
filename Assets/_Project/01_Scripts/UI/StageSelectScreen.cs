@@ -1,3 +1,4 @@
+using Manmaru.System;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,6 +26,9 @@ namespace Manmaru.UI
         [Header("ボタン設定")]
         [SerializeField] private Button _returnButton;
         [SerializeField] private StageButtonData[] _stageButtonsData;
+
+        [Header("シーン管理クラス")]
+        [SerializeField] private SceneFlowController _sceneFlowController;
 
         // 公開変数：ボタン入力を伝えるイベント
         public Action OnReturnClicked;
