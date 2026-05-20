@@ -2597,7 +2597,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 775947000}
-  - component: {fileID: 775947003}
   m_Layer: 5
   m_Name: ScreenController
   m_TagString: Untagged
@@ -2627,23 +2626,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &775947003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 775946999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38f1b3ac8f9f5cf408c89eed59a90fdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.UI.PauseUIController
-  _rootPanel: {fileID: 7457102647020785164}
-  _closeButton: {fileID: 3608586638258999748}
-  _retryButton: {fileID: 2566876397762112555}
-  _titleButton: {fileID: 2566876397762112554}
-  _sceneFlowController: {fileID: 0}
 --- !u!1001 &789217998
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4720,6 +4702,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3a48a1348907a54f85b4603a6a53bcf, type: 3}
+--- !u!114 &1273717527 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5394790024255945601, guid: 0fb4bca75113cb944bcf7add8f1b02c9, type: 3}
+  m_PrefabInstance: {fileID: 538862960}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca0c4959e241e244c9118b31cd7b0be2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.System.SceneFlowController
 --- !u!1 &1289629930
 GameObject:
   m_ObjectHideFlags: 0
@@ -7392,11 +7385,19 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 775947000}
     m_Modifications:
+    - target: {fileID: 5163001094731251325, guid: 56cc2fd9537db104e854d8b1b2e97fe9, type: 3}
+      propertyPath: _sceneFlowController
+      value: 
+      objectReference: {fileID: 1273717527}
     - target: {fileID: 7457102647724191903, guid: 56cc2fd9537db104e854d8b1b2e97fe9, type: 3}
       propertyPath: m_Name
       value: GameClearScreen
       objectReference: {fileID: 0}
     - target: {fileID: 7457102647724191903, guid: 56cc2fd9537db104e854d8b1b2e97fe9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962338522389055868, guid: 56cc2fd9537db104e854d8b1b2e97fe9, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -7493,6 +7494,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 775947000}
     m_Modifications:
+    - target: {fileID: 3007267478454525405, guid: b9912a46129aa3e4ca2340925b72c0a1, type: 3}
+      propertyPath: _sceneFlowController
+      value: 
+      objectReference: {fileID: 1273717527}
+    - target: {fileID: 3205851304671849310, guid: b9912a46129aa3e4ca2340925b72c0a1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8607294833279794031, guid: b9912a46129aa3e4ca2340925b72c0a1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7579,35 +7588,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9117798129452146745, guid: b9912a46129aa3e4ca2340925b72c0a1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9912a46129aa3e4ca2340925b72c0a1, type: 3}
---- !u!114 &2566876397762112554 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1050901334545425637, guid: b9912a46129aa3e4ca2340925b72c0a1, type: 3}
-  m_PrefabInstance: {fileID: 2566876397762112553}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &2566876397762112555 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4862494632621237296, guid: b9912a46129aa3e4ca2340925b72c0a1, type: 3}
-  m_PrefabInstance: {fileID: 2566876397762112553}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!4 &2776631511769449308 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7258517726908762735, guid: 8b7b7029125db8b47bb73162eaf86f15, type: 3}
@@ -7768,17 +7755,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8975377129001301382, guid: 944055d8a71894c47b73719625f44e67, type: 3}
   m_PrefabInstance: {fileID: 3457702436529730429}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3608586638258999748 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9000464789025783909, guid: b9912a46129aa3e4ca2340925b72c0a1, type: 3}
-  m_PrefabInstance: {fileID: 2566876397762112553}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &4748921349972593432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7980,11 +7956,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7799497883365763443, guid: 7d8cf4ef80a4e5e4a97a7884ccc62489, type: 3}
   m_PrefabInstance: {fileID: 1618932668409374210}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7457102647020785164 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9117798129452146745, guid: b9912a46129aa3e4ca2340925b72c0a1, type: 3}
-  m_PrefabInstance: {fileID: 2566876397762112553}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8386372258528462205
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7993,6 +7964,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 775947000}
     m_Modifications:
+    - target: {fileID: 2729178260540408744, guid: f7d6cac76a15e9e43b64782735c9574e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5672718898702155398, guid: f7d6cac76a15e9e43b64782735c9574e, type: 3}
+      propertyPath: _sceneFlowController
+      value: 
+      objectReference: {fileID: 1273717527}
     - target: {fileID: 6071669572917619926, guid: f7d6cac76a15e9e43b64782735c9574e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -8079,7 +8058,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7590821375427668836, guid: f7d6cac76a15e9e43b64782735c9574e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

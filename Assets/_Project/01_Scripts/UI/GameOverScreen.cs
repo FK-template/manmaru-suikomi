@@ -7,6 +7,7 @@ namespace Manmaru.UI
     /// <summary>
     /// ゲームオーバー画面の表示制御とボタン入力を管理するクラス
     /// </summary>
+    /// <remarks>（※最初のイベント登録があるため、シーン開始時、本クラスをアタッチしたオブジェクトはアクティブ状態にしておくこと）</remarks>
     public class GameOverScreen : BaseScreen
     {
         [Header("ボタン設定")]
@@ -24,6 +25,9 @@ namespace Manmaru.UI
             // ボタンの役割設定
             _retryButton.onClick.AddListener(_sceneFlowController.ReloadCurrentScene);
             _titleButton.onClick.AddListener(() => _sceneFlowController.LoadSceneByName(_sceneFlowController.TitleSceneName));
+
+            // 最初は非表示にしておく
+            HideUI();
         }
 
         private void OnDestroy()

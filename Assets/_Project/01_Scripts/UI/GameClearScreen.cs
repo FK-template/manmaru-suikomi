@@ -7,6 +7,7 @@ namespace Manmaru.UI
     /// <summary>
     /// ゲームクリア画面の表示制御とボタン入力を管理するクラス
     /// </summary>
+    /// <remarks>（※最初のイベント登録があるため、シーン開始時、本クラスをアタッチしたオブジェクトはアクティブ状態にしておくこと）</remarks>
     public class GameClearScreen : BaseScreen
     {
         [Header("ボタン設定")]
@@ -26,6 +27,9 @@ namespace Manmaru.UI
             _retryButton.onClick.AddListener(_sceneFlowController.ReloadCurrentScene);
             _nextButton.onClick.AddListener(()=> _sceneFlowController.LoadSceneByName(_sceneFlowController.NextSceneName));
             _titleButton.onClick.AddListener(() => _sceneFlowController.LoadSceneByName(_sceneFlowController.TitleSceneName));
+
+            // 最初は非表示にしておく
+            HideUI();
         }
 
         private void OnDestroy()
