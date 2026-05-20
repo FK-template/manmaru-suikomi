@@ -12,6 +12,9 @@ namespace Manmaru.System
         [SerializeField] private string _nextSceneName;
         [SerializeField] private string _titleSceneName;
 
+        // 内部変数
+        private bool _isLoading = false;
+
         // プロパティ
         public string NextSceneName => _nextSceneName;
         public string TitleSceneName => _titleSceneName;
@@ -21,7 +24,13 @@ namespace Manmaru.System
         /// </summary>
         public void LoadSceneByName(string sceneName)
         {
+            // 重複ロード対策
+            if(_isLoading) return;
+            _isLoading = true;
+
+            // ロード処理
             SceneManager.LoadScene(sceneName);
+            _isLoading = false;
         }
 
         /// <summary>
