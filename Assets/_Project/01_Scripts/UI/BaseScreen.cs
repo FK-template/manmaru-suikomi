@@ -35,6 +35,7 @@ namespace Manmaru.UI
         /// <remarks>（publicの理由：外部からボタン入力などを監視して画面表示を操作するため）</remarks>
         public virtual void ShowUI()
         {
+            gameObject.SetActive(true);
             if (_rootPanel != null) _rootPanel.SetActive(true);
         }
 
@@ -44,6 +45,7 @@ namespace Manmaru.UI
         /// <remarks>（publicの理由：外部からボタン入力などを監視して画面表示を操作するため）</remarks>
         public virtual void HideUI()
         {
+            gameObject.SetActive(false);
             if (_rootPanel != null) _rootPanel.SetActive(false);
         }
     }
