@@ -192,10 +192,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd673a890fe317e43a548e16efa1d97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.UI.TitleScenePresenter
+  _titleStartBGMData: {fileID: 11400000, guid: 9e409ae598f07844aab29835a5b07058, type: 2}
   _titleScreen: {fileID: 3684243127382273105}
   _stageSelectScreen: {fileID: 3656490462795906707}
   _confirmScreen: {fileID: 1843645849}
   _appQuitHandler: {fileID: 92017206}
+--- !u!1001 &239907709
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1343033819178753860, guid: 9d8aeca672003a74ea6ca0e91a5882da, type: 3}
+      propertyPath: m_Name
+      value: BGMPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774139055692817395, guid: 9d8aeca672003a74ea6ca0e91a5882da, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774139055692817395, guid: 9d8aeca672003a74ea6ca0e91a5882da, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774139055692817395, guid: 9d8aeca672003a74ea6ca0e91a5882da, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774139055692817395, guid: 9d8aeca672003a74ea6ca0e91a5882da, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774139055692817395, guid: 9d8aeca672003a74ea6ca0e91a5882da, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774139055692817395, guid: 9d8aeca672003a74ea6ca0e91a5882da, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774139055692817395, guid: 9d8aeca672003a74ea6ca0e91a5882da, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774139055692817395, guid: 9d8aeca672003a74ea6ca0e91a5882da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774139055692817395, guid: 9d8aeca672003a74ea6ca0e91a5882da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774139055692817395, guid: 9d8aeca672003a74ea6ca0e91a5882da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d8aeca672003a74ea6ca0e91a5882da, type: 3}
 --- !u!224 &612691938 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7103231098764820730, guid: 5fa173c32a9358a41ae1108093b7d941, type: 3}
@@ -1381,4 +1439,5 @@ SceneRoots:
   - {fileID: 731494755}
   - {fileID: 898721767}
   - {fileID: 2053466029921363840}
+  - {fileID: 239907709}
   - {fileID: 1102087175}
