@@ -1,8 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
-using Manmaru.Player;
-using static Manmaru.Player.PlayerStateManager;
 
 namespace Manmaru.Interaction
 {
