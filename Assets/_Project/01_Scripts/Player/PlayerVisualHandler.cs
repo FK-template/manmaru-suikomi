@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Manmaru.Movement;
 
 namespace Manmaru.Player
 {
@@ -25,8 +26,13 @@ namespace Manmaru.Player
         [SerializeField] private float _flashColorMaxRatio = 0.5f;
         [SerializeField] private Color _flashLerpColor = Color.white;
 
+        [Header("アニメーター")]
+        [SerializeField] private Animator _animator;
+        [SerializeField] private float _walkAnimSpeed = 0.1f;
+
         [Header("依存クラス設定")]
         [SerializeField] private PlayerHealthController _healthController;
+        [SerializeField] private PlayerMoveController _moveController;
 
         // 内部変数：点滅用
         private bool _isFlashing = false;
@@ -40,10 +46,12 @@ namespace Manmaru.Player
             // イベント購読設定
             _healthController.OnNoDamageStarted += StartFlashing;
             _healthController.OnNoDamageFinished += FinishFlashing;
+
         }
 
         void Update()
         {
+            UpdateWalkAnimation();
             UpdateFlashing();
         }
 
@@ -75,6 +83,16 @@ namespace Manmaru.Player
             ApplyColor(_mouthfulColor);
             ApplyScale(_fatScale);
             _baseColor = _renderersList[0].material.color;
+        }
+
+        private void UpdateWalkAnimation()
+        {
+            if (_moveController == null || _animator == null) return;
+
+            // アニメーション移行判定用
+            _animator.SetFloat("MoveSpeed", _moveController.CurrentHorizontalSpeed);
+            // アニメーション再生速度用（変数で変化の大きさを調整可能）
+            _animator.SetFloat("MoveAnimSpeed", _moveController.CurrentHorizontalSpeed * _walkAnimSpeed);
         }
 
         /// <summary>

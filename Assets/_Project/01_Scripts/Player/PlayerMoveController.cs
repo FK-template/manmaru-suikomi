@@ -38,11 +38,12 @@ namespace Manmaru.Player
         // 公開変数：サウンド用イベント
         public Action OnLanded;
 
-        // 公開変数：現在の速度
-        public Vector3 _currentVelocity;
-
         // 内部変数
+        private Vector3 _currentVelocity;
         private bool _isPreviousGrounded = false;
+
+        // プロパティ：水平方向の速度
+        public float CurrentHorizontalSpeed => new Vector2(_currentVelocity.x, _currentVelocity.z).magnitude;
 
         void Awake()
         {
