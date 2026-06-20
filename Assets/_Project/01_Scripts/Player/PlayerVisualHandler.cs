@@ -46,7 +46,6 @@ namespace Manmaru.Player
             // イベント購読設定
             _healthController.OnNoDamageStarted += StartFlashing;
             _healthController.OnNoDamageFinished += FinishFlashing;
-
         }
 
         void Update()
@@ -85,6 +84,9 @@ namespace Manmaru.Player
             _baseColor = _renderersList[0].material.color;
         }
 
+        /// <summary>
+        /// 歩きアニメーションへの移行と再生速度を更新するメソッド
+        /// </summary>
         private void UpdateWalkAnimation()
         {
             if (_moveController == null || _animator == null) return;
