@@ -18,7 +18,7 @@ namespace Manmaru.Movement
         // ジャンプフラグ
         public bool IsJumping { get; private set; }
 
-        // 公開変数：サウンド用イベント
+        // 公開変数：アクション判定用イベント
         public Action OnJumped;
 
         // 内部変数：パラメータ

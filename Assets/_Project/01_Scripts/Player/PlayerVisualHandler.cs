@@ -26,13 +26,17 @@ namespace Manmaru.Player
         [SerializeField] private float _flashColorMaxRatio = 0.5f;
         [SerializeField] private Color _flashLerpColor = Color.white;
 
-        [Header("アニメーター")]
+        [Header("アニメーション")]
         [SerializeField] private Animator _animator;
+        [SerializeField] private string _moveSpeedFloatName = "MoveSpeed";
+        [SerializeField] private string _moveAnimSpeedFloatName = "MoveAnimSpeed";
+        [SerializeField] private string _jumpTriggerName = "OnJump";
         [SerializeField] private float _walkAnimSpeed = 0.1f;
 
         [Header("依存クラス設定")]
         [SerializeField] private PlayerHealthController _healthController;
         [SerializeField] private PlayerMoveController _moveController;
+        [SerializeField] private JumpAction _jumpAction;
 
         // 内部変数：点滅用
         private bool _isFlashing = false;
@@ -46,6 +50,8 @@ namespace Manmaru.Player
             // イベント購読設定
             _healthController.OnNoDamageStarted += StartFlashing;
             _healthController.OnNoDamageFinished += FinishFlashing;
+            _jumpAction.OnJumped += StartJumpAnimation;
+
         }
 
         void Update()
@@ -92,9 +98,20 @@ namespace Manmaru.Player
             if (_moveController == null || _animator == null) return;
 
             // アニメーション移行判定用
-            _animator.SetFloat("MoveSpeed", _moveController.CurrentHorizontalSpeed);
+            _animator.SetFloat(_moveSpeedFloatName, _moveController.CurrentHorizontalSpeed);
             // アニメーション再生速度用（変数で変化の大きさを調整可能）
-            _animator.SetFloat("MoveAnimSpeed", _moveController.CurrentHorizontalSpeed * _walkAnimSpeed);
+            _animator.SetFloat(_moveAnimSpeedFloatName, _moveController.CurrentHorizontalSpeed * _walkAnimSpeed);
+        }
+
+        /// <summary>
+        /// ジャンプアニメーションを起動するメソッド
+        /// </summary>
+        private void StartJumpAnimation()
+        {
+            if (_jumpAction == null || _animator == null) return;
+
+            // アニメーション起動
+            _animator.SetTrigger(_jumpTriggerName);
         }
 
         /// <summary>

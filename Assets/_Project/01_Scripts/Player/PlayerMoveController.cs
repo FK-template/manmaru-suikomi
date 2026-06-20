@@ -35,7 +35,7 @@ namespace Manmaru.Player
         [SerializeField] private WallChecker _wallChecker;
         [SerializeField] private WallFitter _wallFitter;
 
-        // 公開変数：サウンド用イベント
+        // 公開変数：アクション判定用イベント
         public Action OnLanded;
 
         // 内部変数
