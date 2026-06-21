@@ -173,6 +173,8 @@ namespace Manmaru.Player
             {
                 _healthController.OnNoDamageStarted -= StartFlashing;
                 _healthController.OnNoDamageFinished -= FinishFlashing;
+                _moveController.OnLanded -= StartLandAnimation;
+                _jumpAction.OnJumped -= StartJumpAnimation;
             }
         }
     }
