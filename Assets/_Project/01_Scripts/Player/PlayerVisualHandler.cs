@@ -31,6 +31,7 @@ namespace Manmaru.Player
         [SerializeField] private string _moveSpeedFloatName = "MoveSpeed";
         [SerializeField] private string _moveAnimSpeedFloatName = "MoveAnimSpeed";
         [SerializeField] private string _jumpTriggerName = "OnJump";
+        [SerializeField] private string _landedTriggerName = "OnLanded";
         [SerializeField] private float _walkAnimSpeed = 0.1f;
 
         [Header("依存クラス設定")]
@@ -50,8 +51,8 @@ namespace Manmaru.Player
             // イベント購読設定
             _healthController.OnNoDamageStarted += StartFlashing;
             _healthController.OnNoDamageFinished += FinishFlashing;
+            _moveController.OnLanded += StartLandAnimation;
             _jumpAction.OnJumped += StartJumpAnimation;
-
         }
 
         void Update()
@@ -112,6 +113,17 @@ namespace Manmaru.Player
 
             // アニメーション起動
             _animator.SetTrigger(_jumpTriggerName);
+        }
+
+        /// <summary>
+        /// 着地アニメーションを起動するメソッド
+        /// </summary>
+        private void StartLandAnimation()
+        {
+            if (_moveController == null || _animator == null) return;
+
+            // アニメーション起動
+            _animator.SetTrigger(_landedTriggerName);
         }
 
         /// <summary>
