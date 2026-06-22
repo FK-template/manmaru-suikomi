@@ -45,6 +45,9 @@ namespace Manmaru.Player
         // プロパティ：水平方向の速度
         public float CurrentHorizontalSpeed => new Vector2(_currentVelocity.x, _currentVelocity.z).magnitude;
 
+        // プロパティ：着地判定
+        public bool IsGrounding => _isPreviousGrounded;
+
         void Awake()
         {
             // イベント購読設定（引数渡し付き）

@@ -30,6 +30,7 @@ namespace Manmaru.Player
         [SerializeField] private Animator _animator;
         [SerializeField] private string _moveSpeedFloatName = "MoveSpeed";
         [SerializeField] private string _moveAnimSpeedFloatName = "MoveAnimSpeed";
+        [SerializeField] private string _groundedBoolName = "IsGrounding";
         [SerializeField] private string _jumpTriggerName = "OnJump";
         [SerializeField] private string _landedTriggerName = "OnLanded";
         [SerializeField] private float _walkAnimSpeed = 0.1f;
@@ -58,6 +59,7 @@ namespace Manmaru.Player
         void Update()
         {
             UpdateWalkAnimation();
+            UpdateGroundingStatus();
             UpdateFlashing();
         }
 
@@ -124,6 +126,15 @@ namespace Manmaru.Player
 
             // アニメーション起動
             _animator.SetTrigger(_landedTriggerName);
+        }
+
+        /// <summary>
+        /// 着地ステータスを更新するメソッド
+        /// </summary>
+        /// <remarks>着地イベント発火しなかった時の保険として、ジャンプアニメーション中断用にステータスを更新する</remarks>
+        private void UpdateGroundingStatus()
+        {
+            _animator.SetBool(_groundedBoolName, _moveController.IsGrounding);
         }
 
         /// <summary>
