@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6683693596760103341}
-  m_LocalEulerAnglesHint: {x: -0, y: 0, z: -15.000005}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!33 &6611486730685299014
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -227,7 +227,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6007280712033306064}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
 --- !u!33 &5555544504790498048
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -316,7 +316,7 @@ Transform:
   m_Children:
   - {fileID: 6690700122536213083}
   m_Father: {fileID: 5580521533403734428}
-  m_LocalEulerAnglesHint: {x: 2.5228045, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 59.484444, y: 0, z: 0}
 --- !u!1 &1040040419397020299
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,8 +326,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7799497883365763443}
-  - component: {fileID: 2720245960114329096}
-  - component: {fileID: 5576582393117396493}
   - component: {fileID: 6744160247790625198}
   - component: {fileID: 600826131234890383}
   - component: {fileID: 1380759849199559847}
@@ -342,7 +340,6 @@ GameObject:
   - component: {fileID: 3978628970632068069}
   - component: {fileID: 7180657144756484371}
   - component: {fileID: 8176274300784794013}
-  - component: {fileID: 602614925759671335}
   m_Layer: 12
   m_Name: Player
   m_TagString: Player
@@ -369,63 +366,6 @@ Transform:
   - {fileID: 4917214667878831598}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2720245960114329096
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1040040419397020299}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &5576582393117396493
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1040040419397020299}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &6744160247790625198
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -581,7 +521,7 @@ MonoBehaviour:
   _mouthfulStock:
     _capturedCount: 0
     _capturedCountLimit: 0
-  _playerVisualController: {fileID: 724812542574124737}
+  _playerVisualController: {fileID: 7365511389295666257}
   _vacuumEffectController: {fileID: 918982957623446952}
 --- !u!114 &8351851710768700808
 MonoBehaviour:
@@ -679,28 +619,6 @@ MonoBehaviour:
   _vacuumAudio: {fileID: 11400000, guid: ee4b921fc17b9b942ab962fa0fd9cb0b, type: 2}
   _captureAudio: {fileID: 11400000, guid: 438a6df3f911a1a4a8d6ec05e8c454b2, type: 2}
   _shootAudio: {fileID: 11400000, guid: ea2437faad7ef5c49841b87952f5fc7d, type: 2}
---- !u!95 &602614925759671335
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1040040419397020299}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 69d1be84738775f469484331558c5a00, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1516273057086632732
 GameObject:
   m_ObjectHideFlags: 0
@@ -732,7 +650,7 @@ Transform:
   m_Children:
   - {fileID: 6559962853276177985}
   m_Father: {fileID: 5580521533403734428}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -45, y: 0, z: 0}
 --- !u!1 &1983110970107794533
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,7 +950,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8224022696841714633}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!33 &541159161515291254
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1273,7 +1191,7 @@ Transform:
   m_Children:
   - {fileID: 4509139670531253483}
   m_Father: {fileID: 5580521533403734428}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!1 &5725160365093503075
 GameObject:
   m_ObjectHideFlags: 0
@@ -1306,7 +1224,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3735717877513553617}
-  m_LocalEulerAnglesHint: {x: -0, y: -0, z: 15}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!33 &6498238232653703744
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1468,6 +1386,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2303634695447578249}
+  - component: {fileID: 7365511389295666257}
+  - component: {fileID: 1964484535688292119}
   m_Layer: 12
   m_Name: VisualRoot
   m_TagString: Untagged
@@ -1491,6 +1411,63 @@ Transform:
   - {fileID: 1410404049520939191}
   m_Father: {fileID: 7799497883365763443}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7365511389295666257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6502522194820394183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6afa84eaa4ca6ba4484671fc2e0f1cb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Player.PlayerVisualHandler
+  _renderersList:
+  - {fileID: 4084526842022694733}
+  - {fileID: 3228692797235596927}
+  - {fileID: 7806342987120515039}
+  - {fileID: 1063383621291502181}
+  _normalColor: {r: 1, g: 0.5921569, b: 0.8235294, a: 1}
+  _vacuumingColor: {r: 0.9921569, g: 0.3647059, b: 0.13333334, a: 1}
+  _mouthfulColor: {r: 1, g: 0.9215687, b: 0.015686275, a: 1}
+  _baseScale: {x: 1, y: 1, z: 1}
+  _fatScale: {x: 1.2, y: 1, z: 1}
+  _flashSpeed: 10
+  _flashColorMaxRatio: 0.5
+  _flashLerpColor: {r: 1, g: 1, b: 1, a: 1}
+  _animator: {fileID: 1964484535688292119}
+  _moveSpeedFloatName: MoveSpeed
+  _moveAnimSpeedFloatName: MoveAnimSpeed
+  _groundedBoolName: IsGrounding
+  _jumpTriggerName: OnJump
+  _landedTriggerName: OnLanded
+  _walkAnimSpeed: 0.2
+  _healthController: {fileID: 1953666305681331860}
+  _moveController: {fileID: 4688875060399923483}
+  _jumpAction: {fileID: 8050286311653644445}
+--- !u!95 &1964484535688292119
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6502522194820394183}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 69d1be84738775f469484331558c5a00, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6617448712236091353
 GameObject:
   m_ObjectHideFlags: 0
@@ -1555,7 +1532,7 @@ Transform:
   m_Children:
   - {fileID: 591940110981017771}
   m_Father: {fileID: 5580521533403734428}
-  m_LocalEulerAnglesHint: {x: 2.0644445, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 59.484444, y: 0, z: 0}
 --- !u!1 &6905448047119157759
 GameObject:
   m_ObjectHideFlags: 0
@@ -1629,7 +1606,6 @@ GameObject:
   - component: {fileID: 5580521533403734428}
   - component: {fileID: 8311087170969039298}
   - component: {fileID: 4084526842022694733}
-  - component: {fileID: 724812542574124737}
   m_Layer: 12
   m_Name: Body
   m_TagString: Untagged
@@ -1714,41 +1690,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &724812542574124737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7706298709849969572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6afa84eaa4ca6ba4484671fc2e0f1cb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Player.PlayerVisualHandler
-  _renderersList:
-  - {fileID: 4084526842022694733}
-  - {fileID: 3228692797235596927}
-  - {fileID: 7806342987120515039}
-  - {fileID: 1063383621291502181}
-  _normalColor: {r: 1, g: 0.5921569, b: 0.8235294, a: 1}
-  _vacuumingColor: {r: 0.9921569, g: 0.3647059, b: 0.13333334, a: 1}
-  _mouthfulColor: {r: 1, g: 0.9215687, b: 0.015686275, a: 1}
-  _baseScale: {x: 1, y: 1, z: 1}
-  _fatScale: {x: 1.2, y: 1, z: 1}
-  _flashSpeed: 10
-  _flashColorMaxRatio: 0.5
-  _flashLerpColor: {r: 1, g: 1, b: 1, a: 1}
-  _animator: {fileID: 602614925759671335}
-  _moveSpeedFloatName: MoveSpeed
-  _moveAnimSpeedFloatName: MoveAnimSpeed
-  _groundedBoolName: IsGrounding
-  _jumpTriggerName: OnJump
-  _landedTriggerName: OnLanded
-  _walkAnimSpeed: 0.2
-  _healthController: {fileID: 1953666305681331860}
-  _moveController: {fileID: 4688875060399923483}
-  _jumpAction: {fileID: 8050286311653644445}
 --- !u!1 &8141606149362392889
 GameObject:
   m_ObjectHideFlags: 0
