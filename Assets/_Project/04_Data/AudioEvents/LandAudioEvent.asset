@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LandAudioEvent
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Audio.AudioEventSO
   _clips:
-  - {fileID: 8300000, guid: 1529afd188a14bd4d87f9a4891dfd659, type: 3}
+  - {fileID: 8300000, guid: 9a5a664018f226a41b49f02c43bd40ba, type: 3}
   _maxPitch: 1.1
   _minPitch: 0.9
   _volume: 0.05

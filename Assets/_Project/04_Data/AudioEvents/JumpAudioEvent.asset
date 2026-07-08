@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: JumpAudioEvent
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Audio.AudioEventSO
   _clips:
-  - {fileID: 8300000, guid: 20d380ced0012b34a82580d5775ce33b, type: 3}
+  - {fileID: 8300000, guid: 55d25683ea96d154c97bebf5f297c861, type: 3}
   _maxPitch: 1.1
   _minPitch: 0.9
   _volume: 0.2

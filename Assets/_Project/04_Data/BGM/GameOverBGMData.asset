@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 675adb4f175739a4593e87d5cacd4d28, type: 3}
   m_Name: GameOverBGMData
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Audio.BGMDataSO
-  _jingleClip: {fileID: 8300000, guid: 57a973ca9d9a7354aad744eb0f4a1f13, type: 3}
+  _jingleClip: {fileID: 8300000, guid: 220977ce8fe71234697380d57ca4dd61, type: 3}
   _jingleVolume: 0.1
-  _bgmClip: {fileID: 8300000, guid: 0e8b701c94e36d74dbb45d52b3a08e0d, type: 3}
+  _bgmClip: {fileID: 8300000, guid: 21c325cff84646c41b0028102f75ec36, type: 3}
   _bgmVolume: 0.02
   _isBGMLoop: 1

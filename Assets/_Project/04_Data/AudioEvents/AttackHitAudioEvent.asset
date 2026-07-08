@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AttackHitAudioEvent
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Audio.AudioEventSO
   _clips:
-  - {fileID: 8300000, guid: d2cad53c680d6c14382ad087d1956178, type: 3}
+  - {fileID: 8300000, guid: 7884800c1b845884a8c83d111edfe024, type: 3}
   _maxPitch: 1.1
   _minPitch: 0.9
   _volume: 0.2

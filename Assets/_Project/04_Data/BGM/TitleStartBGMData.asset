@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Audio.BGMDataSO
   _jingleClip: {fileID: 0}
   _jingleVolume: 0
-  _bgmClip: {fileID: 8300000, guid: 322a1f6d8cf40664aa9a4b5511d36d44, type: 3}
+  _bgmClip: {fileID: 8300000, guid: c759adbfd347399429cf38439b7f806f, type: 3}
   _bgmVolume: 0.02
   _isBGMLoop: 1

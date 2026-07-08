@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SmallHitAudioEvent
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Audio.AudioEventSO
   _clips:
-  - {fileID: 8300000, guid: 846c6e9bd232f6249b051c9e7c21e6e7, type: 3}
+  - {fileID: 8300000, guid: 253863e6dfae2f04c8aa86131f99aa65, type: 3}
   _maxPitch: 1.1
   _minPitch: 0.9
   _volume: 0.05

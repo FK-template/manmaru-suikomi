@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: VacuumAudioEvent
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Audio.AudioEventSO
   _clips:
-  - {fileID: 8300000, guid: de71188dad98c364d95de2cfef79ba7d, type: 3}
+  - {fileID: 8300000, guid: cc7774288ccb3734fb2696c718ae6a35, type: 3}
   _maxPitch: 1.5
   _minPitch: 0.1
   _volume: 0.1
