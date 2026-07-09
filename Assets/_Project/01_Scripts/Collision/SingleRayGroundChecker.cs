@@ -15,6 +15,9 @@ namespace Manmaru.Collision
         [Tooltip("基本のRayの長さ")]
         [SerializeField] private float _rayLength = 2.0f;
 
+        [Header("Rayの可視化スイッチ")]
+        [SerializeField] private bool _isRayDraw = true;
+
         // PlayerMovementから参照するためのプロパティ
         public float FeetPosY => _feetPos.position.y;
 
@@ -40,14 +43,14 @@ namespace Manmaru.Collision
             {
                 groundPosY = hit.point.y;
                 groundNormal = hit.normal;
-                Debug.DrawRay(rayStartPos, ray.direction * finalRayLength, Color.green);
+                if (_isRayDraw) Debug.DrawRay(rayStartPos, ray.direction * finalRayLength, Color.green);
                 return true;
             }
 
             // 接地していなければ、仮のy座標＆法線を返す
             groundPosY = 0f;
             groundNormal = Vector3.up;
-            Debug.DrawRay(rayStartPos, ray.direction * finalRayLength, Color.red);
+            if (_isRayDraw) Debug.DrawRay(rayStartPos, ray.direction * finalRayLength, Color.red);
             return false;
         }
     }

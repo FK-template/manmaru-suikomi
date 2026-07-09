@@ -7,6 +7,9 @@ namespace Manmaru.Collision
     /// </summary>
     public class WallFitter : MonoBehaviour
     {
+        [Header("Rayの可視化スイッチ")]
+        [SerializeField] private bool _isRayDraw = true;
+
         /// <summary>
         /// 水平8方向に補正をかけた位置を返し、めり込みを防ぐメソッド
         /// </summary>
@@ -36,7 +39,7 @@ namespace Manmaru.Collision
                     finalPos += hit.normal * pushDist;
                 }
 
-                Debug.DrawRay(playerPos, dir * bodyRad, Color.yellow);
+                if (_isRayDraw) Debug.DrawRay(playerPos, dir * bodyRad, Color.yellow);
             }
 
             return finalPos;

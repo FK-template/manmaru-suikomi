@@ -14,6 +14,9 @@ namespace Manmaru.Collision
         [Tooltip("基本のRayの長さ")]
         [SerializeField] private float _rayLength = 0.2f;
 
+        [Header("Rayの可視化スイッチ")]
+        [SerializeField] private bool _isRayDraw = true;
+
         /// <summary>
         /// 壁判定を取り、壁滑りを考慮した速度を返すメソッド
         /// </summary>
@@ -49,11 +52,11 @@ namespace Manmaru.Collision
                     float hitNormalVel = Vector3.Dot(finalVel, hit.normal);
                     if (hitNormalVel < 0f) finalVel -= hitNormalVel * hit.normal;
 
-                    Debug.DrawRay(t.position, moveDir * finalRayLength, Color.green);
+                    if (_isRayDraw) Debug.DrawRay(t.position, moveDir * finalRayLength, Color.green);
                 }
                 else
                 {
-                    Debug.DrawRay(t.position, moveDir * finalRayLength, Color.red);
+                    if (_isRayDraw) Debug.DrawRay(t.position, moveDir * finalRayLength, Color.red);
                 }
             }
             return finalVel;

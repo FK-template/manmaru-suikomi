@@ -13,6 +13,9 @@ namespace Manmaru.Ability
         [SerializeField] private float _captureCloseRange = 1.0f;
         [SerializeField] private float _captureAngleRange = 30.0f;
 
+        [Header("Rayの可視化スイッチ")]
+        [SerializeField] private bool _isRayDraw = true;
+
         // 依存クラス
         private CaptureTargetManager _captureTargetManager;
 
@@ -53,8 +56,8 @@ namespace Manmaru.Ability
             // ==========================================
             Vector3 rightEdge = Quaternion.Euler(0, _captureAngleRange, 0) * forwardLineMax;
             Vector3 leftEdge = Quaternion.Euler(0, -_captureAngleRange, 0) * forwardLineMax;
-            Gizmos.DrawRay(transform.position, rightEdge);
-            Gizmos.DrawRay(transform.position, leftEdge);
+            if (_isRayDraw) Gizmos.DrawRay(transform.position, rightEdge);
+            if (_isRayDraw) Gizmos.DrawRay(transform.position, leftEdge);
 
             int segments = 20; // 弧の滑らかさ
             float angleStep = (_captureAngleRange * 2) / segments;
@@ -77,8 +80,8 @@ namespace Manmaru.Ability
             // 半円の左右の直線（真横への線）
             Vector3 closeRightEdge = Quaternion.Euler(0, closeAngleRange, 0) * forwardLineClose;
             Vector3 closeLeftEdge = Quaternion.Euler(0, -closeAngleRange, 0) * forwardLineClose;
-            Gizmos.DrawRay(transform.position, closeRightEdge);
-            Gizmos.DrawRay(transform.position, closeLeftEdge);
+            if (_isRayDraw) Gizmos.DrawRay(transform.position, closeRightEdge);
+            if (_isRayDraw) Gizmos.DrawRay(transform.position, closeLeftEdge);
 
             float closeAngleStep = (closeAngleRange * 2) / segments;
             Vector3 closePrevPoint = transform.position + closeLeftEdge;
@@ -88,7 +91,7 @@ namespace Manmaru.Ability
                 float currentAngle = -closeAngleRange + (closeAngleStep * i);
                 Vector3 currentDir = Quaternion.Euler(0, currentAngle, 0) * forwardLineClose;
                 Vector3 currentPoint = transform.position + currentDir;
-                Gizmos.DrawLine(closePrevPoint, currentPoint);
+                if (_isRayDraw) Gizmos.DrawLine(closePrevPoint, currentPoint);
                 closePrevPoint = currentPoint;
             }
         }
