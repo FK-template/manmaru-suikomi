@@ -15,8 +15,10 @@ namespace Manmaru.Player
         void Start()
         {
             // イベント購読設定
-            GameStateManager.Instance.OnGameClearState += LockPlayerInput;
+            GameStateManager.Instance.OnPauseState += LockPlayerInput;
             GameStateManager.Instance.OnGameOverState += LockPlayerInput;
+            GameStateManager.Instance.OnGameClearState += LockPlayerInput;
+            GameStateManager.Instance.OnResumed += UnLockPlayerInput;
         }
 
         /// <summary>
@@ -45,8 +47,10 @@ namespace Manmaru.Player
             // イベント購読解除
             if (GameStateManager.Instance != null)
             {
-                GameStateManager.Instance.OnGameClearState -= LockPlayerInput;
+                GameStateManager.Instance.OnPauseState -= LockPlayerInput;
                 GameStateManager.Instance.OnGameOverState -= LockPlayerInput;
+                GameStateManager.Instance.OnGameClearState -= LockPlayerInput;
+                GameStateManager.Instance.OnResumed -= UnLockPlayerInput;
             }
         }
     }
