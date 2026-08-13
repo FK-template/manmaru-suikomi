@@ -183,6 +183,7 @@ MonoBehaviour:
   - {fileID: 5537577370149505046}
   - {fileID: 1985081732531639886}
   _rayLength: 0.2
+  _isRayDraw: 1
 --- !u!114 &746987648232355540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5782f85cd0e55b4da656996674430f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Collision.WallFitter
+  _isRayDraw: 1
 --- !u!1 &583108798925385809
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,6 +540,7 @@ MonoBehaviour:
   _captureMaxRange: 3
   _captureCloseRange: 1
   _captureAngleRange: 30
+  _isRayDraw: 1
 --- !u!114 &-617088151957877742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,6 +555,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.Ability.ShootAction
   _starBullet: {fileID: 805668605134999330, guid: 8640630d26f4e7b46a01242772612d08, type: 3}
   _spawnTrans: {fileID: 7799497883365763443}
+  _assistRadius: 2
+  _assistDistance: 15
+  _assistTargetLayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &1953666305681331860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -861,6 +869,7 @@ MonoBehaviour:
   _feetPos: {fileID: 8832679120666001680}
   _offsetY: 0.5
   _rayLength: 0.6
+  _isRayDraw: 1
 --- !u!114 &3413360555637506198
 MonoBehaviour:
   m_ObjectHideFlags: 0

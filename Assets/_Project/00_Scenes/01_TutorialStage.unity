@@ -7334,17 +7334,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -617088151957877742, guid: 7d8cf4ef80a4e5e4a97a7884ccc62489, type: 3}
-      propertyPath: _assistRadius
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: -617088151957877742, guid: 7d8cf4ef80a4e5e4a97a7884ccc62489, type: 3}
-      propertyPath: _assistTargetLayer.m_Bits
-      value: 2048
-      objectReference: {fileID: 0}
     - target: {fileID: 1040040419397020299, guid: 7d8cf4ef80a4e5e4a97a7884ccc62489, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040040419397020299, guid: 7d8cf4ef80a4e5e4a97a7884ccc62489, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7799497883365763443, guid: 7d8cf4ef80a4e5e4a97a7884ccc62489, type: 3}
       propertyPath: m_LocalPosition.x
