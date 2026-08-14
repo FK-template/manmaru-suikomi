@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3173748499203342551}
   - component: {fileID: 7500774286964994107}
   - component: {fileID: 6181480708212327138}
+  - component: {fileID: -1783848790107442938}
   m_Layer: 5
   m_Name: RetryButton
   m_TagString: Untagged
@@ -121,6 +122,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-1783848790107442938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787113858283025666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 478769d16f4b65e458863b9b4cd3bef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSelectFeedback
+  _selectAnimationDuration: 0.2
+  _deselectAnimationDuration: 0.1
+  _hoverScale: {x: 1.1, y: 1.1, z: 1}
+  _hoverButtonColor: {r: 0.9411765, g: 0.38431373, b: 0.57254905, a: 1}
+  _hoverTextColor: {r: 0.9607844, g: 0.9607844, b: 0.9607844, a: 1}
 --- !u!1 &7268043933065257752
 GameObject:
   m_ObjectHideFlags: 0

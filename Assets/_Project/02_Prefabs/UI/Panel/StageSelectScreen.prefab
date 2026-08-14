@@ -427,7 +427,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7875320446594682414}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -461,6 +461,18 @@ PrefabInstance:
     - target: {fileID: 33936159441556038, guid: 2118fa2b3c2d6ac4f92232ab26226e57, type: 3}
       propertyPath: m_Name
       value: ReturnButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563119335365130874, guid: 2118fa2b3c2d6ac4f92232ab26226e57, type: 3}
+      propertyPath: _hoverButtonColor.b
+      value: 0.67058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563119335365130874, guid: 2118fa2b3c2d6ac4f92232ab26226e57, type: 3}
+      propertyPath: _hoverButtonColor.g
+      value: 0.56078434
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563119335365130874, guid: 2118fa2b3c2d6ac4f92232ab26226e57, type: 3}
+      propertyPath: _hoverButtonColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6638648313849542724, guid: 2118fa2b3c2d6ac4f92232ab26226e57, type: 3}
       propertyPath: m_Pivot.x
@@ -571,6 +583,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1925397569589877355}
     m_Modifications:
+    - target: {fileID: -7511164886487585393, guid: e0313a2031e7d354b87339ff39003655, type: 3}
+      propertyPath: _hoverButtonColor.b
+      value: 0.43867922
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511164886487585393, guid: e0313a2031e7d354b87339ff39003655, type: 3}
+      propertyPath: _hoverButtonColor.g
+      value: 0.5183473
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511164886487585393, guid: e0313a2031e7d354b87339ff39003655, type: 3}
+      propertyPath: _hoverButtonColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1983635166299204711, guid: e0313a2031e7d354b87339ff39003655, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -708,6 +732,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1925397569589877355}
     m_Modifications:
+    - target: {fileID: -7511164886487585393, guid: e0313a2031e7d354b87339ff39003655, type: 3}
+      propertyPath: _hoverButtonColor.b
+      value: 0.45256317
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511164886487585393, guid: e0313a2031e7d354b87339ff39003655, type: 3}
+      propertyPath: _hoverButtonColor.g
+      value: 0.8490566
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511164886487585393, guid: e0313a2031e7d354b87339ff39003655, type: 3}
+      propertyPath: _hoverButtonColor.r
+      value: 0.45256317
+      objectReference: {fileID: 0}
     - target: {fileID: 1983635166299204711, guid: e0313a2031e7d354b87339ff39003655, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -841,6 +877,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1925397569589877355}
     m_Modifications:
+    - target: {fileID: -7511164886487585393, guid: e0313a2031e7d354b87339ff39003655, type: 3}
+      propertyPath: _hoverButtonColor.b
+      value: 0.37254903
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511164886487585393, guid: e0313a2031e7d354b87339ff39003655, type: 3}
+      propertyPath: _hoverButtonColor.g
+      value: 0.7921569
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511164886487585393, guid: e0313a2031e7d354b87339ff39003655, type: 3}
+      propertyPath: _hoverButtonColor.r
+      value: 0.9490196
+      objectReference: {fileID: 0}
     - target: {fileID: 1983635166299204711, guid: e0313a2031e7d354b87339ff39003655, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

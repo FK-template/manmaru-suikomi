@@ -74,8 +74,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4290913056
-  m_fontColor: {r: 0.1254902, g: 0.13725491, b: 0.7607844, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -249,8 +249,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4290913056
-  m_fontColor: {r: 0.1254902, g: 0.13725491, b: 0.7607844, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -363,7 +363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Manmaru.UI.TitleScreen
   _rootPanel: {fileID: 9064601232028028421}
   _startButton: {fileID: 3523464827207668989}
-  _quitButton: {fileID: 5618118684182999650}
+  _quitButton: {fileID: 3154370676836128774}
 --- !u!1 &8174573007095381729
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,8 +438,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284931070
-  m_fontColor: {r: 0.99607843, g: 0.85700333, b: 0.39843136, a: 1}
+    rgba: 4284672509
+  m_fontColor: {r: 0.9921569, g: 0.91372555, b: 0.38431376, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -533,7 +533,7 @@ RectTransform:
   m_Children:
   - {fileID: 5535864590155527863}
   - {fileID: 8107048038261615608}
-  - {fileID: 8784481274646764310}
+  - {fileID: 2295073752539181426}
   m_Father: {fileID: 5774862817009057894}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -556,7 +556,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9064601232028028421}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -587,6 +587,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3819017811955731377}
     m_Modifications:
+    - target: {fileID: 2904087208084118753, guid: bc337da72af33134e85a7d03573fe816, type: 3}
+      propertyPath: _hoverTextColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904087208084118753, guid: bc337da72af33134e85a7d03573fe816, type: 3}
+      propertyPath: _hoverTextColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904087208084118753, guid: bc337da72af33134e85a7d03573fe816, type: 3}
+      propertyPath: _hoverTextColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904087208084118753, guid: bc337da72af33134e85a7d03573fe816, type: 3}
+      propertyPath: _hoverButtonColor.b
+      value: 0.57254905
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904087208084118753, guid: bc337da72af33134e85a7d03573fe816, type: 3}
+      propertyPath: _hoverButtonColor.g
+      value: 0.38431373
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904087208084118753, guid: bc337da72af33134e85a7d03573fe816, type: 3}
+      propertyPath: _hoverButtonColor.r
+      value: 0.9411765
+      objectReference: {fileID: 0}
     - target: {fileID: 4242859300014073239, guid: bc337da72af33134e85a7d03573fe816, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -676,7 +700,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc337da72af33134e85a7d03573fe816, type: 3}
---- !u!114 &5618118684182999650 stripped
+--- !u!224 &2295073752539181426 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4242859300014073239, guid: bc337da72af33134e85a7d03573fe816, type: 3}
+  m_PrefabInstance: {fileID: 2681919308311205093}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3154370676836128774 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1080446155384376547, guid: bc337da72af33134e85a7d03573fe816, type: 3}
   m_PrefabInstance: {fileID: 2681919308311205093}
@@ -687,11 +716,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!224 &8784481274646764310 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4242859300014073239, guid: bc337da72af33134e85a7d03573fe816, type: 3}
-  m_PrefabInstance: {fileID: 2681919308311205093}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4830415305033989761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -700,6 +724,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3819017811955731377}
     m_Modifications:
+    - target: {fileID: -1745446290270847204, guid: 38093aafe67c2fa49943b00d92e1f7f5, type: 3}
+      propertyPath: _hoverTextColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1745446290270847204, guid: 38093aafe67c2fa49943b00d92e1f7f5, type: 3}
+      propertyPath: _hoverTextColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1745446290270847204, guid: 38093aafe67c2fa49943b00d92e1f7f5, type: 3}
+      propertyPath: _hoverTextColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1745446290270847204, guid: 38093aafe67c2fa49943b00d92e1f7f5, type: 3}
+      propertyPath: _hoverButtonColor.b
+      value: 0.57254905
+      objectReference: {fileID: 0}
+    - target: {fileID: -1745446290270847204, guid: 38093aafe67c2fa49943b00d92e1f7f5, type: 3}
+      propertyPath: _hoverButtonColor.g
+      value: 0.38431373
+      objectReference: {fileID: 0}
+    - target: {fileID: -1745446290270847204, guid: 38093aafe67c2fa49943b00d92e1f7f5, type: 3}
+      propertyPath: _hoverButtonColor.r
+      value: 0.9411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 93096073476800769, guid: 38093aafe67c2fa49943b00d92e1f7f5, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.19215688
+      objectReference: {fileID: 0}
+    - target: {fileID: 93096073476800769, guid: 38093aafe67c2fa49943b00d92e1f7f5, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.19215688
+      objectReference: {fileID: 0}
+    - target: {fileID: 93096073476800769, guid: 38093aafe67c2fa49943b00d92e1f7f5, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.19215688
+      objectReference: {fileID: 0}
+    - target: {fileID: 93096073476800769, guid: 38093aafe67c2fa49943b00d92e1f7f5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4281413937
+      objectReference: {fileID: 0}
     - target: {fileID: 3714080032150607225, guid: 38093aafe67c2fa49943b00d92e1f7f5, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -779,6 +843,18 @@ PrefabInstance:
     - target: {fileID: 3714080032150607225, guid: 38093aafe67c2fa49943b00d92e1f7f5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4018418150340550424, guid: 38093aafe67c2fa49943b00d92e1f7f5, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 4018418150340550424, guid: 38093aafe67c2fa49943b00d92e1f7f5, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 4018418150340550424, guid: 38093aafe67c2fa49943b00d92e1f7f5, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9568628
       objectReference: {fileID: 0}
     - target: {fileID: 5376828721895712634, guid: 38093aafe67c2fa49943b00d92e1f7f5, type: 3}
       propertyPath: m_Name

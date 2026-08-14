@@ -57,7 +57,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2729178260540408744}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -752,19 +752,39 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1787113858283025666, guid: 5902d4c7ff4a65b4eb66bc1dd12703e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2520444017973957612}
   m_SourcePrefab: {fileID: 100100000, guid: 5902d4c7ff4a65b4eb66bc1dd12703e5, type: 3}
 --- !u!114 &1793238449974852913 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6181480708212327138, guid: 5902d4c7ff4a65b4eb66bc1dd12703e5, type: 3}
   m_PrefabInstance: {fileID: 5560779140749049811}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 6189847765671774929}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!1 &6189847765671774929 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1787113858283025666, guid: 5902d4c7ff4a65b4eb66bc1dd12703e5, type: 3}
+  m_PrefabInstance: {fileID: 5560779140749049811}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2520444017973957612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6189847765671774929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 078bef3e92c3d3c4dbbd44ddc665640c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Manmaru.UI.FirstSelectedUISetter
 --- !u!224 &8924919188948870169 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3958793393334836170, guid: 5902d4c7ff4a65b4eb66bc1dd12703e5, type: 3}

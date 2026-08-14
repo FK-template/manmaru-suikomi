@@ -46,6 +46,7 @@ namespace Manmaru.UI
         public virtual void HideUI()
         {
             gameObject.SetActive(false);
+            if (TryGetComponent<FirstSelectedUISetter>(out var uiSetter)) uiSetter.SetFirstSelectedUI(uiSetter.gameObject);
             if (_rootPanel != null) _rootPanel.SetActive(false);
         }
     }
