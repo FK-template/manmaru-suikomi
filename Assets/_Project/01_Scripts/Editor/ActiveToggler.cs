@@ -3,47 +3,50 @@ using UnityEngine;
 using UnityEditor;
 using System.Reflection;
 
-[InitializeOnLoad]
-public class ActiveToggler
+namespace Manmaru.Editor
 {
-    /// <summary>
-    /// 特定のキーでオブジェクトのアクティブ状態を切り替えるエディタ拡張クラス
-    /// </summary>
-    static ActiveToggler()
+    [InitializeOnLoad]
+    public class ActiveToggler
     {
-        bool isCommaDown = false;
-
-        EditorApplication.CallbackFunction function = () =>
+        /// <summary>
+        /// 特定のキーでオブジェクトのアクティブ状態を切り替えるエディタ拡張クラス
+        /// </summary>
+        static ActiveToggler()
         {
-            Event e = Event.current;
+            bool isCommaDown = false;
 
-            // キーを押された瞬間を検知
-            if (e.type == EventType.KeyDown && e.keyCode == KeyCode.Comma)
+            EditorApplication.CallbackFunction function = () =>
             {
-                // 「Alt」+「,」が入力されたらHierarchyで選択しているオブジェクトのアクティブ状態を反転させる
-                if (!isCommaDown && e.alt && Selection.activeGameObject != null)
-                {
-                    isCommaDown = true;
+                Event e = Event.current;
 
-                    foreach (var go in Selection.gameObjects)
+                // キーを押された瞬間を検知
+                if (e.type == EventType.KeyDown && e.keyCode == KeyCode.Comma)
+                {
+                    // 「Alt」+「,」が入力されたらHierarchyで選択しているオブジェクトのアクティブ状態を反転させる
+                    if (!isCommaDown && e.alt && Selection.activeGameObject != null)
                     {
-                        Undo.RecordObject(go, go.name + ".activeSelf");
-                        go.SetActive(!go.activeSelf);
+                        isCommaDown = true;
+
+                        foreach (var go in Selection.gameObjects)
+                        {
+                            Undo.RecordObject(go, go.name + ".activeSelf");
+                            go.SetActive(!go.activeSelf);
+                        }
                     }
                 }
-            }
 
-            if (e.type == EventType.KeyUp && e.keyCode == KeyCode.Comma)
-            {
-                isCommaDown = false;
-            }
-        };
+                if (e.type == EventType.KeyUp && e.keyCode == KeyCode.Comma)
+                {
+                    isCommaDown = false;
+                }
+            };
 
-        // リフレクション（エディタのどこでも使えるように）
-        FieldInfo info = typeof(EditorApplication).GetField("globalEventHandler", BindingFlags.Static | BindingFlags.Instance | BindingFlags.NonPublic);
-        EditorApplication.CallbackFunction functions = (EditorApplication.CallbackFunction)info.GetValue(null);
-        functions += function;
-        info.SetValue(null, (object)functions);
+            // リフレクション（エディタのどこでも使えるように）
+            FieldInfo info = typeof(EditorApplication).GetField("globalEventHandler", BindingFlags.Static | BindingFlags.Instance | BindingFlags.NonPublic);
+            EditorApplication.CallbackFunction functions = (EditorApplication.CallbackFunction)info.GetValue(null);
+            functions += function;
+            info.SetValue(null, (object)functions);
+        }
     }
 }
 #endif
